@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 //Ya pude conectarme amigues att 2tin//
+//a//
 /**
  * JavaFX App
  */
