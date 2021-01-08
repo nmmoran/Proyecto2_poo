@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="700.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Monitoreo">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Circle fx:id="c1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c3" fill="#ffdc1f" layoutX="338.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c4" fill="#ffdc1f" layoutX="471.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c5" fill="#ffdc1f" layoutX="84.0" layoutY="223.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c7" fill="#ffdc1f" layoutX="244.0" layoutY="223.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c6" fill="#ffdc1f" layoutX="84.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c8" fill="#ffdc1f" layoutX="244.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c9" fill="#ffdc1f" layoutX="413.0" layoutY="345.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c10" fill="#ffdc1f" layoutX="600.0" layoutY="235.0" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c11" fill="#ffdc1f" layoutX="622.0" layoutY="442.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="157.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="65.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="346.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="436.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="894.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                        <Label alignment="CENTER" layoutX="929.0" layoutY="272.0" prefHeight="20.0" prefWidth="71.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+               </content></Tab>
+          <Tab text="Diseño Plano">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+               </content>
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+               </content>
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Circle fx:id="c1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c4" fill="#ffdc1f" layoutX="471.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c3" fill="#ffdc1f" layoutX="338.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c5" fill="#ffdc1f" layoutX="84.0" layoutY="233.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c7" fill="#ffdc1f" layoutX="244.0" layoutY="235.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c6" fill="#ffdc1f" layoutX="84.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c8" fill="#ffdc1f" layoutX="244.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c9" fill="#ffdc1f" layoutX="413.0" layoutY="345.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c10" fill="#ffdc1f" layoutX="600.0" layoutY="235.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c11" fill="#ffdc1f" layoutX="622.0" layoutY="442.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="60.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="157.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="341.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="436.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="894.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                        <Label layoutX="929.0" layoutY="272.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+               </content>
+            </Tab>
+            <Tab text="Gestión Menú">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: black;">
+                           <children>
+                              <Label text="Opciones:" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <ComboBox fx:id="cbOpcionesGestionMenu" onMouseClicked="#opcionesGestionMenu" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content></Tab>
+            <Tab text="Reporte Ventas" />
+            <Tab text="Salir" />
+        </tabs>
+      </TabPane>
+      <VBox prefHeight="200.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: silver;">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Label text="     Total Facturados" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="174.0" text="    Numero de Comensales" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
