@@ -41,8 +41,10 @@ public class ProductosData {
             try(BufferedReader bf = new BufferedReader(new FileReader(file))){
                 String linea;
                 while((linea = bf.readLine())!=null){
-                    String[] partes = linea.split(";");
-                    System.out.println(partes);
+                    String partes[] = linea.split(";");
+                    for (String l: partes){
+                       System.out.println(l);
+                    }
                     //String nombre, double precio, String imagen,String tipo
                     //tipo 0 ; nombre_producto1 , precio 2 ,imagen 3
                     products.add(new Producto(partes[1],Double.parseDouble(partes[2]),partes[3],partes[0]));        
@@ -65,7 +67,7 @@ public class ProductosData {
         ArrayList<Producto> listaResultado = new ArrayList<>();
         try{ 
            for(Producto p :leerProducto()){
-               if(p.getTipo()==tipo){
+               if(p.getTipo().equals(tipo)){
                    listaResultado.add(p);
                }
            } 
@@ -96,7 +98,7 @@ public class ProductosData {
         //Formato de cada linea del archivo
         //softdrinks;Coca-cola;1,50;coca.jpg
         //nombre; nombre_genero, anio, rating, director
-                
+       
         //queremos agregar al final del archivo. Pasamos como segundo argumento 
         //al FileWriter true.
         try(BufferedWriter bw = new BufferedWriter(

@@ -76,8 +76,8 @@ public class VistaCuentaMesaController implements Initializable {
                 Label lnombre = new Label(p.getNombre());
                 vboxproducto.getChildren().add(lnombre);
 
-                Label lanio = new Label(String.valueOf(p.getPrecio()));
-                vboxproducto.getChildren().add(lanio);
+                Label lpercio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lpercio);
 
                 FPproductos.getChildren().add(FPproductos);
             }
@@ -94,10 +94,16 @@ public class VistaCuentaMesaController implements Initializable {
 
     @FXML
     private void mosrtarMilkshakes(MouseEvent event) {
+        FPproductos.getChildren().clear();
+        Label l = new Label("");
+        FPproductos.getChildren().add(l);
     }
 
     @FXML
     private void mostrarCervezas(MouseEvent event) {
+        FPproductos.getChildren().clear();
+        Label l = new Label("");
+        FPproductos.getChildren().add(l);
     }
 
     @FXML
