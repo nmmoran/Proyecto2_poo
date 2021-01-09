@@ -9,8 +9,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Circle;
 
 /**
@@ -51,7 +54,35 @@ public class AdministradorController implements Initializable {
     @FXML
     private Circle c15;
     @FXML
-    private ComboBox<?> cbOpcionesGestionMenu;
+    private TextField txtFechaInicial;
+    @FXML
+    private TextField txtFechaFinal;
+    @FXML
+    private Button btBuscar;
+    @FXML
+    private FlowPane fpMuestraMenu;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextField txtPrecio;
+    @FXML
+    private TextField txtRuta;
+    @FXML
+    private ComboBox<?> cbOpTipo1;
+    @FXML
+    private Button btnAñadir;
+    @FXML
+    private Button btnCancel1;
+    @FXML
+    private TextField txtNewName;
+    @FXML
+    private TextField txtNewPrecio;
+    @FXML
+    private TextField txtNewRuta;
+    @FXML
+    private Button btnModify;
+    @FXML
+    private Button btnCancel2;
 
     /**
      * Initializes the controller class.
@@ -61,8 +92,21 @@ public class AdministradorController implements Initializable {
         // TODO
     }    
 
+
     @FXML
-    private void opcionesGestionMenu(MouseEvent event) {
+    private void buscarFechas(MouseEvent event) {
+    }
+
+    @FXML
+    private void añadirNuevoProducto(MouseEvent event) {
+    }
+
+    @FXML
+    private void limpiarFields(MouseEvent event) {
+    }
+
+    @FXML
+    private void modificarProducto(MouseEvent event) {
     }
     
 }
