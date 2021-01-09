@@ -8,9 +8,11 @@ package com.pooespol.proyecto2_poo.data;
 import com.pooespol.proyecto2_poo.App;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -74,67 +76,34 @@ public class ProductosData {
         return listaResultado;
     }
     
-    /**
-     *
-     * Metodo segun los parametros de la profesora
-     * @param p
-     * @return 
-     * @throws java.io.IOException
-     */
-    
-    
-    //aldo
-    public static ArrayList<Producto> leerProducto(Producto p) 
-        throws IOException{
-    ArrayList<Producto> productos = new ArrayList<>();
-    //usamos BufferedReader para leer archivos
-    try{
-        //System.out.println("Primera partes");
-        URL u = App.class.getResource(ruta);
-        File file = new File(u.toURI());
-        //System.out.println("Segunda partes");
-        try(BufferedReader bf = new BufferedReader(new FileReader(file))) {
-            String linea;
-            //leemos el archivo liena a linea con la funcion readline
-            while((linea=bf.readLine())!=null){
-                //llamamos a la funcion procesarRegistro para  crear una nueva
-                //pelicula con la informacion de la linea
-                Producto producto = procesarRegistro(p,linea);
-                if(p!=null)
-                    productos.add(p);
-
-            }
-        } 
-
-        }catch(Exception ex){
-            System.out.println(ex);
-            }return productos;
+      public static ArrayList<String> obtenerTipos() {
+        ArrayList<String> listaResultado = new ArrayList<>();
+        try{ 
+           for(Producto p :leerProducto()){
+               if(listaResultado.contains(p.getTipo())==false){
+                   listaResultado.add(p.getTipo());
+               }
+           } 
+        }catch(IOException ex){
+            System.out.println("Ocurrio un error al parsear los tipos de producto");
+            ex.printStackTrace();
+        }
+        return listaResultado;
     }
-    
-    public static Producto procesarRegistro(Producto producto, String linea) {
+      public static void registrarProducto(Producto p) 
+            throws IOException, URISyntaxException {
+        
         //Formato de cada linea del archivo
-        //softdrinks;Coca-cola;1.50;coca.jpeg
-        //tipo; nombre_producto, precio,imagen
-        try{
-            //dividimos la linea en partes
-            String partes[]=linea.split(";");
-            if(partes[1].equals(producto.getNombre())){
-                //String nombre, double precio, String imagen,String tipo
-                //tipo 0 ; nombre_producto1 , precio 2 ,imagen 3
-                Producto p = new Producto(partes[1],
-                        Double.parseDouble(partes[2]),partes[3],partes[0]);
+        //softdrinks;Coca-cola;1,50;coca.jpg
+        //nombre; nombre_genero, anio, rating, director
                 
-                return p;
-            }else{
-                return null;
-            }
-        }catch(Exception ex){
-            //usamos contructor que recibe mensaje y la linea que produjo el error
-            //throw new RegistroMalFormadaException("Error al parser la linea",linea);
-            System.out.println("Error");
-        }return null;
+        //queremos agregar al final del archivo. Pasamos como segundo argumento 
+        //al FileWriter true.
+        try(BufferedWriter bw = new BufferedWriter(
+                new FileWriter(new File(App.class.getResource(ruta).toURI()),true))){
+            String linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
+            bw.write(linea);
+            bw.newLine();
+        }
     }
-
-    
-    
 }

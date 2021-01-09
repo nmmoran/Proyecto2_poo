@@ -5,12 +5,20 @@
  */
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.ProductosData;
+import com.pooespol.proyecto2_poo.modelo.Producto;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -68,7 +76,7 @@ public class AdministradorController implements Initializable {
     @FXML
     private TextField txtRuta;
     @FXML
-    private ComboBox<?> cbOpTipo1;
+    private ComboBox<String> cbOpTipo1;
     @FXML
     private Button btnAñadir;
     @FXML
@@ -83,14 +91,52 @@ public class AdministradorController implements Initializable {
     private Button btnModify;
     @FXML
     private Button btnCancel2;
+    @FXML
+    private Circle C1;
+    @FXML
+    private Circle C2;
+    @FXML
+    private Circle C4;
+    @FXML
+    private Circle C3;
+    @FXML
+    private Circle C5;
+    @FXML
+    private Circle C7;
+    @FXML
+    private Circle C6;
+    @FXML
+    private Circle C8;
+    @FXML
+    private Circle C9;
+    @FXML
+    private Circle C10;
+    @FXML
+    private Circle C11;
+    @FXML
+    private Circle C12;
+    @FXML
+    private Circle C13;
+    @FXML
+    private Circle C14;
+    @FXML
+    private Circle C15;
+    @FXML
+    private TextField txtNewNa;
+    @FXML
+    private Label lbMessage;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+            ArrayList<String> tipos= ProductosData.obtenerTipos();
+            cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
+        
+    }   
+    
 
 
     @FXML
@@ -99,6 +145,37 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void añadirNuevoProducto(MouseEvent event) {
+        try{
+            String tipo =cbOpTipo1.getValue();
+            String nombre = txtName.getText();
+            
+            if(tipo==null){
+                throw new NullPointerException("Tipo no puede estar vacio");
+            }
+
+            double precio  = Double.valueOf(txtPrecio.getText());
+            String imagen  = txtRuta.getText();
+            
+
+            Producto p = new Producto(nombre,precio,imagen,tipo);
+            
+            //registrar producto
+            ProductosData.registrarProducto(p);
+            
+            lbMessage.setText("El producto se registro");
+        }catch(NullPointerException ex){
+            lbMessage.setText("Tipo no puede ser vacio");
+        }catch(NumberFormatException ex){
+            lbMessage.setText("El campo precio tienen que ser una valor decimal");
+        }catch(IOException|URISyntaxException ex){
+            //maneja las excepciones de tipo IOException y URISyntaxException
+            //de la misma manera
+            lbMessage.setText("Error al guardar el contenido en el archivo de peliculas");
+            System.out.println(ex);
+        }
+        
+        
+    
     }
 
     @FXML
