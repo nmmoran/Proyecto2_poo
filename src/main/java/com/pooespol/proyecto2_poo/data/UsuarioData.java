@@ -48,7 +48,7 @@ public class UsuarioData {
                     //System.out.println("tets");
                     //System.out.println(linea);
                     //dividir la en partes 
-                    String[] partes = linea.split(";");
+                    String[] partes = linea.split("\\;");
                     if(partes[2].equals("administrador")){
                     usu.add(new Administrador(partes[0],partes[1]));
                     }else{
