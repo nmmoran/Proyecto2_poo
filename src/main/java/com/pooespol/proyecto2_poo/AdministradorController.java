@@ -9,7 +9,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
@@ -52,6 +54,12 @@ public class AdministradorController implements Initializable {
     private Circle c15;
     @FXML
     private ComboBox<?> cbOpcionesGestionMenu;
+    @FXML
+    private TextField txtFechaInicial;
+    @FXML
+    private TextField txtFechaFinal;
+    @FXML
+    private Button btBuscar;
 
     /**
      * Initializes the controller class.
@@ -63,6 +71,10 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void opcionesGestionMenu(MouseEvent event) {
+    }
+
+    @FXML
+    private void buscarFechas(MouseEvent event) {
     }
     
 }
