@@ -110,13 +110,13 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="702.0">
                            <children>
-                              <Button fx:id="btnBebidasSuaves" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Bebidas Suaves" />
-                              <Button fx:id="btnBebidasCalientes" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Bebidas Calientes" />
-                              <Button fx:id="btnMilk" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Milkshakes" />
-                              <Button fx:id="btnCervezas" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cervezas" />
-                              <Button fx:id="btnVinos" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vinos" />
-                              <Button fx:id="btnBebidasImportadas" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Bebidas Importadas" />
-                              <Button fx:id="btnCocteles" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
+                              <Button fx:id="btnBebidasSuaves" mnemonicParsing="false" onMouseClicked="#mostrarBebidasSuaves" prefHeight="25.0" prefWidth="105.0" text="Bebidas Suaves" />
+                              <Button fx:id="btnBebidasCalientes" mnemonicParsing="false" onMouseClicked="#mostrarBebidasCalientes" prefHeight="25.0" prefWidth="115.0" text="Bebidas Calientes" />
+                              <Button fx:id="btnMilk" mnemonicParsing="false" onMouseClicked="#mosrtarMilkshakes" prefHeight="25.0" prefWidth="90.0" text="Milkshakes" />
+                              <Button fx:id="btnCervezas" mnemonicParsing="false" onMouseClicked="#mostrarCervezas" prefHeight="25.0" prefWidth="90.0" text="Cervezas" />
+                              <Button fx:id="btnVinos" mnemonicParsing="false" onMouseClicked="#mostrarVinos" prefHeight="25.0" prefWidth="85.0" text="Vinos" />
+                              <Button fx:id="btnBebidasImportadas" mnemonicParsing="false" onMouseClicked="#mostrarBebidasImportadas" prefHeight="25.0" prefWidth="125.0" text="Bebidas Importadas" />
+                              <Button fx:id="btnCocteles" mnemonicParsing="false" onMouseClicked="#mostrarCocteles" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
                            </children>
                         </HBox>
                         <FlowPane fx:id="FPproductos" prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />

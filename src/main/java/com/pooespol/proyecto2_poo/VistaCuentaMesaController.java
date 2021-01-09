@@ -5,15 +5,21 @@
  */
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.ProductosData;
+import com.pooespol.proyecto2_poo.modelo.Producto;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -57,6 +63,53 @@ public class VistaCuentaMesaController implements Initializable {
 
     @FXML
     private void mostrarRestaurante(MouseEvent event) {
+    }
+
+    @FXML
+    private void mostrarBebidasSuaves(MouseEvent event) {
+        
+        FPproductos.getChildren().clear();
+            List<Producto> productos = ProductosData.parsearProductos("softdrinks");
+            for (Producto p :productos){
+                VBox vboxproducto = new VBox();
+
+                Label lnombre = new Label(p.getNombre());
+                vboxproducto.getChildren().add(lnombre);
+
+                Label lanio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lanio);
+
+                FPproductos.getChildren().add(FPproductos);
+            }
+    }
+
+    @FXML
+    private void mostrarBebidasCalientes(MouseEvent event) {
+        //prueba
+        FPproductos.getChildren().clear();
+        Label l = new Label("");
+        FPproductos.getChildren().add(l);
+        //
+    }
+
+    @FXML
+    private void mosrtarMilkshakes(MouseEvent event) {
+    }
+
+    @FXML
+    private void mostrarCervezas(MouseEvent event) {
+    }
+
+    @FXML
+    private void mostrarVinos(MouseEvent event) {
+    }
+
+    @FXML
+    private void mostrarBebidasImportadas(MouseEvent event) {
+    }
+
+    @FXML
+    private void mostrarCocteles(MouseEvent event) {
     }
     
 }
