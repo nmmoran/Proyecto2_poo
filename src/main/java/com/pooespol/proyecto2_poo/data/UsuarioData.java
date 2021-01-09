@@ -49,14 +49,21 @@ public class UsuarioData {
                     //System.out.println(linea);
                     //dividir la en partes 
                     String[] partes = linea.split("\\;");
-                    if(partes[2]=="administrador"){
-                    usu.add(new Administrador(partes[0],partes[1]));
-                    }else{
-                        if(partes[2]=="mesero"){
-                    usu.add(new Mesero(partes[0],partes[1],partes[3]));
+                    
+                        if(partes.length==4){
+                            
+                        
+                        if(partes[2]=="administrador"){
+                        usu.add(new Administrador(partes[0],partes[1]));
+                        }else{
+                            if(partes[2]=="mesero"){
+                        usu.add(new Mesero(partes[0],partes[1],partes[3]));
+                        }}}
+                    
+                    
+                        
                     }
-                   }
-                }
+                  
             } catch (FileNotFoundException ex) {
                 System.out.println(ex.getMessage());
                 throw ex;

@@ -5,6 +5,3 @@ almendoza@espol.edu.ec;123456;administrador;sinnombre
 ecantos@espol.edu.ec;pollos123;mesero;emily
 mdgranado@espol.edu.ec;012456;mesero;melany
 jdvera@espol.edu.ec;perritos123;mesero;josue
-
-
-

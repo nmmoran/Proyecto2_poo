@@ -125,6 +125,10 @@ public class AdministradorController implements Initializable {
     private TextField txtNewNa;
     @FXML
     private Label lbMessage;
+    @FXML
+    private Label lmessage2;
+    @FXML
+    private Button btnAceptar;
 
     /**
      * Initializes the controller class.
@@ -134,6 +138,10 @@ public class AdministradorController implements Initializable {
         
             ArrayList<String> tipos= ProductosData.obtenerTipos();
             cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
+            txtPrecio.setText("0");
+            txtName.setDisable(true);
+            txtPrecio.setDisable(true);
+            txtRuta.setDisable(true);
         
     }   
     
@@ -146,31 +154,32 @@ public class AdministradorController implements Initializable {
     @FXML
     private void añadirNuevoProducto(MouseEvent event) {
         try{
+            
             String tipo =cbOpTipo1.getValue();
             String nombre = txtName.getText();
-            
-            if(tipo==null){
-                throw new NullPointerException("Tipo no puede estar vacio");
-            }
-
             double precio  = Double.valueOf(txtPrecio.getText());
             String imagen  = txtRuta.getText();
-            
+            if(tipo==null&& imagen==null && nombre==null){
+                throw new NullPointerException("No puede haber campos vacios");
+            }
 
             Producto p = new Producto(nombre,precio,imagen,tipo);
             
             //registrar producto
             ProductosData.registrarProducto(p);
-            
+            txtName.clear();
+            txtPrecio.setText("0");
+            txtRuta.clear();
             lbMessage.setText("El producto se registro");
+            
         }catch(NullPointerException ex){
-            lbMessage.setText("Tipo no puede ser vacio");
+            lbMessage.setText("No puede haber campos vacios");
         }catch(NumberFormatException ex){
-            lbMessage.setText("El campo precio tienen que ser una valor decimal");
+            lmessage2.setText("valor no valido precio");
         }catch(IOException|URISyntaxException ex){
             //maneja las excepciones de tipo IOException y URISyntaxException
             //de la misma manera
-            lbMessage.setText("Error al guardar el contenido en el archivo de peliculas");
+            lbMessage.setText("Error al guardar");
             System.out.println(ex);
         }
         
@@ -180,10 +189,24 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void limpiarFields(MouseEvent event) {
+        
+            txtName.clear();
+            txtPrecio.setText("0");
+            txtRuta.clear();
+            txtName.setDisable(true);
+            txtPrecio.setDisable(true);
+            txtRuta.setDisable(true);
     }
 
     @FXML
     private void modificarProducto(MouseEvent event) {
+    }
+
+    @FXML
+    private void habilitarText(MouseEvent event) {
+        txtName.setDisable(false);
+        txtPrecio.setDisable(false);
+        txtRuta.setDisable(false);
     }
     
 }

@@ -132,8 +132,10 @@
                                                         </GridPane>
                                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                                                             <children>
+                                                <Label fx:id="lmessage2" />
                                                 <Label fx:id="lbMessage" />
-                                                                <Button fx:id="btnAñadir" mnemonicParsing="false" onMouseClicked="#añadirNuevoProducto" text="Añadir" />
+                                                                <Button fx:id="btnAceptar" mnemonicParsing="false" onMouseClicked="#añadirNuevoProducto" text="Aceptar" />
+                                                <Button fx:id="btnAñadir" mnemonicParsing="false" onMouseClicked="#habilitarText" text="Añadir" />
                                                                 <Button fx:id="btnCancel1" mnemonicParsing="false" onMouseClicked="#limpiarFields" text="Cancelar" />
                                                             </children>
                                                         </HBox>

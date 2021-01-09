@@ -22,6 +22,7 @@ public class Restaurante {
     public Restaurante() throws IOException{
         //cargar la informacion de generos
         //llamar a leerGeneros() de la clase GeneroData
+        
         listUsuarios = UsuarioData.leerUsuarios();
        
     }

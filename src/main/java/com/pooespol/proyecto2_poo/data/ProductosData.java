@@ -98,7 +98,7 @@ public class ProductosData {
         
         //Formato de cada linea del archivo
         //softdrinks;Coca-cola;1,50;coca.jpg
-        //nombre; nombre_genero, anio, rating, director
+        
        
         //queremos agregar al final del archivo. Pasamos como segundo argumento 
         //al FileWriter true.
@@ -107,6 +107,9 @@ public class ProductosData {
             String linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
             bw.write(linea);
             bw.newLine();
-        }
+        
+       }catch(IOException ex){
+           System.out.println(ex.getMessage());
     }
+}
 }
