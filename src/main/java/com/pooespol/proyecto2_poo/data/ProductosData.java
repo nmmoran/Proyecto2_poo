@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * @author nicol
  */
 public class ProductosData {
-    static String ruta = "productos.txt";
+    static String ruta = "Productos.txt";
     
     /**
      * Esta funcion lee el archivo productos.txt que se encuentra en 
@@ -40,6 +40,7 @@ public class ProductosData {
                 String linea;
                 while((linea = bf.readLine())!=null){
                     String[] partes = linea.split(";");
+                    System.out.println(partes);
                     //String nombre, double precio, String imagen,String tipo
                     //tipo 0 ; nombre_producto1 , precio 2 ,imagen 3
                     products.add(new Producto(partes[1],Double.parseDouble(partes[2]),partes[3],partes[0]));        
@@ -81,6 +82,8 @@ public class ProductosData {
      * @throws java.io.IOException
      */
     
+    
+    //aldo
     public static ArrayList<Producto> leerProducto(Producto p) 
         throws IOException{
     ArrayList<Producto> productos = new ArrayList<>();
