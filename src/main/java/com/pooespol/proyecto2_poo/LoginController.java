@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
             String contraseña =txtContra.getText();
             
             if(email==null){
-                throw new NullPointerException("Email no puede er vacio");
+                throw new NullPointerException("Email no puede ser vacio");
             }
             if(contraseña==null){
                 throw new NullPointerException("Contraseña no puede er vacio");
