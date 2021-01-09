@@ -44,22 +44,19 @@ public class LoginController implements Initializable {
     
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        
+        Label lb=new Label();
         try{
             String email = txtEmail.getText();
             String contraseña =txtContra.getText();
             
-            if(email==null){
-                throw new NullPointerException("Email no puede er vacio");
-            }
-            if(contraseña==null){
-                throw new NullPointerException("Contraseña no puede er vacio");
+            if(email==null || contraseña==null){
+                throw new NullPointerException("No puede dejar espacios vacios ");
             }
             
             Restaurante r=new Restaurante();
             Usuario u = new Usuario(email,contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
-            Label lb=new Label();
+            
             if(c==null){
                 lb.setText("Credenciales Invalidas");
             } else{
@@ -71,7 +68,7 @@ public class LoginController implements Initializable {
             }        
             }
         }catch(NullPointerException ex){
-            
+            lb.setText(ex.getMessage());
         }
     }
 }

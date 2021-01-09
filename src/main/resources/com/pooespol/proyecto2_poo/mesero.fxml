@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_poo.MeseroController">
    <children>
       <Label fx:id="lblInfoMesa" alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="64.0" text="Mesero:" textFill="WHITE">
          <font>
@@ -21,7 +21,7 @@
             <Circle fx:id="c3" fill="#ffdc1f" layoutX="363.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="c4" fill="#ffdc1f" layoutX="490.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="c5" fill="#ffdc1f" layoutX="93.0" layoutY="238.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c7" fill="#ffdc1f" layoutX="260.0" layoutY="238.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c7" fill="#ffdc1f" layoutX="260.0" layoutY="238.0" onMouseClicked="#abrirCuenta" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="c6" fill="#ffdc1f" layoutX="93.0" layoutY="507.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="c8" fill="#ffdc1f" layoutX="260.0" layoutY="507.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="c9" fill="#ffdc1f" layoutX="398.0" layoutY="381.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
