@@ -70,4 +70,19 @@ public class ProductosData {
         }
         return listaResultado;
     }
+    
+      public static ArrayList<String> obtenerTipos() {
+        ArrayList<String> listaResultado = new ArrayList<>();
+        try{ 
+           for(Producto p :leerProducto()){
+               if(listaResultado.contains(p.getTipo())==false){
+                   listaResultado.add(p.getTipo());
+               }
+           } 
+        }catch(IOException ex){
+            System.out.println("Ocurrio un error al parsear los tipos de producto");
+            ex.printStackTrace();
+        }
+        return listaResultado;
+    }
 }

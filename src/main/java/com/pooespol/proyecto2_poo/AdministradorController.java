@@ -5,8 +5,13 @@
  */
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.ProductosData;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -89,7 +94,13 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try{
+            ArrayList<String> tipos= ProductosData.obtenerTipos();
+            cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
+        }
+        catch (IOException ex){
+            System.out.println(ex);
+        }
     }    
 
 
