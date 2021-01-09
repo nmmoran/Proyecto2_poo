@@ -22,7 +22,3 @@ Cocktails;Pina colada;5.84;Pcolada.jpeg
 Cocktails;Caipirinha;5.84;caipi.jpeg
 Cocktails;Cosmopolitan;5.84;cosmopolitan.jpeg
 Cocktails;Margarita;5.84;maragrita.jpeg
-
-
-
-

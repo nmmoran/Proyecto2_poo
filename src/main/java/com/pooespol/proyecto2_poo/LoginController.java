@@ -35,35 +35,40 @@ public class LoginController implements Initializable {
     private TextField txtContra;
     @FXML
     private Button btLogin;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
     
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        
+        String email;
+        String contraseña;
         try{
-            String email = txtEmail.getText();
-            String contraseña =txtContra.getText();
             
-            if(email==null){
-                throw new NullPointerException("Email no puede ser vacio");
+           
+            email = txtEmail.getText();
+            contraseña =txtContra.getText();
+            if(email==null|| contraseña==null){
+                throw new NullPointerException(" no puede ser vacio");
             }
-            if(contraseña==null){
-                throw new NullPointerException("Contraseña no puede er vacio");
-            }
+            
+            
             
             Restaurante r=new Restaurante();
+            
             Usuario u = new Usuario(email,contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
             
             
             if(c==null){
-                throw new ArrayIndexOutOfBoundsException("Credenciales Invalidas");
+                
                 
             } else{
                 if(c instanceof Mesero){
@@ -74,9 +79,15 @@ public class LoginController implements Initializable {
             }        
             }
         }catch(ArrayIndexOutOfBoundsException ex){
-            VBox texto=new VBox(new Label(ex.getMessage()));
-        }
+            System.out.println("Algo paso");
+            System.out.println(ex);
+        }catch(NullPointerException ex){
+            System.out.println(ex.getMessage());
+            System.out.println(ex);
+        }catch(Exception ex){
+            ex.printStackTrace();
     }
+}
 }
 
     
