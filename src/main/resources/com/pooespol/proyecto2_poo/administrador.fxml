@@ -62,21 +62,21 @@
                     <content>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
                             <children>
-                                <Circle fx:id="c1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c4" fill="#ffdc1f" layoutX="471.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c3" fill="#ffdc1f" layoutX="338.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c5" fill="#ffdc1f" layoutX="84.0" layoutY="233.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c7" fill="#ffdc1f" layoutX="244.0" layoutY="235.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c6" fill="#ffdc1f" layoutX="84.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c8" fill="#ffdc1f" layoutX="244.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c9" fill="#ffdc1f" layoutX="413.0" layoutY="345.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c10" fill="#ffdc1f" layoutX="600.0" layoutY="235.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c11" fill="#ffdc1f" layoutX="622.0" layoutY="442.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="60.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="157.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="341.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="436.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C4" fill="#ffdc1f" layoutX="471.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C3" fill="#ffdc1f" layoutX="338.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C5" fill="#ffdc1f" layoutX="84.0" layoutY="233.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C7" fill="#ffdc1f" layoutX="244.0" layoutY="235.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C6" fill="#ffdc1f" layoutX="84.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C8" fill="#ffdc1f" layoutX="244.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C9" fill="#ffdc1f" layoutX="413.0" layoutY="345.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C10" fill="#ffdc1f" layoutX="600.0" layoutY="235.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C11" fill="#ffdc1f" layoutX="622.0" layoutY="442.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="60.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="157.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="341.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Circle fx:id="C15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="805.0" layoutY="436.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="894.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                                 <Label layoutX="929.0" layoutY="272.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
                                     <font>
@@ -165,7 +165,7 @@
                                                                 <Label text="Nueva ruta de imagen del producto:" GridPane.rowIndex="3" />
                                                                 <TextField GridPane.columnIndex="1" />
                                                                 <TextField fx:id="txtNewName" GridPane.columnIndex="1" />
-                                                                <TextField fx:id="txtNewName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                <TextField fx:id="txtNewNa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                 <TextField fx:id="txtNewPrecio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                 <TextField fx:id="txtNewRuta" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                             </children>

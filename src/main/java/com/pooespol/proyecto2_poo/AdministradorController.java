@@ -88,6 +88,38 @@ public class AdministradorController implements Initializable {
     private Button btnModify;
     @FXML
     private Button btnCancel2;
+    @FXML
+    private Circle C1;
+    @FXML
+    private Circle C2;
+    @FXML
+    private Circle C4;
+    @FXML
+    private Circle C3;
+    @FXML
+    private Circle C5;
+    @FXML
+    private Circle C7;
+    @FXML
+    private Circle C6;
+    @FXML
+    private Circle C8;
+    @FXML
+    private Circle C9;
+    @FXML
+    private Circle C10;
+    @FXML
+    private Circle C11;
+    @FXML
+    private Circle C12;
+    @FXML
+    private Circle C13;
+    @FXML
+    private Circle C14;
+    @FXML
+    private Circle C15;
+    @FXML
+    private TextField txtNewNa;
 
     /**
      * Initializes the controller class.
