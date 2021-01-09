@@ -94,14 +94,14 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try{
+       /* try{
             ArrayList<String> tipos= ProductosData.obtenerTipos();
             cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
         }
         catch (IOException ex){
             System.out.println(ex);
-        }
-    }    
+        }*/
+    }   
 
 
     @FXML
