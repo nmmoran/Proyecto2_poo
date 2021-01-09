@@ -8,14 +8,18 @@ package com.pooespol.proyecto2_poo;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -54,7 +58,7 @@ public class VistaCuentaMesaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         
     }    
 
     @FXML
@@ -66,28 +70,39 @@ public class VistaCuentaMesaController implements Initializable {
     }
 
     @FXML
-    private void mostrarBebidasSuaves(MouseEvent event) {
-        
+    private void mostrarBebidasSuaves(MouseEvent event) throws IOException {
         FPproductos.getChildren().clear();
-            List<Producto> productos = ProductosData.parsearProductos("softdrinks");
+        List<Producto> productos;
+        try {
+            productos = ProductosData.leerProducto();
             for (Producto p :productos){
                 VBox vboxproducto = new VBox();
-
+                //se añade la imagen
+                InputStream inputImg = App.class.getResource(p.getImagen()).openStream();
+                ImageView imgv = new ImageView(new Image(inputImg));
+                vboxproducto.getChildren().add(imgv);
+                //se añade el nombre         
                 Label lnombre = new Label(p.getNombre());
                 vboxproducto.getChildren().add(lnombre);
-
+                //se añade el precio
                 Label lpercio = new Label(String.valueOf(p.getPrecio()));
                 vboxproducto.getChildren().add(lpercio);
-
-                FPproductos.getChildren().add(FPproductos);
+                vboxproducto.setPadding(new Insets(2,3,3,4));  
+                
+                FPproductos.getChildren().add(vboxproducto);
+                
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+       
     }
 
     @FXML
     private void mostrarBebidasCalientes(MouseEvent event) {
         //prueba
         FPproductos.getChildren().clear();
-        Label l = new Label("");
+        Label l = new Label("hola");
         FPproductos.getChildren().add(l);
         //
     }
@@ -95,14 +110,14 @@ public class VistaCuentaMesaController implements Initializable {
     @FXML
     private void mosrtarMilkshakes(MouseEvent event) {
         FPproductos.getChildren().clear();
-        Label l = new Label("");
+        Label l = new Label("como ");
         FPproductos.getChildren().add(l);
     }
 
     @FXML
     private void mostrarCervezas(MouseEvent event) {
         FPproductos.getChildren().clear();
-        Label l = new Label("");
+        Label l = new Label("estas");
         FPproductos.getChildren().add(l);
     }
 

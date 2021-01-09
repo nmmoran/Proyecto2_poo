@@ -119,7 +119,7 @@
                               <Button fx:id="btnCocteles" mnemonicParsing="false" onMouseClicked="#mostrarCocteles" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
                            </children>
                         </HBox>
-                        <FlowPane fx:id="FPproductos" prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />
+                        <FlowPane fx:id="FPproductos" hgap="20.0" prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />
                      </children>
                   </VBox>
                </children>

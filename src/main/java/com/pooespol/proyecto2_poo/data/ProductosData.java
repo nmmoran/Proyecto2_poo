@@ -42,9 +42,6 @@ public class ProductosData {
                 String linea;
                 while((linea = bf.readLine())!=null){
                     String partes[] = linea.split(";");
-                    for (String l: partes){
-                       System.out.println(l);
-                    }
                     //String nombre, double precio, String imagen,String tipo
                     //tipo 0 ; nombre_producto1 , precio 2 ,imagen 3
                     products.add(new Producto(partes[1],Double.parseDouble(partes[2]),partes[3],partes[0]));        
@@ -67,7 +64,7 @@ public class ProductosData {
         ArrayList<Producto> listaResultado = new ArrayList<>();
         try{ 
            for(Producto p :leerProducto()){
-               if(p.getTipo().equals(tipo)){
+               if(p.getTipo()==tipo){
                    listaResultado.add(p);
                }
            } 
