@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_poo.VistaCuentaMesaController">
    <children>
       <HBox alignment="CENTER" prefHeight="41.0" prefWidth="1000.0" style="-fx-background-color: black;">
          <children>
@@ -34,7 +33,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <GridPane layoutX="7.0" layoutY="-2.0" prefHeight="366.0" prefWidth="288.0">
+                              <GridPane fx:id="GPcuenta" layoutX="7.0" layoutY="-2.0" prefHeight="366.0" prefWidth="288.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.66665649414062" minWidth="10.0" prefWidth="230.66665649414062" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.33334350585938" minWidth="10.0" prefWidth="57.333343505859375" />
@@ -69,12 +68,12 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="178.0" prefWidth="296.0" spacing="20.0" style="-fx-background-color: #e0dfdf;">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #7eb737; -fx-border-color: black;" text="Finalizar Orden" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onMouseClicked="#finalizarOrden" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #7eb737; -fx-border-color: black;" text="Finalizar Orden" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onMouseClicked="#mostrarRestaurante" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -106,21 +105,21 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtFiltro" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="702.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Bebidas Suaves" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Bebidas Calientes" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Milkshakes" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cervezas" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vinos" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Bebidas Importadas" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
+                              <Button fx:id="btnBebidasSuaves" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Bebidas Suaves" />
+                              <Button fx:id="btnBebidasCalientes" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Bebidas Calientes" />
+                              <Button fx:id="btnMilk" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Milkshakes" />
+                              <Button fx:id="btnCervezas" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cervezas" />
+                              <Button fx:id="btnVinos" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vinos" />
+                              <Button fx:id="btnBebidasImportadas" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Bebidas Importadas" />
+                              <Button fx:id="btnCocteles" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
                            </children>
                         </HBox>
-                        <FlowPane prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />
+                        <FlowPane fx:id="FPproductos" prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />
                      </children>
                   </VBox>
                </children>

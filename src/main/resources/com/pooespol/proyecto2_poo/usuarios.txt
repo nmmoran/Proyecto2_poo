@@ -4,7 +4,7 @@ dpisco@espol.edu.ec;568975;mesero;dustin
 almendoza@espol.edu.ec;12345;administrador;na
 ecantos@espol.edu.ec;pollos123;mesero;emily
 mdgranado@espol.edu.ec;012456;mesero;melany
-jdvera@espol.edu.ec;perritos789;mesero;josue
+jdvera@espol.edu.ec;perritos123;mesero;josue
 
 
 

@@ -16,22 +16,22 @@
       </Label>
       <Pane prefHeight="709.0" prefWidth="1000.0" style="-fx-background-color: grey;">
          <children>
-            <Circle id="1" fx:id="c1" fill="#ffdc1f" layoutX="98.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="209.0" layoutY="49.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c3" fill="#ffdc1f" layoutX="363.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c4" fill="#ffdc1f" layoutX="490.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c5" fill="#ffdc1f" layoutX="93.0" layoutY="238.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c7" fill="#ffdc1f" layoutX="260.0" layoutY="238.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c6" fill="#ffdc1f" layoutX="93.0" layoutY="507.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c8" fill="#ffdc1f" layoutX="260.0" layoutY="507.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c9" fill="#ffdc1f" layoutX="398.0" layoutY="381.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c10" fill="#ffdc1f" layoutX="589.0" layoutY="277.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c11" fill="#ffdc1f" layoutX="615.0" layoutY="485.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle id="1" fx:id="c1" fill="#ffdc1f" layoutX="98.0" layoutY="85.0" onMouseClicked="#abrirCuenta" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="209.0" layoutY="49.0" onMouseClicked="#abrirCuenta" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c3" fill="#ffdc1f" layoutX="363.0" layoutY="85.0" onMouseClicked="#abrirCuenta" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c4" fill="#ffdc1f" layoutX="490.0" layoutY="85.0" onMouseClicked="#abrirCuenta" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c5" fill="#ffdc1f" layoutX="93.0" layoutY="238.0" onMouseClicked="#abrirCuenta" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c7" fill="#ffdc1f" layoutX="260.0" layoutY="238.0" onMouseClicked="#abrirCuenta" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c6" fill="#ffdc1f" layoutX="93.0" layoutY="507.0" onMouseClicked="#abrirCuenta" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c8" fill="#ffdc1f" layoutX="260.0" layoutY="507.0" onMouseClicked="#abrirCuenta" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c9" fill="#ffdc1f" layoutX="398.0" layoutY="381.0" onMouseClicked="#abrirCuenta" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c10" fill="#ffdc1f" layoutX="589.0" layoutY="277.0" onMouseClicked="#abrirCuenta" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c11" fill="#ffdc1f" layoutX="615.0" layoutY="485.0" onMouseClicked="#abrirCuenta" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="889.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="112.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="210.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="471.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="364.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="112.0" onMouseClicked="#abrirCuenta" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="210.0" onMouseClicked="#abrirCuenta" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="471.0" onMouseClicked="#abrirCuenta" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="810.0" layoutY="364.0" onMouseClicked="#abrirCuenta" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
             <Label layoutX="930.0" layoutY="292.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />

@@ -29,8 +29,7 @@ public class UsuarioData {
     
     /**
      * Esta funcion lee el archivo usuarios.txt que se encuentra en 
-     * el paquete recursos y retorna un ArrayList con los generos descritos 
-     * en el archivo
+     * el paquete recursos y retorna 
      * FORMATO ARCHIVO
      *  email,password,tipoUsuario,nombre
      * @return ArrayList<Usuario>
@@ -46,9 +45,9 @@ public class UsuarioData {
                 //leemos linea a linea hasta llegar la final del archivo
                 while( (linea=bf.readLine())!=null ){
                     //System.out.println("tets");
-                    //System.out.println(linea);
+                  //System.out.println(linea);
                     //dividir la en partes 
-                    String[] partes = linea.split(";");
+                    String[] partes = linea.split("\\;");
                     if(partes[2].equals("administrador")){
                     usu.add(new Administrador(partes[0],partes[1]));
                     }else{
