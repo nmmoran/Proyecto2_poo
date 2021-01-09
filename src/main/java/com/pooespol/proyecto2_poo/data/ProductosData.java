@@ -8,9 +8,11 @@ package com.pooespol.proyecto2_poo.data;
 import com.pooespol.proyecto2_poo.App;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -84,5 +86,21 @@ public class ProductosData {
             ex.printStackTrace();
         }
         return listaResultado;
+    }
+      public static void registrarProducto(Producto p) 
+            throws IOException, URISyntaxException {
+        
+        //Formato de cada linea del archivo
+        //softdrinks;Coca-cola;1,50;coca.jpg
+        //nombre; nombre_genero, anio, rating, director
+                
+        //queremos agregar al final del archivo. Pasamos como segundo argumento 
+        //al FileWriter true.
+        try(BufferedWriter bw = new BufferedWriter(
+                new FileWriter(new File(App.class.getResource(ruta).toURI()),true))){
+            String linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
+            bw.write(linea);
+            bw.newLine();
+        }
     }
 }

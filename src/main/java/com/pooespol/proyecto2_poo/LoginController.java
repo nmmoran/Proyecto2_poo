@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 /**
  * FXML Controller class
  *
@@ -59,9 +60,11 @@ public class LoginController implements Initializable {
             Restaurante r=new Restaurante();
             Usuario u = new Usuario(email,contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
-            Label lb=new Label();
+            
+            
             if(c==null){
-                lb.setText("Credenciales Invalidas");
+                throw new ArrayIndexOutOfBoundsException("Credenciales Invalidas");
+                
             } else{
                 if(c instanceof Mesero){
                 App.setRoot("mesero");
@@ -70,8 +73,8 @@ public class LoginController implements Initializable {
                 App.setRoot("administrador");
             }        
             }
-        }catch(NullPointerException ex){
-            
+        }catch(ArrayIndexOutOfBoundsException ex){
+            VBox texto=new VBox(new Label(ex.getMessage()));
         }
     }
 }
