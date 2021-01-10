@@ -7,7 +7,6 @@ package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.modelo.Producto;
-import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -32,7 +31,7 @@ import javafx.scene.layout.VBox;
  * @author nicol
  */
 public class VistaCuentaMesaController implements Initializable {
-    Restaurante r;
+
     @FXML
     private GridPane GPcuenta;
     @FXML
@@ -59,7 +58,39 @@ public class VistaCuentaMesaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         App.inicializarProductos(FPproductos);
+         try {
+            //obtengo la lista de productos d
+            List<Producto> listp = ProductosData.leerProducto();
+            for(Producto p: listp){
+                VBox vboxproducto = new VBox();
+                //crear la imagen
+                try{
+                InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
+                ImageView imgv = new ImageView(new Image(inputImg));
+                vboxproducto.getChildren().add(imgv);
+                }catch (Exception ex){
+                    
+                    ex.printStackTrace();
+                }
+                
+                //crea el label del nombre y lo agrego al VBox
+                Label lnombre = new Label(p.getNombre());
+                vboxproducto.getChildren().add(lnombre);
+                //el anio de la pelicula
+                Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lprecio);
+                
+                vboxproducto.setPadding(new Insets(2,3,3,4));
+                
+                //agregamos el VBox al FlowPane
+                FPproductos.getChildren().add(vboxproducto);
+                
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         
          
     }    

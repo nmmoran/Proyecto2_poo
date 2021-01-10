@@ -52,7 +52,6 @@ public class ProductosData {
                 }
             }
         }
-        
         catch(FileNotFoundException ex){
             System.out.println(ex.getMessage());
             throw ex;
@@ -79,20 +78,6 @@ public class ProductosData {
         }
         return listaResultado;
     }
-    public static Producto buscarPorNombre(String nombre) {
-        
-        try{ 
-           for(Producto p :leerProducto()){
-               if(p.getNombre()==nombre){
-                   return p;
-               }
-           } 
-        }catch(IOException ex){
-            System.out.println("Ocurrio un error al parsear los productos por nombre");
-            ex.printStackTrace();
-        }
-        return null;
-    }
     
       public static ArrayList<String> obtenerTipos() {
         ArrayList<String> listaResultado = new ArrayList<>();
@@ -111,21 +96,20 @@ public class ProductosData {
       public static void registrarProducto(Producto p) 
             throws IOException, URISyntaxException {
         
+        //Formato de cada linea del archivo
+        //softdrinks;Coca-cola;1,50;coca.jpg
+        
+       
+        //queremos agregar al final del archivo. Pasamos como segundo argumento 
+        //al FileWriter true.
         try(BufferedWriter bw = new BufferedWriter(
                 new FileWriter(new File(App.class.getResource(ruta).toURI()),true))){
             String linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
-            System.out.println(linea+"1");
             bw.write(linea);
-        
             bw.newLine();
-            bw.flush();
-            bw.close();
         
        }catch(IOException ex){
            System.out.println(ex.getMessage());
-    }catch(Exception ex){
-            System.out.println(ex);
-            ex.printStackTrace();
     }
 }
 }

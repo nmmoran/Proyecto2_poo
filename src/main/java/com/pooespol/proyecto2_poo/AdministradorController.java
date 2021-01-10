@@ -7,9 +7,7 @@ package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.modelo.Producto;
-import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,16 +16,12 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 /**
@@ -128,18 +122,16 @@ public class AdministradorController implements Initializable {
     @FXML
     private Circle C15;
     @FXML
+    private TextField txtNewNa;
+    @FXML
     private Label lbMessage;
     @FXML
     private Label lmessage2;
     @FXML
     private Button btnAceptar;
-    @FXML
-    private TextField txtFiltoNombre;
 
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -150,7 +142,6 @@ public class AdministradorController implements Initializable {
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
-            App.inicializarProductos(fpMuestraMenu);
         
     }   
     
@@ -175,16 +166,11 @@ public class AdministradorController implements Initializable {
             Producto p = new Producto(nombre,precio,imagen,tipo);
             
             //registrar producto
-            
-            Restaurante r= new Restaurante();
-            r.registrarProducto(nombre,precio,imagen,tipo);
-            
+            ProductosData.registrarProducto(p);
             txtName.clear();
             txtPrecio.setText("0");
             txtRuta.clear();
             lbMessage.setText("El producto se registro");
-            
-            
             
         }catch(NullPointerException ex){
             lbMessage.setText("No puede haber campos vacios");
@@ -222,18 +208,5 @@ public class AdministradorController implements Initializable {
         txtPrecio.setDisable(false);
         txtRuta.setDisable(false);
     }
-
-    @FXML
-    private void filtrarProductos(MouseEvent event) {
-        try{
-        String name=txtFiltoNombre.getText();
-        Producto p=ProductosData.buscarPorNombre(name);
-            
-        txtNewName.setText(p.getNombre());
-        txtNewPrecio.setText(String.valueOf(p.getPrecio()));
-        txtNewRuta.setText(p.getImagen());
-    }catch(NullPointerException ex){
-        ex.printStackTrace();
-    }}
     
 }
