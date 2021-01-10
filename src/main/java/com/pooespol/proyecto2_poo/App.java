@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 //Ya pude conectarme amigues att 2tin//
 //actualizacion//
 //Ya se soluciono amigues//
-/**
+/***
  * JavaFX App
  */
 public class App extends Application {
