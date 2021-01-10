@@ -1,7 +1,9 @@
-nmmoran@espol.edu.ec;gatitos123;administrador;sinnombre
-miacardenas@espol.edu.ec;contraseña;administrador;sinnombre
+nmmoran@espol.edu.ec;gatitos123;administrador;na
+miacardenas@espol.edu.ec;contraseña;administrador;na
 dpisco@espol.edu.ec;568975;mesero;dustin
-almendoza@espol.edu.ec;123456;administrador;sinnombre
+almendoza@espol.edu.ec;12345;administrador;na
 ecantos@espol.edu.ec;pollos123;mesero;emily
 mdgranado@espol.edu.ec;012456;mesero;melany
-jdvera@espol.edu.ec;perritos123;mesero;josue
+jdvera@espol.edu.ec;perritos789;mesero;josue
+
+

@@ -48,46 +48,37 @@ public class LoginController implements Initializable {
     
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        String email;
-        String contraseña;
+        
+
         try{
-            
-           
-            email = txtEmail.getText();
-            contraseña =txtContra.getText();
-            if(email==null|| contraseña==null){
-                throw new NullPointerException(" no puede ser vacio");
+            String email = txtEmail.getText();
+            String contraseña =txtContra.getText();
+
+            if(email==null){
+                throw new NullPointerException("Email no puede er vacio");
             }
-            
-            
-            
-            r=new Restaurante();
-            
+            if(contraseña==null){
+                throw new NullPointerException("Contraseña no puede er vacio");
+            }
+
+            Restaurante r=new Restaurante();
             Usuario u = new Usuario(email,contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
-            
-            
+            Label lb=new Label();
             if(c==null){
-                
-                
+                lb.setText("Credenciales Invalidas");
             } else{
                 if(c instanceof Mesero){
                 App.setRoot("mesero");
-                
+
             }else if(c instanceof Administrador){
                 App.setRoot("administrador");
             }        
             }
-        }catch(ArrayIndexOutOfBoundsException ex){
-            System.out.println("Algo paso");
-            System.out.println(ex);
         }catch(NullPointerException ex){
-            System.out.println(ex.getMessage());
-            System.out.println(ex);
-        }catch(Exception ex){
-            ex.printStackTrace();
+
+        }
     }
-}
 }
 
     

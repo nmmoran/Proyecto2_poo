@@ -46,11 +46,6 @@ public class Usuario {
         return null;
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
     public boolean equals(Object obj) {
         //verificamos si el objeto no es null
@@ -66,4 +61,6 @@ public class Usuario {
         }
         return false;
     }
+
+    
 }

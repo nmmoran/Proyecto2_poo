@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * @author nicol
  */
 public class UsuarioData {
-     static String ruta = "usuarios.txt";
+      static String ruta = "usuarios.txt";
 
     /**
      * Esta funcion lee el archivo usuarios.txt que se encuentra en 
@@ -48,22 +48,16 @@ public class UsuarioData {
                     //System.out.println("tets");
                     //System.out.println(linea);
                     //dividir la en partes 
-                    String[] partes = linea.split("\\;");
-                    
-                        if(partes.length==4){
-                            
-                        
-                        if(partes[2]=="administrador"){
-                        usu.add(new Administrador(partes[0],partes[1]));
-                        }else{
-                            if(partes[2]=="mesero"){
-                        usu.add(new Mesero(partes[0],partes[1],partes[3]));
-                        }}}
-                    
-                    
-                        
+                    String[] partes = linea.split(";");
+                    if(partes.length==4){
+                    if(partes[2].equals("administrador")){
+                    usu.add(new Administrador(partes[0],partes[1]));
+                    }else{
+                        if(partes[2].equals("mesero")){
+                    usu.add(new Mesero(partes[0],partes[1],partes[3]));
                     }
-                  
+                   }
+                }}
             } catch (FileNotFoundException ex) {
                 System.out.println(ex.getMessage());
                 throw ex;
@@ -74,8 +68,8 @@ public class UsuarioData {
 
         }catch(Exception ex){
             System.out.println(ex);
-            ex.printStackTrace();
         }
         return usu;
     }
+
 }
