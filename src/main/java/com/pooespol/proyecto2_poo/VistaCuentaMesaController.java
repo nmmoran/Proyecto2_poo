@@ -70,6 +70,7 @@ public class VistaCuentaMesaController implements Initializable {
 
     @FXML
     private void mostrarRestaurante(MouseEvent event) {
+        App.setRoot("mesero");
     }
 
     @FXML

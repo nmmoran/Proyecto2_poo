@@ -134,7 +134,9 @@ public class AdministradorController implements Initializable {
     @FXML
     private Button btnAceptar;
     @FXML
-    private TextField txtFiltoNombre;
+    private Button txtFiltoNombre;
+    @FXML
+    private TextField txtNewNa;
 
     /**
      * Initializes the controller class.
@@ -146,11 +148,13 @@ public class AdministradorController implements Initializable {
         
             ArrayList<String> tipos= ProductosData.obtenerTipos();
             cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
-            txtPrecio.setText("0");
+            txtPrecio.clear();
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
             App.inicializarProductos(fpMuestraMenu);
+            btnAceptar.setDisable(true);
+            
         
     }   
     
@@ -180,10 +184,12 @@ public class AdministradorController implements Initializable {
             r.registrarProducto(nombre,precio,imagen,tipo);
             
             txtName.clear();
-            txtPrecio.setText("0");
+            txtPrecio.clear();
             txtRuta.clear();
             lbMessage.setText("El producto se registro");
-            
+            txtName.setDisable(true);
+            txtPrecio.setDisable(true);
+            txtRuta.setDisable(true);
             
             
         }catch(NullPointerException ex){
@@ -205,11 +211,13 @@ public class AdministradorController implements Initializable {
     private void limpiarFields(MouseEvent event) {
         
             txtName.clear();
-            txtPrecio.setText("0");
+            txtPrecio.clear();
             txtRuta.clear();
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
+            btnAceptar.setDisable(true);
+            lbMessage.setText("");
     }
 
     @FXML
@@ -221,6 +229,8 @@ public class AdministradorController implements Initializable {
         txtName.setDisable(false);
         txtPrecio.setDisable(false);
         txtRuta.setDisable(false);
+        btnAceptar.setDisable(false);
+        lbMessage.setText("");
     }
 
     @FXML
