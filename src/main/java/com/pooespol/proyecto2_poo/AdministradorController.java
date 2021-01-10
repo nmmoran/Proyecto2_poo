@@ -221,7 +221,23 @@ public class AdministradorController implements Initializable {
     }
 
     @FXML
-    private void modificarProducto(MouseEvent event) {
+    private void modificarProducto(MouseEvent event) throws IOException {
+        String nombreparaFiltrar = txtNewName.getText();
+        String newNombre = txtNewNa.getText();
+        String newPrecio = txtNewPrecio.getText();
+        String newRuta   = txtNewRuta.getText();
+        try{
+        List<Producto> productos = ProductosData.leerProducto();
+        for (Producto p : productos){
+            if (p.getNombre()==nombreparaFiltrar){
+                p.setNombre(newNombre);
+                p.setPrecio(Double.parseDouble(newPrecio));
+                p.setImagen(newRuta);
+            }
+        }
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 
     @FXML
