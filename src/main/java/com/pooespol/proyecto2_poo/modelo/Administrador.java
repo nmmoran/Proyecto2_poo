@@ -14,5 +14,10 @@ public class Administrador extends Usuario{
     public Administrador(String email, String password) {
         super(email, password);
     }
+
+    @Override
+    public String toString() {
+        return "Administrador{" + '}';
+    }
     
 }

@@ -25,4 +25,10 @@ public class Mesero extends Usuario{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Mesero{" + "nombre=" + nombre + '}';
+    }
+    
 }
