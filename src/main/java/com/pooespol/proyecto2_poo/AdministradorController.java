@@ -206,7 +206,7 @@ public class AdministradorController implements Initializable {
         
     
     }
-
+//nico
     @FXML
     private void limpiarFields(MouseEvent event) {
         
