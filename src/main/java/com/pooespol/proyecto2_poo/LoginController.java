@@ -35,7 +35,7 @@ public class LoginController implements Initializable {
     private TextField txtContra;
     @FXML
     private Button btLogin;
-    
+    Restaurante r;
     
     /**
      * Initializes the controller class.
@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
             
             
             
-            Restaurante r=new Restaurante();
+            r=new Restaurante();
             
             Usuario u = new Usuario(email,contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
