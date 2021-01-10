@@ -53,5 +53,10 @@ public class Producto {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", tipo=" + tipo + '}';
+    }
     
 }
