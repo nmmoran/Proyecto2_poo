@@ -46,9 +46,9 @@ public class Restaurante {
         
             Producto pro = new Producto(nombre,precio,ruta,tipo);
             listproductos.add(pro);
-            ProductosData.registrarProducto(pro);
+            System.out.println(listproductos);
        
         }
-            
+       
    
 }

@@ -167,8 +167,8 @@
                                                                 <Label text="Nuevo precio del producto:" GridPane.rowIndex="2" />
                                                                 <Label text="Nueva ruta de imagen del producto:" GridPane.rowIndex="3" />
                                                                 <TextField GridPane.columnIndex="1" />
-                                                                <TextField fx:id="txtNewName" GridPane.columnIndex="1" />
-                                                                <TextField fx:id="txtNewNa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                <TextField fx:id="txtFiltroNombre" GridPane.columnIndex="1" />
+                                                                <TextField fx:id="txtNuevoNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                 <TextField fx:id="txtNewPrecio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                 <TextField fx:id="txtNewRuta" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                             </children>
@@ -176,7 +176,7 @@
                                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="466.0" spacing="50.0">
                                                             <children>
                                                                 <Button fx:id="btnModify" mnemonicParsing="false" onMouseClicked="#modificarProducto" text="Modificar" />
-                                                <Button fx:id="txtFiltoNombre" mnemonicParsing="false" onMouseClicked="#filtrarProductos" text="filtrar" />
+                                                <Button fx:id="btnFiltro" mnemonicParsing="false" onMouseClicked="#filtrarProductos" text="filtrar" />
                                                                 <Button fx:id="btnCancel2" mnemonicParsing="false" onMouseClicked="#limpiarFields" text="Cancelar" />
                                                             </children>
                                                         </HBox>

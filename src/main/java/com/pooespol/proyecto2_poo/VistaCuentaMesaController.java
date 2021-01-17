@@ -59,7 +59,40 @@ public class VistaCuentaMesaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         App.inicializarProductos(FPproductos);
+         try {
+             Restaurante r=new Restaurante();
+            //obtengo la lista de productos d
+            List<Producto> listp = r.getListproductos() ;
+            for(Producto p: listp){
+                VBox vboxproducto = new VBox();
+                //crear la imagen
+                try{
+                InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
+                ImageView imgv = new ImageView(new Image(inputImg));
+                vboxproducto.getChildren().add(imgv);
+                }catch (Exception ex){
+                    
+                    ex.printStackTrace();
+                }
+                
+                //crea el label del nombre y lo agrego al VBox
+                Label lnombre = new Label(p.getNombre());
+                vboxproducto.getChildren().add(lnombre);
+                //el anio de la pelicula
+                Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lprecio);
+                
+                vboxproducto.setPadding(new Insets(2,3,3,4));
+                
+                //agregamos el VBox al FlowPane
+                FPproductos.getChildren().add(vboxproducto);
+                
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         
          
     }    
@@ -77,28 +110,7 @@ public class VistaCuentaMesaController implements Initializable {
     private void mostrarBebidasSuaves(MouseEvent event) throws IOException {
         FPproductos.getChildren().clear();
         List<Producto> productos;
-        try {
-            productos = ProductosData.leerProducto();
-            for (Producto p :productos){
-                VBox vboxproducto = new VBox();
-                //se añade la imagen
-                InputStream inputImg = App.class.getResource(p.getImagen()).openStream();
-                ImageView imgv = new ImageView(new Image(inputImg));
-                vboxproducto.getChildren().add(imgv);
-                //se añade el nombre         
-                Label lnombre = new Label(p.getNombre());
-                vboxproducto.getChildren().add(lnombre);
-                //se añade el precio
-                Label lpercio = new Label(String.valueOf(p.getPrecio()));
-                vboxproducto.getChildren().add(lpercio);
-                vboxproducto.setPadding(new Insets(2,3,3,4));  
-                
-                FPproductos.getChildren().add(vboxproducto);
-                
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        
        
     }
 

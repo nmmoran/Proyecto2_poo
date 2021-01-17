@@ -87,7 +87,6 @@ public class AdministradorController implements Initializable {
     private Button btnAñadir;
     @FXML
     private Button btnCancel1;
-    @FXML
     private TextField txtNewName;
     @FXML
     private TextField txtNewPrecio;
@@ -133,11 +132,15 @@ public class AdministradorController implements Initializable {
     private Label lmessage2;
     @FXML
     private Button btnAceptar;
-    @FXML
     private Button txtFiltoNombre;
-    @FXML
     private TextField txtNewNa;
-
+    Restaurante r;
+    @FXML
+    private TextField txtFiltroNombre;
+    @FXML
+    private TextField txtNuevoNombre;
+    @FXML
+    private Button btnFiltro;
     /**
      * Initializes the controller class.
      * @param url
@@ -145,15 +148,54 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        try {
+             r=new Restaurante();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
             ArrayList<String> tipos= ProductosData.obtenerTipos();
             cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
             txtPrecio.clear();
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
-            App.inicializarProductos(fpMuestraMenu);
             btnAceptar.setDisable(true);
+            try {
+             Restaurante r=new Restaurante();
+            //obtengo la lista de productos d
+            List<Producto> listp = r.getListproductos() ;
+            for(Producto p: listp){
+                VBox vboxproducto = new VBox();
+                //crear la imagen
+                try{
+                InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
+                ImageView imgv = new ImageView(new Image(inputImg));
+                vboxproducto.getChildren().add(imgv);
+                }catch (Exception ex){
+                    
+                    ex.printStackTrace();
+                }
+                
+                //crea el label del nombre y lo agrego al VBox
+                Label lnombre = new Label(p.getNombre());
+                vboxproducto.getChildren().add(lnombre);
+                //el anio de la pelicula
+                Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lprecio);
+                
+                vboxproducto.setPadding(new Insets(2,3,3,4));
+                
+                //agregamos el VBox al FlowPane
+                fpMuestraMenu.getChildren().add(vboxproducto);
+                
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+            
+           
             
         
     }   
@@ -179,9 +221,8 @@ public class AdministradorController implements Initializable {
             Producto p = new Producto(nombre,precio,imagen,tipo);
             
             //registrar producto
-            
-            Restaurante r= new Restaurante();
             r.registrarProducto(nombre,precio,imagen,tipo);
+            ProductosData.escribirProducto(p);
             
             txtName.clear();
             txtPrecio.clear();
@@ -222,21 +263,18 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void modificarProducto(MouseEvent event) throws IOException {
-        String nombreparaFiltrar = txtNewName.getText();
-        String newNombre = txtNewNa.getText();
+        String nom = txtFiltroNombre.getText();
+        String newNombre = txtNuevoNombre.getText();
         String newPrecio = txtNewPrecio.getText();
         String newRuta   = txtNewRuta.getText();
-        try{
-        List<Producto> productos = ProductosData.leerProducto();
+        List<Producto> productos = r.getListproductos();
         for (Producto p : productos){
-            if (p.getNombre()==nombreparaFiltrar){
+            if (p.getNombre().equals(nom)){
                 p.setNombre(newNombre);
                 p.setPrecio(Double.parseDouble(newPrecio));
                 p.setImagen(newRuta);
+                
             }
-        }
-        }catch (IOException ex){
-            ex.printStackTrace();
         }
     }
 
@@ -252,14 +290,23 @@ public class AdministradorController implements Initializable {
     @FXML
     private void filtrarProductos(MouseEvent event) {
         try{
-        String name=txtFiltoNombre.getText();
-        Producto p=ProductosData.buscarPorNombre(name);
+        String name=txtFiltroNombre.getText();
+           for(Producto p :r.getListproductos()){
+           
+               if ((p.getNombre().equals(name))==true){
+                   
+                txtNuevoNombre.setText(p.getNombre());
+                txtNewPrecio.setText(String.valueOf(p.getPrecio()));
+                txtNewRuta.setText(p.getImagen());
+               }
             
-        txtNewName.setText(p.getNombre());
-        txtNewPrecio.setText(String.valueOf(p.getPrecio()));
-        txtNewRuta.setText(p.getImagen());
+           }
+            
     }catch(NullPointerException ex){
         ex.printStackTrace();
-    }}
+    }catch(Exception ex){
+        ex.getStackTrace();
+    }
+    }
     
 }

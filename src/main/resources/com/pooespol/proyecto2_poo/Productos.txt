@@ -1,6 +1,5 @@
 softdrinks;Coca-cola;1.50;coca.jpeg
 softdrinks;Pepsi;1.25;pepsi.jpeg
-softdrinks;Sprite;1.25;sprite.jpeg
 softdrinks;Crush;0.90;crush.jpeg
 hotdrinks;Expresso;3.66;expresso.jpeg
 hotdrinks;Capuccino;3.66;capuccino.jpeg
@@ -17,7 +16,6 @@ beers;Corona;3.00;corona.jpeg
 beers;Pilsener;2.50;pilsener.jpeg
 beers;Club;2.50;club.jpeg
 wine;Jacob's creek;11.50;Jcreek.jpeg
-Import Drinks;Sutter Home;25.85;sHome.jpeg
 Cocktails;Pina colada;5.84;Pcolada.jpeg
 Cocktails;Caipirinha;5.84;caipi.jpeg
 Cocktails;Cosmopolitan;5.84;cosmopolitan.jpeg

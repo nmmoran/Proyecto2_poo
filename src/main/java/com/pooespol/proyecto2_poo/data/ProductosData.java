@@ -14,16 +14,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author nicol
  */
 public class ProductosData {
-    static String ruta = "productos.txt";
+    static String ruta = "Productos.txt";
     
     /**
      * Esta funcion lee el archivo productos.txt que se encuentra en 
@@ -79,20 +83,7 @@ public class ProductosData {
         }
         return listaResultado;
     }
-    public static Producto buscarPorNombre(String nombre) {
-        
-        try{ 
-           for(Producto p :leerProducto()){
-               if(p.getNombre()==nombre){
-                   return p;
-               }
-           } 
-        }catch(IOException ex){
-            System.out.println("Ocurrio un error al parsear los productos por nombre");
-            ex.printStackTrace();
-        }
-        return null;
-    }
+    
     
       public static ArrayList<String> obtenerTipos() {
         ArrayList<String> listaResultado = new ArrayList<>();
@@ -108,24 +99,32 @@ public class ProductosData {
         }
         return listaResultado;
     }
-      public static void registrarProducto(Producto p) 
+      public static void escribirProducto(Producto p) 
             throws IOException, URISyntaxException {
-        
-        try(BufferedWriter bw = new BufferedWriter(
-                new FileWriter(new File(App.class.getResource(ruta).toURI()),true))){
-            String linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
-            System.out.println(linea+"1");
-            bw.write(linea);
-        
-            bw.newLine();
-            bw.flush();
-            bw.close();
-        
-       }catch(IOException ex){
-           System.out.println(ex.getMessage());
-    }catch(Exception ex){
+                 
+         try(BufferedWriter outputStream =
+                 new BufferedWriter(new FileWriter(ruta,true)))
+        {
+            Scanner keyboard = new Scanner(System.in);
+            String linea;
+            linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
+            outputStream.write(linea);
+            outputStream.newLine();
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Error opening the file out.txt."+ e.getMessage());
+        }
+        catch(IOException e){
+            System.out.println("IOException."+ e.getMessage());
+        }catch(Exception ex){
             System.out.println(ex);
             ex.printStackTrace();
     }
-}
+    }
+        
+        
+      
 }
