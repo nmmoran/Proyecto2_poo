@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -27,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
@@ -141,6 +143,8 @@ public class AdministradorController implements Initializable {
     private TextField txtNuevoNombre;
     @FXML
     private Button btnFiltro;
+    @FXML
+    private Pane tabprestaurante;
     /**
      * Initializes the controller class.
      * @param url
@@ -307,6 +311,11 @@ public class AdministradorController implements Initializable {
     }catch(Exception ex){
         ex.getStackTrace();
     }
+    }
+
+    @FXML
+    private void salir(Event event) {
+        App.setRoot("login");
     }
     
 }

@@ -9,11 +9,13 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_poo.MeseroController">
    <children>
-      <Label fx:id="lblInfoMesa" alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="64.0" text="Mesero:" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="64.0" text="Mesero:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Label fx:id="labelMesero" />
+      <Label />
       <Pane prefHeight="709.0" prefWidth="1000.0" style="-fx-background-color: grey;">
          <children>
             <Circle id="1" fx:id="c1" fill="#ffdc1f" layoutX="98.0" layoutY="85.0" onMouseClicked="#abrirCuenta" radius="40.0" stroke="BLACK" strokeType="INSIDE" />

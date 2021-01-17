@@ -60,6 +60,7 @@ public class App extends Application {
         }catch(IOException ex){
             System.out.println("Algo sucedio");
             System.out.println(ex);
+            ex.getStackTrace();
         }
         
     }

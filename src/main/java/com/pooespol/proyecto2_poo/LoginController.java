@@ -36,6 +36,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button btLogin;
     Restaurante r;
+    private String mesero;
     
     /**
      * Initializes the controller class.
@@ -70,6 +71,7 @@ public class LoginController implements Initializable {
             } else{
                 if(c instanceof Mesero){
                 App.setRoot("mesero");
+                
 
             }else if(c instanceof Administrador){
                 App.setRoot("administrador");
@@ -79,6 +81,15 @@ public class LoginController implements Initializable {
 
         }
     }
+
+    public String getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(String mesero) {
+        this.mesero = mesero;
+    }
+    
 }
 
     

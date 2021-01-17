@@ -21,11 +21,11 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_poo.AdministradorController">
     <children>
-        <TabPane prefHeight="700.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane id="Tabprestaurante" prefHeight="700.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Monitoreo">
                     <content>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                        <Pane fx:id="tabprestaurante" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;">
                             <children>
                                 <Circle fx:id="c1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
                                 <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
@@ -277,7 +277,7 @@
                         </VBox>
                     </content>
                 </Tab>
-                <Tab text="Salir" />
+                <Tab onSelectionChanged="#salir" text="Salir" />
             </tabs>
         </TabPane>
         <VBox prefHeight="200.0" prefWidth="600.0">

@@ -22,8 +22,6 @@ public class MeseroController implements Initializable {
 
 
     @FXML
-    private Label lblInfoMesa;
-    @FXML
     private Circle c1;
     @FXML
     private Circle c2;
@@ -53,16 +51,21 @@ public class MeseroController implements Initializable {
     private Circle c14;
     @FXML
     private Circle c15;
+    @FXML
+    private Label labelMesero;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }    
 
     @FXML
     private void abrirCuenta(MouseEvent event) {
         App.setRoot("vistaCuentaMesa");
     }
+    
 }
