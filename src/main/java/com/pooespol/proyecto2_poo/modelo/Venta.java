@@ -20,6 +20,7 @@ public class Venta {
     private double total;
 
     public Venta(LocalDate fecha, Cuenta datosCuenta, Mesero mesero, double total) {
+        
         this.fecha = fecha;
         this.datosCuenta = datosCuenta;
         this.mesero = mesero;
@@ -56,6 +57,11 @@ public class Venta {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Fecha: " + fecha + ",Mesa: " + datosCuenta.getMesa() + ", Mesero=" + mesero + "#Cuenta: "+datosCuenta.getNumCuenta()+ "Cliente: "+datosCuenta.getCliente()+ ", Total=" + total;
     }
     
 }

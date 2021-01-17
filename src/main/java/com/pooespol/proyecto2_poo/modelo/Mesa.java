@@ -5,6 +5,8 @@
  */
 package com.pooespol.proyecto2_poo.modelo;
 
+import com.pooespol.proyecto2_poo.modelo.Mesero;
+
 /**
  *
  * @author nicol
@@ -13,4 +15,41 @@ public class Mesa {
     private int numero;
     private int capacidad;
     private Mesero mesero;
+
+    public Mesa(int numero, int capacidad, Mesero mesero) {
+        this.numero = numero;
+        this.capacidad = capacidad;
+        this.mesero = mesero;
+    }
+
+    public Mesa(int numero) {
+        this.numero = numero;
+        
+    }
+    
+    
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public Mesero getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
+    }
+    
 }
