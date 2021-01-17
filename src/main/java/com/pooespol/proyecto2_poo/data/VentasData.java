@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +38,7 @@ public class VentasData {
                     String partes[] = linea.split(";");
                     if(partes.length == 6){
                         //01-01-2021;1;dustin;1;Pamela;210.45
-                        ventas.add(new Venta(partes[0],new Cuenta(new Mesa(Integer.parseInt(partes[1])),partes[3],Integer.parseInt(partes[4])),partes[2],Double.parseDouble(partes[5]))); 
+                        //ventas.add(new Venta(LocalDate.parse(partes[0]),new Cuenta(new Mesa(Integer.parseInt(partes[1])),partes[3],Integer.parseInt(partes[4])),partes[2] ,Double.parseDouble(partes[5]))); 
                     }
                     
                      
@@ -55,6 +56,6 @@ public class VentasData {
             System.out.println(ex.getMessage());
             throw ex;
         }
-        return products;
+        return ventas;
     } 
 }
