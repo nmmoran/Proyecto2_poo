@@ -25,34 +25,10 @@
     <children>
         <TabPane id="Tabprestaurante" prefHeight="700.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab fx:id="pestañaMonitorep" text="Monitoreo">
-                    <content>
-                        <Pane fx:id="tabprestaurante" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;">
-                            <children>
-                                <Circle fx:id="c1" fill="#ffdc1f" layoutX="84.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c2" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="196.0" layoutY="44.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c3" fill="#ffdc1f" layoutX="338.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c4" fill="#ffdc1f" layoutX="471.0" layoutY="80.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c5" fill="#ffdc1f" layoutX="84.0" layoutY="223.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c7" fill="#ffdc1f" layoutX="244.0" layoutY="223.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c6" fill="#ffdc1f" layoutX="84.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c8" fill="#ffdc1f" layoutX="244.0" layoutY="472.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c9" fill="#ffdc1f" layoutX="413.0" layoutY="345.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c10" fill="#ffdc1f" layoutX="600.0" layoutY="235.0" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c11" fill="#ffdc1f" layoutX="622.0" layoutY="442.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c12" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="157.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c13" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="65.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c14" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="346.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Circle fx:id="c15" centerX="20.0" centerY="36.0" fill="#ffdc1f" layoutX="809.0" layoutY="436.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="894.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-                                <Label alignment="CENTER" layoutX="929.0" layoutY="272.0" prefHeight="20.0" prefWidth="71.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                    </content>
+                <Tab fx:id="pestañaMonitoreo" onSelectionChanged="#cambiarVistaMesas" text="Monitoreo">
+               <content>
+                  <Pane fx:id="pnMonitoreo" prefHeight="200.0" prefWidth="200.0" />
+               </content>
                 </Tab>
                 <Tab text="Diseño Plano">
                     <content>

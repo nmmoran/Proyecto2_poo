@@ -10,5 +10,28 @@ package com.pooespol.proyecto2_poo.modelo;
  * @author Dustin Pisco
  */
 public class Ubicacion {
-    
+  private double coordenadaX;
+  private double coordenadaY;
+  
+  public Ubicacion (double x, double y){
+      this.coordenadaX= x;
+      this.coordenadaY=y;
+  }
+
+    public double getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public void setCoordenadaX(double coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public double getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    public void setCoordenadaY(double coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
+  
 }

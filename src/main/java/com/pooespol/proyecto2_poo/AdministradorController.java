@@ -23,6 +23,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -145,6 +147,12 @@ public class AdministradorController implements Initializable {
     private Button btnFiltro;
     @FXML
     private Pane tabprestaurante;
+    @FXML
+    private Tab pestañaMonitorep;
+    @FXML
+    private Pane pnMesas;
+    @FXML
+    private ScrollPane paneDeslizamiento;
     /**
      * Initializes the controller class.
      * @param url

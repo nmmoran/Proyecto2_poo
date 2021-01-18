@@ -6,6 +6,7 @@
 package com.pooespol.proyecto2_poo.modelo;
 
 import com.pooespol.proyecto2_poo.modelo.Mesero;
+import com.pooespol.proyecto2_poo.modelo.Ubicacion;
 
 /**
  *
@@ -15,16 +16,32 @@ public class Mesa {
     private int numero;
     private int capacidad;
     private Mesero mesero;
+    private Ubicacion ubicacion;
 
-    public Mesa(int numero, int capacidad, Mesero mesero) {
+    public Mesa(int numero, int capacidad, Mesero mesero,Ubicacion ubicacion) {
         this.numero = numero;
         this.capacidad = capacidad;
         this.mesero = mesero;
+        this.ubicacion=ubicacion;
     }
 
     public Mesa(int numero) {
         this.numero = numero;
         
+    }
+    public Mesa(int numero, int capacidad,Ubicacion ubi){
+        this.numero = numero;
+        this.capacidad = capacidad;
+        this.ubicacion= ubi;
+        this.mesero=null;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
     
     
