@@ -5,12 +5,16 @@
  */
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
+import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -93,6 +97,8 @@ public class VistaCuentaMesaController implements Initializable {
         }catch(Exception ex){
             ex.printStackTrace();
         }
+        
+         
         
          
     }    
