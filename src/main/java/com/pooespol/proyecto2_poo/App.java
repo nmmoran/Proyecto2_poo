@@ -1,5 +1,7 @@
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.MesaData;
+import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import javafx.application.Application;
@@ -10,13 +12,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 //Ya pude conectarme amigues att 2tin//
 //actualizacion//
 //Ya se soluciono amigues//
@@ -76,5 +84,84 @@ public class App extends Application {
         launch();
     }
 
+    static void  inicializarMesas(Pane pane){
+    
+            int n=1;
+      try {
+            ArrayList<Mesa> mesas = MesaData.leerMesas();
+            for(Mesa mesa: mesas){
+                
+               if (mesa.getCapacidad()==4){
+                   
+                   Circle c = new Circle(40,Color.rgb(255, 220, 31));
+                   Label l = new Label("M"+n);
+                   n+=1;
+                   StackPane contenedor = new StackPane();
+                   contenedor.setPrefHeight(100);
+                   contenedor.setPrefWidth(100);
+                   contenedor.getChildren().addAll(c,l);
+                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                   pane.getChildren().add(contenedor);
+                   
+               }
+               else if (mesa.getCapacidad()==6){
+                   Circle c = new Circle(55,Color.rgb(255, 220, 31));
+                   Label l = new Label("M"+n);
+                   n+=1;
+                   StackPane contenedor = new StackPane();
+                   contenedor.setPrefHeight(140);
+                   contenedor.setPrefWidth(140);
+                   contenedor.getChildren().addAll(c,l);
+                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                   pane.getChildren().add(contenedor);
+                   
+               }
+                else if (mesa.getCapacidad()==8){
+                   Circle c = new Circle(75,Color.rgb(255, 220, 31));
+                   Label l = new Label("M"+n);
+                   n+=1;
+                   StackPane contenedor = new StackPane();
+                   contenedor.setPrefHeight(180);
+                   contenedor.setPrefWidth(180);
+                   contenedor.getChildren().addAll(c,l);
+                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                   pane.getChildren().add(contenedor);
+                   
+               }
+               else if (mesa.getCapacidad()==9){
+                   Circle c = new Circle(85,Color.rgb(255, 220, 31));
+                   Label l = new Label("M"+n);
+                   n+=1;
+                   StackPane contenedor = new StackPane();
+                   contenedor.setPrefHeight(200);
+                   contenedor.setPrefWidth(200);
+                   contenedor.getChildren().addAll(c,l);
+                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                   pane.getChildren().add(contenedor);
+                   
+               }
+               else if (mesa.getCapacidad()==2){
+                   Circle c = new Circle(30,Color.rgb(255, 220, 31));
+                   Label l = new Label("M"+n);
+                   n+=1;
+                   StackPane contenedor = new StackPane();
+                   contenedor.setPrefHeight(85);
+                   contenedor.setPrefWidth(85);
+                   contenedor.getChildren().addAll(c,l);
+                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                   pane.getChildren().add(contenedor);
+                   
+               }
+               
+            }
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }}
 }
-// aldo

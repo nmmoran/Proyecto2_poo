@@ -27,7 +27,7 @@
             <tabs>
                 <Tab fx:id="pestañaMonitoreo" text="Monitoreo">
                <content>
-                  <Pane fx:id="pnMonitoreo" prefHeight="200.0" prefWidth="200.0" />
+                  <Pane fx:id="pnMonitoreo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" />
                </content>
                 </Tab>
                 <Tab text="Diseño Plano">

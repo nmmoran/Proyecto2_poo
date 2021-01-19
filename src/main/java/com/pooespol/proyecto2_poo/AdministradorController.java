@@ -131,6 +131,7 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        App.inicializarMesas(pnMonitoreo);
         try {
              r=new Restaurante();
         } catch (IOException ex) {
