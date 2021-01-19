@@ -6,6 +6,7 @@
 package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.ProductosData;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
@@ -41,36 +42,6 @@ import javafx.scene.shape.Circle;
  */
 public class AdministradorController implements Initializable {
 
-    @FXML
-    private Circle c1;
-    @FXML
-    private Circle c2;
-    @FXML
-    private Circle c3;
-    @FXML
-    private Circle c4;
-    @FXML
-    private Circle c5;
-    @FXML
-    private Circle c7;
-    @FXML
-    private Circle c6;
-    @FXML
-    private Circle c8;
-    @FXML
-    private Circle c9;
-    @FXML
-    private Circle c10;
-    @FXML
-    private Circle c11;
-    @FXML
-    private Circle c12;
-    @FXML
-    private Circle c13;
-    @FXML
-    private Circle c14;
-    @FXML
-    private Circle c15;
     @FXML
     private TextField txtFechaInicial;
     @FXML
@@ -146,13 +117,13 @@ public class AdministradorController implements Initializable {
     @FXML
     private Button btnFiltro;
     @FXML
-    private Pane tabprestaurante;
-    @FXML
-    private Tab pestañaMonitorep;
-    @FXML
     private Pane pnMesas;
     @FXML
     private ScrollPane paneDeslizamiento;
+    @FXML
+    private Tab pestañaMonitoreo;
+    @FXML
+    private Pane pnMonitoreo;
     /**
      * Initializes the controller class.
      * @param url
@@ -219,7 +190,7 @@ public class AdministradorController implements Initializable {
     }
 
     @FXML
-    private void añadirNuevoProducto(MouseEvent event) {
+    private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
         try{
             
             String tipo =cbOpTipo1.getValue();
@@ -272,22 +243,25 @@ public class AdministradorController implements Initializable {
             btnAceptar.setDisable(true);
             lbMessage.setText("");
     }
-
+    
     @FXML
-    private void modificarProducto(MouseEvent event) throws IOException {
+    private void modificarProducto(MouseEvent event) throws IOException, ArchivosExceptions {
         String nom = txtFiltroNombre.getText();
         String newNombre = txtNuevoNombre.getText();
         String newPrecio = txtNewPrecio.getText();
         String newRuta   = txtNewRuta.getText();
-        List<Producto> productos = r.getListproductos();
+        
+        ArrayList<Producto> productos = r.getListproductos();
         for (Producto p : productos){
             if (p.getNombre().equals(nom)){
                 p.setNombre(newNombre);
                 p.setPrecio(Double.parseDouble(newPrecio));
                 p.setImagen(newRuta);
-                
+                ProductosData.borrarArchivo();
+                ProductosData.sobreescribirProducto(productos);
             }
         }
+        
     }
 
     @FXML
@@ -310,6 +284,7 @@ public class AdministradorController implements Initializable {
                 txtNuevoNombre.setText(p.getNombre());
                 txtNewPrecio.setText(String.valueOf(p.getPrecio()));
                 txtNewRuta.setText(p.getImagen());
+               
                }
             
            }
@@ -319,6 +294,7 @@ public class AdministradorController implements Initializable {
     }catch(Exception ex){
         ex.getStackTrace();
     }
+    
     }
 
     @FXML

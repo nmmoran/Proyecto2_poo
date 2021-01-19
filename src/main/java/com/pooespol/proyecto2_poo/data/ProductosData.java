@@ -6,6 +6,7 @@
 package com.pooespol.proyecto2_poo.data;
 
 import com.pooespol.proyecto2_poo.App;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,11 +16,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -99,32 +102,79 @@ public class ProductosData {
         }
         return listaResultado;
     }
-      public static void escribirProducto(Producto p) 
-            throws IOException, URISyntaxException {
-                 
-         try(BufferedWriter outputStream =
-                 new BufferedWriter(new FileWriter(ruta,true)))
-        {
-            Scanner keyboard = new Scanner(System.in);
-            String linea;
-            linea = p.getTipo()+";"+p.getNombre()+";"+p.getPrecio()+";"+p.getImagen();
-            outputStream.write(linea);
-            outputStream.newLine();
-            outputStream.flush();
-            outputStream.close();
-        }
-        catch(FileNotFoundException e)
-        {
-            System.out.println("Error opening the file out.txt."+ e.getMessage());
-        }
-        catch(IOException e){
-            System.out.println("IOException."+ e.getMessage());
-        }catch(Exception ex){
-            System.out.println(ex);
+     public static ArrayList<Producto> escribirProducto(Producto producto) 
+            throws ArchivosExceptions{
+        //softdrinks;Coca-cola;1.50;coca.jpeg
+       
+        ArrayList<Producto> productos = new ArrayList<>();
+        File file = new File(App.class.getResource(ruta).getFile());
+        try(BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(file,true))){
+            bw.newLine();
+            String linea = producto.getTipo()+","+producto.getNombre()+","+String.valueOf(producto.getPrecio())+","+
+                    producto.getImagen()
+                    ;
+            bw.write(linea);
+            bw.close();
+        }  catch (IOException ex) {
+            System.out.println(ex.getMessage());
             ex.printStackTrace();
-    }
-    }
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
+        return productos;
+        
+}
+     public static void sobreescribirProducto(ArrayList<Producto> productos) 
+            throws ArchivosExceptions{
+        File file = new File(App.class.getResource(ruta).getFile());
+        try(BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(file,true))){ 
+            for(Producto p: productos){
+                String linea = p.getTipo()+","+p.getNombre()+","+String.valueOf(p.getPrecio())+","+
+                    p.getImagen()
+                    ;
+                bw.write(linea);
+                bw.newLine();
+            }
+            
+        }  catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
         
         
-      
+
+
+}
+     public static ArrayList<Producto> borrarArchivo() 
+            throws ArchivosExceptions, IOException{
+        
+        
+        
+        try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
+            String linea;
+            while((linea = bf.readLine())!=null){
+                File file = new File(App.class.getResource(ruta).getFile());
+                try(BufferedWriter bw = new BufferedWriter(
+                                            new FileWriter(file))){
+                    bw.newLine();
+                    linea ="";
+                            
+                    bw.write(linea);
+                    bw.close();
+                    
+            }catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());        
+        }}}  catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
+        return null;
+    }
 }

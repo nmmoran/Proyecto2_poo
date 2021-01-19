@@ -25,7 +25,7 @@
     <children>
         <TabPane id="Tabprestaurante" prefHeight="700.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab fx:id="pestañaMonitoreo" onSelectionChanged="#cambiarVistaMesas" text="Monitoreo">
+                <Tab fx:id="pestañaMonitoreo" text="Monitoreo">
                <content>
                   <Pane fx:id="pnMonitoreo" prefHeight="200.0" prefWidth="200.0" />
                </content>

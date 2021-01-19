@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button btLogin;
     Restaurante r;
-    private String mesero;
+    
     
     /**
      * Initializes the controller class.
@@ -80,14 +80,6 @@ public class LoginController implements Initializable {
         }catch(NullPointerException ex){
 
         }
-    }
-
-    public String getMesero() {
-        return mesero;
-    }
-
-    public void setMesero(String mesero) {
-        this.mesero = mesero;
     }
     
 }

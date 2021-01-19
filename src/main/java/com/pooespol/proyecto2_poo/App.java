@@ -30,8 +30,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mesero.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("vistaCuentaMesa.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+            ;
             Parent root = fxmlLoader.load();
             //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
             scene = new Scene(root);
@@ -40,7 +40,7 @@ public class App extends Application {
             //reporte.fxml el scenegraph
             //creamos con programacion un nuevo roort y lo fijamos a la scena
             VBox v = new VBox(new Label("No se cargo el archivo "));
-            
+            ex.getStackTrace();
             scene = new Scene(v);
             System.out.println(ex);
             
