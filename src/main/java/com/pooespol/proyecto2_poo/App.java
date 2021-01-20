@@ -110,7 +110,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa);
+                            cargarDatosMesas(mesa,pane);
                         }
                 );
                    
@@ -125,6 +125,14 @@ public class App extends Application {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            cargarDatosMesas(mesa,pane);
+                        }
+                );
                    
                }
                 else if (mesa.getCapacidad()==8){
@@ -137,7 +145,14 @@ public class App extends Application {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
-                   
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            cargarDatosMesas(mesa,pane);
+                        }
+                );
                }
                else if (mesa.getCapacidad()==9){
                    Circle c = new Circle(85,Color.rgb(255, 220, 31));
@@ -149,7 +164,14 @@ public class App extends Application {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
-                   
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            cargarDatosMesas(mesa,pane);
+                        }
+                );
                }
                else if (mesa.getCapacidad()==2){
                    Circle c = new Circle(30,Color.rgb(255, 220, 31));
@@ -161,7 +183,14 @@ public class App extends Application {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
-                   
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            cargarDatosMesas(mesa,pane);
+                        }
+                );
                }
                
             }
@@ -171,7 +200,7 @@ public class App extends Application {
             ex.printStackTrace();
         }}
     
-    public static void cargarDatosMesas(Mesa mesa){
+    public static void cargarDatosMesas(Mesa mesa , Pane pane){
         //limpiamos el contenido anterior
         
         
@@ -189,7 +218,7 @@ public class App extends Application {
         Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
         VBox v = new VBox(l2,l3);
         contenedorMesa.getChildren().add(v);
-        
+        pane.getChildren().add(contenedorMesa);
         }
     }
 }
