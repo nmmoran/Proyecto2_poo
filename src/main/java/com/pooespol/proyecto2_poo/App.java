@@ -2,6 +2,7 @@ package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
+import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import javafx.application.Application;
@@ -19,7 +20,9 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -90,7 +93,7 @@ public class App extends Application {
       try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             for(Mesa mesa: mesas){
-                
+                System.out.println(mesa);
                if (mesa.getCapacidad()==4){
                    
                    Circle c = new Circle(40,Color.rgb(255, 220, 31));
@@ -102,6 +105,14 @@ public class App extends Application {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            cargarDatosMesas(mesa);
+                        }
+                );
                    
                }
                else if (mesa.getCapacidad()==6){
@@ -159,4 +170,26 @@ public class App extends Application {
         } catch (IOException ex) {
             ex.printStackTrace();
         }}
+    
+    public static void cargarDatosMesas(Mesa mesa){
+        //limpiamos el contenido anterior
+        
+        
+        Mesero mesero = mesa.getMesero();
+        HBox contenedorMesa = new HBox();
+        
+        if((mesero.getNombre()!="na")==true){
+           Label l1 = new Label(mesero.getNombre()); 
+           Label l2 = new Label(String.valueOf(mesa.getNumero()));
+        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
+        VBox v = new VBox(l1,l2,l3);
+        }else{
+        
+        Label l2 = new Label(String.valueOf(mesa.getNumero()));
+        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
+        VBox v = new VBox(l2,l3);
+        contenedorMesa.getChildren().add(v);
+        
+        }
+    }
 }

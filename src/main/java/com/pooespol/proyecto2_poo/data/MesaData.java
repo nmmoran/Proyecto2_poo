@@ -53,7 +53,8 @@ public class MesaData {
             
                             }else{
                                 Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
-                                Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),ubi);
+                                me.setNombre("na");
+                                Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),me,ubi);
                                 mesas.add(m);
                             }
                         }
@@ -69,26 +70,6 @@ public class MesaData {
         
     }
 
-    public static void cargarDatosMesas(Mesa mesa , Pane pane){
-        //limpiamos el contenido anterior
-        pane.getChildren().clear();
-        
-        Mesero mesero = mesa.getMesero();
-        HBox contenedorMesa = new HBox();
-        
-        if((mesero.getNombre()!="na")==true){
-           Label l1 = new Label(mesero.getNombre()); 
-           Label l2 = new Label(String.valueOf(mesa.getNumero()));
-        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
-        VBox v = new VBox(l1,l2,l3);
-        }else{
-        
-        Label l2 = new Label(String.valueOf(mesa.getNumero()));
-        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
-        VBox v = new VBox(l2,l3);
-        contenedorMesa.getChildren().add(v);
-        pane.getChildren().add(contenedorMesa);
-        }
-    }
+    
 
 }

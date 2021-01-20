@@ -28,7 +28,7 @@ public class Mesero extends Usuario{
 
     @Override
     public String toString() {
-        return "Mesero{" + "nombre=" + nombre + '}';
+        return "nombre=" + nombre ;
     }
     
 }
