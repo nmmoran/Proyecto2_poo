@@ -86,7 +86,7 @@ public class App extends Application {
 
     static void  inicializarMesas(Pane pane){
     
-            int n=1;
+            
       try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             for(Mesa mesa: mesas){
@@ -94,8 +94,7 @@ public class App extends Application {
                if (mesa.getCapacidad()==4){
                    
                    Circle c = new Circle(40,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(100);
                    contenedor.setPrefWidth(100);
@@ -107,8 +106,7 @@ public class App extends Application {
                }
                else if (mesa.getCapacidad()==6){
                    Circle c = new Circle(55,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(140);
                    contenedor.setPrefWidth(140);
@@ -120,8 +118,7 @@ public class App extends Application {
                }
                 else if (mesa.getCapacidad()==8){
                    Circle c = new Circle(75,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(180);
                    contenedor.setPrefWidth(180);
@@ -133,8 +130,7 @@ public class App extends Application {
                }
                else if (mesa.getCapacidad()==9){
                    Circle c = new Circle(85,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(200);
                    contenedor.setPrefWidth(200);
@@ -146,8 +142,7 @@ public class App extends Application {
                }
                else if (mesa.getCapacidad()==2){
                    Circle c = new Circle(30,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                  Label l = new Label("M"+String.valueOf(mesa.getNumero()));
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(85);
                    contenedor.setPrefWidth(85);

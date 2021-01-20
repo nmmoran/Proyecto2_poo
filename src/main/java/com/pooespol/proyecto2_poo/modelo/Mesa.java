@@ -17,13 +17,16 @@ public class Mesa {
     private int capacidad;
     private Mesero mesero;
     private Ubicacion ubicacion;
+  
 
-    public Mesa(int numero, int capacidad, Mesero mesero,Ubicacion ubicacion) {
+    public Mesa(int numero, int capacidad, Mesero mesero, Ubicacion ubicacion) {
         this.numero = numero;
         this.capacidad = capacidad;
         this.mesero = mesero;
-        this.ubicacion=ubicacion;
+        this.ubicacion = ubicacion;
+        
     }
+       
 
     public Mesa(int numero) {
         this.numero = numero;
@@ -68,5 +71,11 @@ public class Mesa {
     public void setMesero(Mesero mesero) {
         this.mesero = mesero;
     }
-    
+
+   
+
+    @Override
+    public String toString() {
+        return "Mesa numero=" + numero + ", capacidad=" + capacidad + ", mesero=" + mesero + ", ubicacion=" + ubicacion ;
+    }
 }
