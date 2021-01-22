@@ -42,7 +42,7 @@ public class MesaData {
                 while ((linea=bf.readLine())!=null){
                     String[] partes= linea.split(",");
                     Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
-                    Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),null,ubi);
+                    Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),ubi);
                     mesas.add(m);
                 }
             }

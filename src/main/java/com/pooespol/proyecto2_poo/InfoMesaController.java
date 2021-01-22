@@ -26,8 +26,6 @@ public class InfoMesaController implements Initializable {
     @FXML
     private BorderPane pnVentEmer;
     @FXML
-    private Button btnCerrar;
-    @FXML
     private Label lblMesa;
     @FXML
     private Label lblCapacidad;
@@ -55,10 +53,6 @@ public class InfoMesaController implements Initializable {
         return cajaInfo;
     }
     
-    @FXML
-    private void cerrarVentanaEmergente(MouseEvent event) {
-    }
-
     public Label getLblMesa() {
         return lblMesa;
     }

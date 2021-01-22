@@ -87,7 +87,7 @@ public class App extends Application {
         launch();
     }
 
-    public void  inicializarMesas(Pane pane){
+    public void  inicializarMesasMonitor(Pane pane){
     
             
       try {
@@ -205,25 +205,13 @@ public class App extends Application {
     public void cargarDatosMesas(Mesa mesa){
         try {
             //limpiamos el contenido anterior
-            Mesero mesero = mesa.getCuenta().getMesero();
+           
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoMesa.fxml"));
             Parent root = loader.load();
             InfoMesaController controlador = loader.getController();
             
-            if((mesero.getNombre()==null)){
-                //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
-                //Luego a los atributos del controlador se les añade el string y wala!
-                String txtNm = new String(controlador.getLblMesa().getText());
-                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
-                String txtCap = new String(controlador.getLblCapacidad().getText());
-                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
-                controlador.getLblMesero().setText("Sin mesero");
-                Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.showAndWait();
-            }else{
+            if((mesa.getCuenta()!=null)){
+                 Mesero mesero = mesa.getCuenta().getMesero();
                 String txtNm = new String(controlador.getLblMesa().getText());
                 controlador.getLblMesa().setText(txtNm+mesa.getNumero());
                 String txtCap = new String(controlador.getLblCapacidad().getText());
@@ -235,10 +223,25 @@ public class App extends Application {
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
                 st.showAndWait();
+                //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
+                //Luego a los atributos del controlador se les añade el string y wala!
+                
+            }else{
+                String txtNm = new String(controlador.getLblMesa().getText());
+                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
+                String txtCap = new String(controlador.getLblCapacidad().getText());
+                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
+                controlador.getLblMesero().setText("Sin mesero");
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
             }
            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+    
 }

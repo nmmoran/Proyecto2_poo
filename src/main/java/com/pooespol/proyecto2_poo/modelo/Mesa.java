@@ -20,12 +20,20 @@ public class Mesa {
     private Ubicacion ubicacion;
   
 
-    public Mesa(int numero, int capacidad, Cuenta c,Ubicacion ubicacion) {
+    public Mesa(int numero, int capacidad,Ubicacion ubicacion) {
         this.numero = numero;
         this.capacidad = capacidad;
         this.ubicacion = ubicacion;
         
     }
+
+    public Mesa(int numero, int capacidad, Cuenta cuenta, Ubicacion ubicacion) {
+        this.numero = numero;
+        this.capacidad = capacidad;
+        this.cuenta = cuenta;
+        this.ubicacion = ubicacion;
+    }
+    
        
 
     public Mesa(int numero) {

@@ -7,6 +7,7 @@ package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
+import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
@@ -132,7 +133,7 @@ public class AdministradorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         App app = new App();
-        app.inicializarMesas(pnMonitoreo);
+        app.inicializarMesasMonitor(pnMonitoreo);
         try {
              r=new Restaurante();
         } catch (IOException ex) {
@@ -179,7 +180,7 @@ public class AdministradorController implements Initializable {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-            
+        
            
             
         
