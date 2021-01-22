@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -57,13 +58,19 @@ public class VistaCuentaMesaController implements Initializable {
     private Button btnCocteles;
     @FXML
     private FlowPane FPproductos;
+    @FXML
+    private Button btnFinalizarOrden;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private ScrollPane scPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         /*try {
+         try {
              Restaurante r=new Restaurante();
             //obtengo la lista de productos d
             List<Producto> listp = r.getListproductos() ;
@@ -97,9 +104,6 @@ public class VistaCuentaMesaController implements Initializable {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-        
-         
-        */
          
     }    
 
@@ -155,4 +159,8 @@ public class VistaCuentaMesaController implements Initializable {
     private void mostrarCocteles(MouseEvent event) {
     }
     
+    public void añadirProducto(Producto p){
+        
+        
+    }
 }

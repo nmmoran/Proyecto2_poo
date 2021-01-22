@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -68,12 +69,12 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="178.0" prefWidth="296.0" spacing="20.0" style="-fx-background-color: #e0dfdf;">
                                  <children>
-                                    <Button mnemonicParsing="false" onMouseClicked="#finalizarOrden" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #7eb737; -fx-border-color: black;" text="Finalizar Orden" textFill="WHITE">
+                                    <Button fx:id="btnFinalizarOrden" mnemonicParsing="false" onMouseClicked="#finalizarOrden" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #7eb737; -fx-border-color: black;" text="Finalizar Orden" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" onMouseClicked="#mostrarRestaurante" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
+                                    <Button fx:id="btnBack" mnemonicParsing="false" onMouseClicked="#mostrarRestaurante" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -119,7 +120,11 @@
                               <Button fx:id="btnCocteles" mnemonicParsing="false" onMouseClicked="#mostrarCocteles" prefHeight="25.0" prefWidth="90.0" text="Cocteles" />
                            </children>
                         </HBox>
-                        <FlowPane fx:id="FPproductos" hgap="20.0" prefHeight="592.0" prefWidth="698.0" style="-fx-background-color: #e0dfdf;" />
+                        <ScrollPane fx:id="scPane" prefHeight="568.0" prefWidth="698.0">
+                           <content>
+                              <FlowPane fx:id="FPproductos" prefHeight="552.0" prefWidth="687.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
