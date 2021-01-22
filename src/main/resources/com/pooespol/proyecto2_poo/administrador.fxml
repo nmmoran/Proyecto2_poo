@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -46,96 +45,15 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                        <StackPane layoutX="29.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0">
-                           <children>
-                                      <Circle fx:id="C1" fill="#ffdc1f" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M1" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="154.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0">
-                           <children>
-                                      <Circle fx:id="C2" centerX="20.0" centerY="36.0" fill="#ffdc1f" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M2" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="288.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0">
-                           <children>
-                                      <Circle fx:id="C3" fill="#ffdc1f" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M3" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="425.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0">
-                           <children>
-                                      <Circle fx:id="C4" fill="#ffdc1f" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M4" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="9.0" layoutY="160.0" prefHeight="140.0" prefWidth="140.0">
-                           <children>
-                                      <Circle fx:id="C5" fill="#ffdc1f" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M5" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="174.0" layoutY="160.0" prefHeight="140.0" prefWidth="140.0">
-                           <children>
-                                      <Circle fx:id="C7" fill="#ffdc1f" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M6" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="14.0" layoutY="402.0" prefHeight="140.0" prefWidth="140.0">
-                           <children>
-                                      <Circle fx:id="C6" fill="#ffdc1f" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M7" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="174.0" layoutY="402.0" prefHeight="140.0" prefWidth="140.0">
-                           <children>
-                                      <Circle fx:id="C8" fill="#ffdc1f" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M8" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="313.0" layoutY="245.0" prefHeight="180.0" prefWidth="180.0">
-                           <children>
-                                      <Circle fx:id="C9" fill="#ffdc1f" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M9" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="510.0" layoutY="145.0" prefHeight="180.0" prefWidth="180.0">
-                           <children>
-                                      <Circle fx:id="C10" fill="#ffdc1f" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M10" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="522.0" layoutY="342.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                                      <Circle fx:id="C11" fill="#ffdc1f" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M11" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="785.0" layoutY="50.0" prefHeight="85.0" prefWidth="85.0">
-                           <children>
-                                      <Circle fx:id="C12" centerX="20.0" centerY="36.0" fill="#ffdc1f" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M12" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="785.0" layoutY="156.0" prefHeight="80.0" prefWidth="80.0">
-                           <children>
-                                      <Circle fx:id="C13" centerX="20.0" centerY="36.0" fill="#ffdc1f" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M13" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="785.0" layoutY="331.0" prefHeight="80.0" prefWidth="80.0">
-                           <children>
-                                      <Circle fx:id="C14" centerX="20.0" centerY="36.0" fill="#ffdc1f" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M14" />
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="785.0" layoutY="440.0" prefHeight="80.0" prefWidth="80.0">
-                           <children>
-                                      <Circle fx:id="C15" centerX="20.0" centerY="36.0" fill="#ffdc1f" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label text="M15" />
-                           </children>
-                        </StackPane>
+                        <StackPane layoutX="425.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0" />
+                        <StackPane layoutX="9.0" layoutY="160.0" prefHeight="140.0" prefWidth="140.0" />
+                        <StackPane layoutX="313.0" layoutY="245.0" prefHeight="180.0" prefWidth="180.0" />
+                        <StackPane layoutX="510.0" layoutY="145.0" prefHeight="180.0" prefWidth="180.0" />
+                        <StackPane layoutX="522.0" layoutY="342.0" prefHeight="200.0" prefWidth="200.0" />
+                        <StackPane layoutX="785.0" layoutY="50.0" prefHeight="85.0" prefWidth="85.0" />
+                        <StackPane layoutX="785.0" layoutY="156.0" prefHeight="80.0" prefWidth="80.0" />
+                        <StackPane layoutX="785.0" layoutY="331.0" prefHeight="80.0" prefWidth="80.0" />
+                        <StackPane layoutX="785.0" layoutY="440.0" prefHeight="80.0" prefWidth="80.0" />
                             </children>
                         </Pane>
                     </content>
