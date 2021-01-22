@@ -33,6 +33,7 @@ public class MesaData {
     
     public static ArrayList<Mesa> leerMesas() throws URISyntaxException, FileNotFoundException, IOException{
         ArrayList<Mesa> mesas = new ArrayList<>();
+        Restaurante r=new Restaurante();
         try{
             URL u = App.class.getResource(ruta);
             File file = new File(u.toURI());
@@ -40,25 +41,9 @@ public class MesaData {
                 String linea;
                 while ((linea=bf.readLine())!=null){
                     String[] partes= linea.split(",");
-                    
-                    
-                    Restaurante r=new Restaurante();
-                    for (Usuario usu: r.getListUsuarios()){
-                        if (usu instanceof Mesero){
-                            Mesero me=(Mesero)usu;
-                            if (partes[4].equals(me.getNombre())){
-                                Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
-                                Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),me,ubi);
-                                mesas.add(m);
-            
-                            }else{
-                                Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
-                                me.setNombre("na");
-                                Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),me,ubi);
-                                mesas.add(m);
-                            }
-                        }
-                    }
+                    Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
+                    Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),null,ubi);
+                    mesas.add(m);
                 }
             }
         } catch(FileNotFoundException fe){

@@ -28,6 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 //Ya pude conectarme amigues att 2tin//
 //actualizacion//
 //Ya se soluciono amigues//
@@ -42,7 +43,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
-            ;
             Parent root = fxmlLoader.load();
             //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
             scene = new Scene(root);
@@ -87,13 +87,14 @@ public class App extends Application {
         launch();
     }
 
-    static void  inicializarMesas(Pane pane){
+    public void  inicializarMesas(Pane pane){
     
             
       try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
+            
             for(Mesa mesa: mesas){
-                System.out.println(mesa);
+                
                if (mesa.getCapacidad()==4){
                    
                    Circle c = new Circle(40,Color.rgb(255, 220, 31));
@@ -110,7 +111,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa,pane);
+                            cargarDatosMesas(mesa);
                         }
                 );
                    
@@ -130,7 +131,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa,pane);
+                            cargarDatosMesas(mesa);
                         }
                 );
                    
@@ -150,7 +151,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa,pane);
+                            cargarDatosMesas(mesa);
                         }
                 );
                }
@@ -169,7 +170,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa,pane);
+                            cargarDatosMesas(mesa);
                         }
                 );
                }
@@ -188,7 +189,7 @@ public class App extends Application {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa,pane);
+                            cargarDatosMesas(mesa);
                         }
                 );
                }
@@ -198,27 +199,46 @@ public class App extends Application {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
-        }}
+        }
+    }
     
-    public static void cargarDatosMesas(Mesa mesa , Pane pane){
-        //limpiamos el contenido anterior
-        
-        
-        Mesero mesero = mesa.getMesero();
-        HBox contenedorMesa = new HBox();
-        
-        if((mesero.getNombre()!="na")==true){
-           Label l1 = new Label(mesero.getNombre()); 
-           Label l2 = new Label(String.valueOf(mesa.getNumero()));
-        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
-        VBox v = new VBox(l1,l2,l3);
-        }else{
-        
-        Label l2 = new Label(String.valueOf(mesa.getNumero()));
-        Label l3 = new Label(String.valueOf(mesa.getCapacidad()));
-        VBox v = new VBox(l2,l3);
-        contenedorMesa.getChildren().add(v);
-        pane.getChildren().add(contenedorMesa);
+    public void cargarDatosMesas(Mesa mesa){
+        try {
+            //limpiamos el contenido anterior
+            Mesero mesero = mesa.getCuenta().getMesero();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("infoMesa.fxml"));
+            Parent root = loader.load();
+            InfoMesaController controlador = loader.getController();
+            
+            if((mesero.getNombre()==null)){
+                //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
+                //Luego a los atributos del controlador se les añade el string y wala!
+                String txtNm = new String(controlador.getLblMesa().getText());
+                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
+                String txtCap = new String(controlador.getLblCapacidad().getText());
+                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
+                controlador.getLblMesero().setText("Sin mesero");
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+            }else{
+                String txtNm = new String(controlador.getLblMesa().getText());
+                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
+                String txtCap = new String(controlador.getLblCapacidad().getText());
+                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
+                String txtLm = new String(controlador.getLblMesero().getText());
+                controlador.getLblMesero().setText(txtLm+mesero.getNombre());
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+            }
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }

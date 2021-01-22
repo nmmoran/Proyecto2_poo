@@ -63,7 +63,7 @@ public class VistaCuentaMesaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
+         /*try {
              Restaurante r=new Restaurante();
             //obtengo la lista de productos d
             List<Producto> listp = r.getListproductos() ;
@@ -71,9 +71,9 @@ public class VistaCuentaMesaController implements Initializable {
                 VBox vboxproducto = new VBox();
                 //crear la imagen
                 try{
-                InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
-                ImageView imgv = new ImageView(new Image(inputImg));
-                vboxproducto.getChildren().add(imgv);
+                    InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
+                    ImageView imgv = new ImageView(new Image(inputImg));
+                    vboxproducto.getChildren().add(imgv);
                 }catch (Exception ex){
                     
                     ex.printStackTrace();
@@ -99,7 +99,7 @@ public class VistaCuentaMesaController implements Initializable {
         }
         
          
-        
+        */
          
     }    
 

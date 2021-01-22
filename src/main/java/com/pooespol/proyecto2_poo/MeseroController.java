@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Label;
@@ -47,8 +48,7 @@ public class MeseroController implements Initializable {
                if (mesa.getCapacidad()==4){
                    
                    Circle c = new Circle(40,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+mesa.getNumero());
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(100);
                    contenedor.setPrefWidth(100);
@@ -57,11 +57,16 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
                    
+                   contenedor.setOnMouseClicked((MouseEvent ev)->{
+                       App.setRoot("vistaCuentaMesa");
+                       
+                       
+                   });
+                   
                }
                else if (mesa.getCapacidad()==6){
                    Circle c = new Circle(55,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+mesa.getNumero());  
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(140);
                    contenedor.setPrefWidth(140);
@@ -73,8 +78,7 @@ public class MeseroController implements Initializable {
                }
                 else if (mesa.getCapacidad()==8){
                    Circle c = new Circle(75,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+mesa.getNumero());
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(180);
                    contenedor.setPrefWidth(180);
@@ -86,8 +90,7 @@ public class MeseroController implements Initializable {
                }
                else if (mesa.getCapacidad()==9){
                    Circle c = new Circle(85,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+mesa.getNumero());
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(200);
                    contenedor.setPrefWidth(200);
@@ -99,8 +102,7 @@ public class MeseroController implements Initializable {
                }
                else if (mesa.getCapacidad()==2){
                    Circle c = new Circle(30,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+n);
-                   n+=1;
+                   Label l = new Label("M"+mesa.getNumero());
                    StackPane contenedor = new StackPane();
                    contenedor.setPrefHeight(85);
                    contenedor.setPrefWidth(85);

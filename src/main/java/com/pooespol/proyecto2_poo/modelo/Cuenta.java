@@ -6,6 +6,7 @@
 package com.pooespol.proyecto2_poo.modelo;
 
 import com.pooespol.proyecto2_poo.modelo.Mesa;
+import com.pooespol.proyecto2_poo.modelo.Mesero;
 
 /**
  *
@@ -15,21 +16,24 @@ public class Cuenta {
     private int numCuenta;
     private String cliente;
     private Mesa mesa;
+    private Mesero mesero;
     private String[] orden;
 
-    public Cuenta(int numCuenta, String cliente, Mesa mesa, String[] orden) {
+    public Cuenta(int numCuenta, String cliente, Mesa mesa,Mesero mesero, String[] orden) {
         this.numCuenta = numCuenta;
         this.cliente = cliente;
         this.mesa = mesa;
+        this.mesero= mesero;
         this.orden = orden;
+    } 
+
+    public Mesero getMesero() {
+        return mesero;
     }
 
-    public Cuenta(Mesa mesa,String cliente,int numCuenta) {
-        this.cliente = cliente;
-        this.mesa = mesa;
-        this.numCuenta = numCuenta;
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
     }
-    
     
     public int getNumCuenta() {
         return numCuenta;

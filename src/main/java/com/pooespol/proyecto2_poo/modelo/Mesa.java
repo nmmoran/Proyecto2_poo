@@ -5,6 +5,7 @@
  */
 package com.pooespol.proyecto2_poo.modelo;
 
+import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Ubicacion;
 
@@ -15,14 +16,13 @@ import com.pooespol.proyecto2_poo.modelo.Ubicacion;
 public class Mesa {
     private int numero;
     private int capacidad;
-    private Mesero mesero;
+    private Cuenta cuenta;
     private Ubicacion ubicacion;
   
 
-    public Mesa(int numero, int capacidad, Mesero mesero, Ubicacion ubicacion) {
+    public Mesa(int numero, int capacidad, Cuenta c,Ubicacion ubicacion) {
         this.numero = numero;
         this.capacidad = capacidad;
-        this.mesero = mesero;
         this.ubicacion = ubicacion;
         
     }
@@ -32,12 +32,7 @@ public class Mesa {
         this.numero = numero;
         
     }
-    public Mesa(int numero, int capacidad,Ubicacion ubi){
-        this.numero = numero;
-        this.capacidad = capacidad;
-        this.ubicacion= ubi;
-        this.mesero=null;
-    }
+ 
 
     public Ubicacion getUbicacion() {
         return ubicacion;
@@ -64,18 +59,17 @@ public class Mesa {
         this.capacidad = capacidad;
     }
 
-    public Mesero getMesero() {
-        return mesero;
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    public void setMesero(Mesero mesero) {
-        this.mesero = mesero;
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
-   
 
     @Override
     public String toString() {
-        return "Mesa numero=" + numero + ", capacidad=" + capacidad + ", mesero=" + mesero + ", ubicacion=" + ubicacion ;
+        return "Mesa numero=" + numero + ", capacidad=" + capacidad + ", cuenta=" + cuenta+ ", ubicacion=" + ubicacion ;
     }
 }
