@@ -76,7 +76,7 @@ public class ProductosData {
         ArrayList<Producto> listaResultado = new ArrayList<>();
         try{ 
            for(Producto p :leerProducto()){
-               if(p.getTipo()==tipo){
+               if(p.getTipo().equals(tipo)){
                    listaResultado.add(p);
                }
            } 
@@ -102,6 +102,9 @@ public class ProductosData {
         }
         return listaResultado;
     }
+      
+      
+      
      public static ArrayList<Producto> escribirProducto(Producto producto) 
             throws ArchivosExceptions{
         //softdrinks;Coca-cola;1.50;coca.jpeg
@@ -149,8 +152,6 @@ public class ProductosData {
 }
      public static ArrayList<Producto> borrarArchivo() 
             throws ArchivosExceptions, IOException{
-        
-        
         
         try(InputStream input = App.class.getResource(ruta).openStream();
                 BufferedReader bf = new BufferedReader(
