@@ -64,6 +64,8 @@ public class VistaCuentaMesaController implements Initializable {
     private Button btnBack;
     @FXML
     private ScrollPane scPane;
+    @FXML
+    private Button btnBuscar;
 
     /**
      * Initializes the controller class.
@@ -371,6 +373,46 @@ public class VistaCuentaMesaController implements Initializable {
     }
     
     public void añadirProducto(Producto p){
+        
+    }
+
+    @FXML
+    private void buscarPorFiltro(MouseEvent event) {
+        FPproductos.getChildren().clear();
+        String nombre = txtFiltro.getText();
+        try {
+            //obtengo la lista de productos d
+            List<Producto> lpt = ProductosData.parsearProductosNombre(nombre);
+            for(Producto p: lpt){
+                VBox vboxproducto = new VBox();
+                //crear la imagen
+                try{
+                    InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
+                    ImageView imgv = new ImageView(new Image(inputImg));
+                    vboxproducto.getChildren().add(imgv);
+                }catch (Exception ex){
+                    
+                    ex.printStackTrace();
+                }
+                
+                //crea el label del nombre y lo agrego al VBox
+                Label lnombre = new Label(p.getNombre());
+                vboxproducto.getChildren().add(lnombre);
+                // precio 
+                Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                vboxproducto.getChildren().add(lprecio);
+                
+                vboxproducto.setPadding(new Insets(2,3,3,4));
+                
+                //agregamos el VBox al FlowPane
+                FPproductos.getChildren().add(vboxproducto);
+                
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        
         
     }
 }

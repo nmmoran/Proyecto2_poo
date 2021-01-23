@@ -98,7 +98,8 @@
                                     <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="17.0" prefWidth="57.0" text="Filtrar: ">
+                              <Button fx:id="btnBuscar" mnemonicParsing="false" onMouseClicked="#buscarPorFiltro" prefHeight="26.0" prefWidth="74.0" text="Buscar" />
+                              <Label prefHeight="20.0" prefWidth="78.0" text="Filtrar: ">
                                  <HBox.margin>
                                     <Insets left="280.0" />
                                  </HBox.margin>
@@ -106,7 +107,10 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtFiltro" />
+                              <TextField fx:id="txtFiltro">
+                                 <padding>
+                                    <Insets right="20.0" />
+                                 </padding></TextField>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="702.0">
