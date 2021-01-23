@@ -114,8 +114,6 @@ public class MeseroController implements Initializable {
                }
                
             }
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }  

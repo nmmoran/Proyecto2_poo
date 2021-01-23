@@ -7,11 +7,14 @@ package com.pooespol.proyecto2_poo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -87,5 +90,10 @@ public class ModificarBorrarMesasController implements Initializable {
     public void setTxtMesero(TextField txtMesero) {
         this.txtMesero = txtMesero;
     }
-    
+    public void cerrarVentana(Event event) {
+ 
+    Node source = (Node) event.getSource();
+    Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+}
 }

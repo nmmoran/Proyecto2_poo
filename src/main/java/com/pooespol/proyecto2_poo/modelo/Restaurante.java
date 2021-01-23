@@ -5,8 +5,10 @@
  */
 package com.pooespol.proyecto2_poo.modelo;
 
+import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.UsuarioData;
+import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Usuario;
 import java.io.IOException;
@@ -22,14 +24,15 @@ public class Restaurante {
     
     private List<Usuario> listUsuarios;
     private ArrayList<Producto> listproductos;
+    private ArrayList<Mesa> listMesas;
     
-    public Restaurante() throws IOException{
+    public Restaurante() throws IOException, URISyntaxException{
         //cargar la informacion de generos
         //llamar a leerGeneros() de la clase GeneroData
         
         listUsuarios = UsuarioData.leerUsuarios();
         listproductos= ProductosData.leerProducto();
-       
+        listMesas= MesaData.leerMesas();
     }
 
     public List<Usuario> getListUsuarios() {
@@ -39,16 +42,24 @@ public class Restaurante {
     public ArrayList<Producto> getListproductos() {
         return listproductos;
     }
+
+    public ArrayList<Mesa> getListMesas() {
+        return listMesas;
+    }
     
     
-     public void registrarProducto(String nombre, double precio, String ruta ,String tipo) throws IOException, URISyntaxException {
-        
-        
+     public void registrarProducto(String nombre, double precio, String ruta ,String tipo) {
+
             Producto pro = new Producto(nombre,precio,ruta,tipo);
             listproductos.add(pro);
-            System.out.println(listproductos);
+           
        
         }
+    public void registrarMesa(int num, int cant , Ubicacion u) {
+
+            Mesa m=new  Mesa(num,cant,u);
+            listMesas.add(m);
        
+        }
    
 }

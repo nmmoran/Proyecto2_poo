@@ -125,6 +125,8 @@ public class AdministradorController implements Initializable {
              r=new Restaurante();
         } catch (IOException ex) {
             ex.printStackTrace();
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
         }
             ArrayList<String> tipos= ProductosData.obtenerTipos();
             cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
@@ -210,12 +212,10 @@ public class AdministradorController implements Initializable {
             lbMessage.setText("No puede haber campos vacios");
         }catch(NumberFormatException ex){
             lmessage2.setText("valor no valido precio");
-        }catch(IOException|URISyntaxException ex){
-            //maneja las excepciones de tipo IOException y URISyntaxException
-            //de la misma manera
-            lbMessage.setText("Error al guardar");
-            System.out.println(ex);
         }
+        //maneja las excepciones de tipo IOException y URISyntaxException
+        //de la misma manera
+        
         
         
     
@@ -399,8 +399,6 @@ public class AdministradorController implements Initializable {
                }
                
             }
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -617,8 +615,6 @@ public class AdministradorController implements Initializable {
                
             }
             
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -654,6 +650,8 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().add(m);
+                            
                             controlador.cerrarVentana(ev);
                         }
                 );
@@ -673,6 +671,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().add(m);
                             controlador.cerrarVentana(ev);
                         }
                 );
@@ -692,6 +691,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().add(m);
                             controlador.cerrarVentana(ev);
                         }
                 );
@@ -711,6 +711,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().add(m);
                             controlador.cerrarVentana(ev);
                         }
                 );
@@ -730,6 +731,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().add(m);
                             controlador.cerrarVentana(ev);
                         }
                 );
@@ -779,6 +781,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
+                            r.getListMesas().remove(mesa);
                             
                             
                         }
@@ -787,9 +790,28 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
+                            if(r.getListMesas().contains(mesa)){
+                                try {
+                                    mesa.setNumero(Integer.parseInt(c.getTxtinfoNum().getText()));
+                                    mesa.setCapacidad(Integer.parseInt(c.getTxtinfoNum().getText()));
+                                    mesa.getCuenta().getMesero().setNombre(c.getTxtMesero().getText());
+                                    MesaData.borrarArchivoMesas();
+                                    MesaData.sobreescribirMesa(r.getListMesas());
+                                } catch (ArchivosExceptions ex) {
+                                    ex.printStackTrace();
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                                
+                            }
                         }
                 );
+           c.getBtnCerrarV().setOnMouseClicked(
+                   (MouseEvent ev)->{
+                       ev.consume();
+                       c.cerrarVentana(ev);
+                   }
+           );
         } catch (IOException ex) {
             ex.printStackTrace();
         }

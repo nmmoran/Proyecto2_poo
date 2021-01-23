@@ -36,9 +36,8 @@ import javafx.scene.layout.VBox;
 public class MesaData {
     static String ruta = "mesas.txt";
     
-    public static ArrayList<Mesa> leerMesas() throws URISyntaxException, FileNotFoundException, IOException{
+    public static ArrayList<Mesa> leerMesas() throws IOException{
         ArrayList<Mesa> mesas = new ArrayList<>();
-        Restaurante r=new Restaurante();
         try{
             URL u = App.class.getResource(ruta);
             File file = new File(u.toURI());
@@ -51,10 +50,11 @@ public class MesaData {
                     mesas.add(m);
                 }
             }
-        } catch(FileNotFoundException fe){
-            fe.printStackTrace();
+        
         } catch (IOException ex){
             ex.printStackTrace();
+        }catch(Exception ex){
+            
         }
         return mesas;
         

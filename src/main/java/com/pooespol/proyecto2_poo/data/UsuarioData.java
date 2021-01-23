@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class UsuarioData {
      *  email,password,tipoUsuario,nombre
      * @return ArrayList<Usuario>
      */
-    public static ArrayList<Usuario>leerUsuarios() throws IOException {
+    public static ArrayList<Usuario>leerUsuarios() throws IOException,URISyntaxException{
         ArrayList<Usuario> usu = new ArrayList<>();
         //Usamos la clase BufferedReader para leer archivos de texto
         try{

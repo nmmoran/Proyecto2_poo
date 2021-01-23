@@ -40,7 +40,7 @@ public class ProductosData {
      *  tipo;producto;precio;imagen
      * @return ArrayList<Producto>
      */
-    public static ArrayList<Producto>leerProducto() throws IOException {
+    public static ArrayList<Producto>leerProducto() throws IOException,URISyntaxException {
         ArrayList<Producto> products = new ArrayList<>();
         try{
             URL u = App.class.getResource(ruta);
@@ -83,6 +83,8 @@ public class ProductosData {
         }catch(IOException ex){
             System.out.println("Ocurrio un error al parsear los productos por tipo");
             ex.printStackTrace();
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
         }
         return listaResultado;
     }
@@ -98,6 +100,8 @@ public class ProductosData {
         }catch(IOException ex){
             System.out.println("Ocurrio un error al parsear los productos por tipo");
             ex.printStackTrace();
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
         }
         return listaResultado;
     }
@@ -112,6 +116,8 @@ public class ProductosData {
            } 
         }catch(IOException ex){
             System.out.println("Ocurrio un error al parsear los tipos de producto");
+            ex.printStackTrace();
+        } catch (URISyntaxException ex) {
             ex.printStackTrace();
         }
         return listaResultado;
