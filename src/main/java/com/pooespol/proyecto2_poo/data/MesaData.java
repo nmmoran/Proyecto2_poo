@@ -68,7 +68,8 @@ public class MesaData {
                                     new FileWriter(file,true))){
             bw.newLine();
             //1,4,29,30
-            String linea = String.valueOf(m.getNumero())+","+String.valueOf(m.getCapacidad())+","+String.valueOf(m.getUbicacion());
+            String linea = String.valueOf(m.getNumero())+","+String.valueOf(m.getCapacidad())+","
+                    +String.valueOf(m.getUbicacion().getCoordenadaX())+","+String.valueOf(m.getUbicacion().getCoordenadaY());
             bw.write(linea);
             bw.close();
         }  catch (IOException ex) {
@@ -83,7 +84,8 @@ public class MesaData {
         try(BufferedWriter bw = new BufferedWriter(
                                     new FileWriter(file,true))){ 
             for(Mesa mesa: mesas){
-                String linea = String.valueOf(mesa.getNumero())+","+String.valueOf(mesa.getCapacidad())+","+String.valueOf(mesa.getUbicacion());
+                String linea = String.valueOf(mesa.getNumero())+","+String.valueOf(mesa.getCapacidad())+","
+                        +String.valueOf(mesa.getUbicacion().getCoordenadaX())+","+String.valueOf(mesa.getUbicacion().getCoordenadaY());
                 bw.write(linea);
                 bw.newLine();
             }

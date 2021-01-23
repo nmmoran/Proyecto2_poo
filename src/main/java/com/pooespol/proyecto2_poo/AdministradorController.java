@@ -35,6 +35,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Light.Point;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -84,36 +85,6 @@ public class AdministradorController implements Initializable {
     @FXML
     private Button btnCancel2;
     @FXML
-    private Circle C1;
-    @FXML
-    private Circle C2;
-    @FXML
-    private Circle C4;
-    @FXML
-    private Circle C3;
-    @FXML
-    private Circle C5;
-    @FXML
-    private Circle C7;
-    @FXML
-    private Circle C6;
-    @FXML
-    private Circle C8;
-    @FXML
-    private Circle C9;
-    @FXML
-    private Circle C10;
-    @FXML
-    private Circle C11;
-    @FXML
-    private Circle C12;
-    @FXML
-    private Circle C13;
-    @FXML
-    private Circle C14;
-    @FXML
-    private Circle C15;
-    @FXML
     private Label lbMessage;
     @FXML
     private Label lmessage2;
@@ -136,6 +107,10 @@ public class AdministradorController implements Initializable {
     private Tab pestañaMonitoreo;
     @FXML
     private Pane pnMonitoreo;
+   
+
+    private int x;
+    private int y;
     /**
      * Initializes the controller class.
      * @param url
@@ -563,7 +538,7 @@ public class AdministradorController implements Initializable {
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa);
+                            //mesaModificarBorrar(mesa);
                         }
                 );
                }
@@ -605,7 +580,7 @@ public class AdministradorController implements Initializable {
                 st.setScene(sc);
                 st.showAndWait();
                 CrearMesasController controlador = loader.getController();
-                   
+                   System.out.println(x);
                    int numMesa= Integer.parseInt(controlador.getTxtnum().getText());
                    int capacidad= Integer.parseInt(controlador.getTxtcapMesas().getText());
                    Ubicacion u=new Ubicacion(x,y);
@@ -714,5 +689,43 @@ public class AdministradorController implements Initializable {
     }catch(ArchivosExceptions ex){
         ex.getStackTrace();
     }
+    }
+    
+   private void mesaModificarBorrar(StackPane controlador ,Mesa mesa ){
+        try {
+            //limpiamos el contenido anterior
+           
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarBorrarMesas.fxml"));
+            Parent root = loader.load();
+            ModificarBorrarMesasController c = loader.getController();
+            
+            if((mesa.getCuenta()!=null)){
+                 Mesero mesero = mesa.getCuenta().getMesero();
+                
+                c.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
+                c.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
+                c.getTxtMesero().setText(mesero.getNombre());
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+                //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
+                //Luego a los atributos del controlador se les añade el string y wala!
+                
+            }else{
+                c.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
+                c.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
+                c.getTxtMesero().setText("Sin Mesero");
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+            }
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
