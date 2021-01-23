@@ -157,8 +157,8 @@ public class VistaCuentaMesaController implements Initializable {
                             VBox cont = new VBox();
                             cont.getChildren().add(name);
                             Label precio = new Label(String.valueOf(p.getPrecio()));
-                            GPcuenta.add(cont, 0, x);
-                            GPcuenta.add(precio, 1, y);
+                            //GPcuenta.add(cont, 0, x);
+                            //GPcuenta.add(precio, 1, y);
                             
                         });
                 x+=1;
