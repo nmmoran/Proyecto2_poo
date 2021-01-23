@@ -6,16 +6,21 @@
 package com.pooespol.proyecto2_poo.data;
 
 import com.pooespol.proyecto2_poo.App;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import com.pooespol.proyecto2_poo.modelo.Ubicacion;
 import com.pooespol.proyecto2_poo.modelo.Usuario;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,6 +60,70 @@ public class MesaData {
         
     }
 
-    
+    public static void escribirMesa(Mesa m) 
+            throws ArchivosExceptions{
+        
+        File file = new File(App.class.getResource(ruta).getFile());
+        try(BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(file,true))){
+            bw.newLine();
+            //1,4,29,30
+            String linea = String.valueOf(m.getNumero())+","+String.valueOf(m.getCapacidad())+","+String.valueOf(m.getUbicacion());
+            bw.write(linea);
+            bw.close();
+        }  catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
+        }
+    public static void sobreescribirMesa(ArrayList<Mesa> mesas) 
+            throws ArchivosExceptions{
+        File file = new File(App.class.getResource(ruta).getFile());
+        try(BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(file,true))){ 
+            for(Mesa mesa: mesas){
+                String linea = String.valueOf(mesa.getNumero())+","+String.valueOf(mesa.getCapacidad())+","+String.valueOf(mesa.getUbicacion());
+                bw.write(linea);
+                bw.newLine();
+            }
+            
+        }  catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
+        
+        
 
+
+}
+     public static ArrayList<Mesa> borrarArchivoMesas() 
+            throws ArchivosExceptions, IOException{
+        
+        try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
+            String linea;
+            while((linea = bf.readLine())!=null){
+                File file = new File(App.class.getResource(ruta).getFile());
+                try(BufferedWriter bw = new BufferedWriter(
+                                            new FileWriter(file))){
+                    bw.newLine();
+                    linea ="";
+                            
+                    bw.write(linea);
+                    bw.close();
+                    
+            }catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());        
+        }}}  catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
+        return null;
+    }
 }

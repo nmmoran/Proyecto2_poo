@@ -80,4 +80,5 @@ public class Mesa {
     public String toString() {
         return "Mesa numero=" + numero + ", capacidad=" + capacidad + ", cuenta=" + cuenta+ ", ubicacion=" + ubicacion ;
     }
+    
 }

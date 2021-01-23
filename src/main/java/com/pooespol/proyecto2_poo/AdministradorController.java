@@ -13,6 +13,7 @@ import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
+import com.pooespol.proyecto2_poo.modelo.Ubicacion;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -607,9 +608,9 @@ public class AdministradorController implements Initializable {
                    
                    int numMesa= Integer.parseInt(controlador.getTxtnum().getText());
                    int capacidad= Integer.parseInt(controlador.getTxtcapMesas().getText());
-                   
-                   
-                  
+                   Ubicacion u=new Ubicacion(x,y);
+                   Mesa m=new Mesa(numMesa,capacidad,u);
+                   MesaData.escribirMesa(m);
                    if (capacidad==4){
                    Circle c = new Circle(40,Color.rgb(255, 220, 31));
                    Label l = new Label("M"+String.valueOf(numMesa));
@@ -709,6 +710,8 @@ public class AdministradorController implements Initializable {
                    
                    
     }catch(IOException ex){
+        ex.getStackTrace();
+    }catch(ArchivosExceptions ex){
         ex.getStackTrace();
     }
     }
