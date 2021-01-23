@@ -451,6 +451,7 @@ public class AdministradorController implements Initializable {
       
             
       try {
+            
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             pane.setOnMouseClicked(
                     (MouseEvent ev)->{
@@ -474,14 +475,25 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion u=new Ubicacion(deltaX,deltaY);
+                    mesa.setUbicacion(u);
+               
+                    });
                    contenedor.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
-                            cargarDatosMesas(mesa);
+                            mesaModificarBorrar( mesa );
                         }
-                );
+                        );
+                 
+                    
                    
                }
                else if (mesa.getCapacidad()==6){
@@ -494,12 +506,22 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion u=new Ubicacion(deltaX,deltaY);
+                    mesa.setUbicacion(u);
+               
+                    });
                    contenedor.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa);
+                            mesaModificarBorrar( mesa );
                         }
                 );
                    
@@ -514,12 +536,22 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion u=new Ubicacion(deltaX,deltaY);
+                    mesa.setUbicacion(u);
+               
+                    });
                    contenedor.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa);
+                            mesaModificarBorrar( mesa );
                         }
                 );
                }
@@ -533,12 +565,22 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion u=new Ubicacion(deltaX,deltaY);
+                    mesa.setUbicacion(u);
+               
+                    });
                    contenedor.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
                             
-                            //mesaModificarBorrar(mesa);
+                            mesaModificarBorrar( mesa );
                         }
                 );
                }
@@ -552,12 +594,23 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    pane.getChildren().add(contenedor);
+                   
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion u=new Ubicacion(deltaX,deltaY);
+                    mesa.setUbicacion(u);
+               
+                    });
                    contenedor.setOnMouseClicked(
+                           
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
                             
-                            cargarDatosMesas(mesa);
+                            mesaModificarBorrar( mesa );
                         }
                 );
                }
@@ -681,7 +734,7 @@ public class AdministradorController implements Initializable {
                         }
                 );
                 }
-                   
+                
                    
                    
     }catch(IOException ex){
@@ -691,7 +744,7 @@ public class AdministradorController implements Initializable {
     }
     }
     
-   private void mesaModificarBorrar(StackPane controlador ,Mesa mesa ){
+   private void mesaModificarBorrar( Mesa mesa ){
         try {
             //limpiamos el contenido anterior
            
@@ -710,8 +763,7 @@ public class AdministradorController implements Initializable {
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
                 st.showAndWait();
-                //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
-                //Luego a los atributos del controlador se les añade el string y wala!
+                
                 
             }else{
                 c.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
@@ -723,7 +775,21 @@ public class AdministradorController implements Initializable {
                 st.setScene(sc);
                 st.showAndWait();
             }
-           
+           c.getBtnEliminarMesa().setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                            
+                        }
+                );
+           c.getBtmModificarMesa().setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            
+                        }
+                );
         } catch (IOException ex) {
             ex.printStackTrace();
         }
