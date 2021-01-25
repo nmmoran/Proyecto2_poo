@@ -56,12 +56,13 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseClicked((MouseEvent ev)->{
-                       App.setRoot("vistaCuentaMesa");
-                       
-                       
-                   });
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        }
+                );
                    
                }
                else if (mesa.getCapacidad()==6){
@@ -74,6 +75,13 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        }
+                );
                    
                }
                 else if (mesa.getCapacidad()==8){
@@ -86,6 +94,13 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        }
+                );
                    
                }
                else if (mesa.getCapacidad()==9){
@@ -98,6 +113,13 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        }
+                );
                    
                }
                else if (mesa.getCapacidad()==2){
@@ -110,7 +132,13 @@ public class MeseroController implements Initializable {
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                    paneMesas.getChildren().add(contenedor);
-                   
+                   contenedor.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                            //para que no se propague
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        }
+                );
                }
                
             }
