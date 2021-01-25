@@ -8,6 +8,7 @@ package com.pooespol.proyecto2_poo.modelo;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.UsuarioData;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Usuario;
@@ -62,4 +63,12 @@ public class Restaurante {
        
         }
    
+    public void borrarMesa(Mesa m) throws IOException, ArchivosExceptions {
+               
+               listMesas.remove(m);
+
+               
+               MesaData.sobreescribirMesa(listMesas);
+               
+           }
 }

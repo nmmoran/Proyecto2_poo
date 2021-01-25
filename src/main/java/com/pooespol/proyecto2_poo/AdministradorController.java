@@ -487,9 +487,10 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            mesaModificarBorrar( mesa );
+                            opciones(mesa);
                         }
                         );
+                   
                  
                     
                    
@@ -518,8 +519,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
-                            mesaModificarBorrar( mesa );
+                            opciones(mesa);
                         }
                 );
                    
@@ -548,8 +548,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
-                            mesaModificarBorrar( mesa );
+                            opciones(mesa);
                         }
                 );
                }
@@ -577,8 +576,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
-                            mesaModificarBorrar( mesa );
+                            opciones(mesa);
                         }
                 );
                }
@@ -607,8 +605,7 @@ public class AdministradorController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            
-                            mesaModificarBorrar( mesa );
+                            opciones(mesa);
                         }
                 );
                }
@@ -746,74 +743,176 @@ public class AdministradorController implements Initializable {
     }
     }
     
-   private void mesaModificarBorrar( Mesa mesa ){
+   private void opciones( Mesa mesa ){
         try {
             //limpiamos el contenido anterior
            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarBorrarMesas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("opciones.fxml"));
             Parent root = loader.load();
-            ModificarBorrarMesasController c = loader.getController();
+            OpcionesController con = loader.getController();
             
             if((mesa.getCuenta()!=null)){
                  Mesero mesero = mesa.getCuenta().getMesero();
                 
-                c.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
-                c.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
-                c.getTxtMesero().setText(mesero.getNombre());
+                
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
                 st.showAndWait();
+                Button btneliminar=con.getBtnEliminarM();
+                btneliminar.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                        ev.consume();
+                     try {
+                         
+                         MesaData.borrarArchivoMesas();
+                         r.borrarMesa(mesa);
+                         con.cerrarVentanaEliminar(ev);
+                     } catch (IOException ex) {
+                         ex.printStackTrace();
+                     } catch (ArchivosExceptions ex) {
+                         ex.printStackTrace();
+                     }catch(Exception ex){
+                         ex.printStackTrace();
+                     }
+                            
+                            
+                        }
+                );
+                con.getBtnModificarM().setOnMouseClicked(
+                    (MouseEvent ev)->{
+                        ev.consume();
+                        modificarMesa(mesa);
+                        con.cerrarVentanaEliminar(ev);    
+                        }
+                );
                 
+               
                 
             }else{
-                c.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
-                c.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
-                c.getTxtMesero().setText("Sin Mesero");
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
                 st.showAndWait();
+                System.out.println("fuera");
+                         
+                Button btneliminar=con.getBtnEliminarM();
+                btneliminar.setOnMouseClicked(
+                    (MouseEvent ev)->{
+                        System.out.println("f");
+                        ev.consume();
+                     try {
+                         
+                         MesaData.borrarArchivoMesas();
+                         r.borrarMesa(mesa);
+                         con.cerrarVentanaEliminar(ev);
+                     } catch (IOException ex) {
+                         ex.printStackTrace();
+                     } catch (ArchivosExceptions ex) {
+                         ex.printStackTrace();
+                     }
+                            
+                            
+                        }
+                );
+                con.getBtnModificarM().setOnMouseClicked(
+                    (MouseEvent ev)->{
+                        ev.consume();
+                        modificarMesa(mesa);
+                        con.cerrarVentanaEliminar(ev);    
+                        }
+                );
+                
             }
-           c.getBtnEliminarMesa().setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().remove(mesa);
-                            
-                            
-                        }
-                );
-           c.getBtmModificarMesa().setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            if(r.getListMesas().contains(mesa)){
-                                try {
-                                    mesa.setNumero(Integer.parseInt(c.getTxtinfoNum().getText()));
-                                    mesa.setCapacidad(Integer.parseInt(c.getTxtinfoNum().getText()));
-                                    mesa.getCuenta().getMesero().setNombre(c.getTxtMesero().getText());
-                                    MesaData.borrarArchivoMesas();
-                                    MesaData.sobreescribirMesa(r.getListMesas());
-                                } catch (ArchivosExceptions ex) {
-                                    ex.printStackTrace();
-                                } catch (IOException ex) {
-                                    ex.printStackTrace();
-                                }
-                                
-                            }
-                        }
-                );
-           c.getBtnCerrarV().setOnMouseClicked(
-                   (MouseEvent ev)->{
-                       ev.consume();
-                       c.cerrarVentana(ev);
-                   }
-           );
+           
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+   private void modificarMesa(Mesa mesa){
+       try {
+            //limpiamos el contenido anterior
+           
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("modificar.fxml"));
+            Parent root = loader.load();
+            ModificarBorrarMesasController con = loader.getController();
+            
+            if((mesa.getCuenta()!=null)){
+                 Mesero mesero = mesa.getCuenta().getMesero();
+                
+                con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
+                con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
+                con.getTxtMesero().setText(mesero.getNombre());
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+               
+                
+                con.getBtmModificarMesa().setOnMouseClicked(
+                         (MouseEvent ev)->{
+                                 //para que no se propague
+                                 ev.consume();
+                                 if(r.getListMesas().contains(mesa)){
+                                     try {
+                                         mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                         mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                         mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
+                                         MesaData.borrarArchivoMesas();
+                                         MesaData.sobreescribirMesa(r.getListMesas());
+                                         con.cerrarVentanaModificar(ev);
+                                     } catch (ArchivosExceptions ex) {
+                                         ex.printStackTrace();
+                                     } catch (IOException ex) {
+                                         ex.printStackTrace();
+                                     }
+
+                                 }
+                             }
+                     );
+                
+                
+                
+            }else{
+                con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
+                con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
+                con.getTxtMesero().setText("Sin Mesero");
+                Scene sc = new Scene(root);
+                Stage st = new Stage();
+                st.initModality(Modality.APPLICATION_MODAL);
+                st.setScene(sc);
+                st.showAndWait();
+                System.out.println("fuera");
+                
+               con.getBtmModificarMesa().setOnMouseClicked(
+                         (MouseEvent ev)->{
+                                 //para que no se propague
+                                 ev.consume();
+                                 if(r.getListMesas().contains(mesa)){
+                                     try {
+                                         mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                         mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                         mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
+                                         MesaData.borrarArchivoMesas();
+                                         MesaData.sobreescribirMesa(r.getListMesas());
+                                         con.cerrarVentanaModificar(ev);
+                                     } catch (ArchivosExceptions ex) {
+                                         ex.printStackTrace();
+                                     } catch (IOException ex) {
+                                         ex.printStackTrace();
+                                     }
+
+                                 }
+                             }
+                     );
+                
+            }
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+   }
 }

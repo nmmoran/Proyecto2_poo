@@ -11,17 +11,16 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author nicol
  */
 public class ModificarBorrarMesasController implements Initializable {
-
 
     @FXML
     private TextField txtinfoNum;
@@ -30,18 +29,22 @@ public class ModificarBorrarMesasController implements Initializable {
     @FXML
     private Button btmModificarMesa;
     @FXML
-    private Button btnEliminarMesa;
-    @FXML
-    private Button btnCerrarV;
-    @FXML
     private TextField txtMesero;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    @FXML
+    public void cerrarVentanaModificar(Event event) {
+ 
+    Node source = (Node) event.getSource();
+    Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+}
 
     public TextField getTxtinfoNum() {
         return txtinfoNum;
@@ -67,22 +70,6 @@ public class ModificarBorrarMesasController implements Initializable {
         this.btmModificarMesa = btmModificarMesa;
     }
 
-    public Button getBtnEliminarMesa() {
-        return btnEliminarMesa;
-    }
-
-    public void setBtnEliminarMesa(Button btnEliminarMesa) {
-        this.btnEliminarMesa = btnEliminarMesa;
-    }
-
-    public Button getBtnCerrarV() {
-        return btnCerrarV;
-    }
-
-    public void setBtnCerrarV(Button btnCerrarV) {
-        this.btnCerrarV = btnCerrarV;
-    }
-
     public TextField getTxtMesero() {
         return txtMesero;
     }
@@ -90,10 +77,5 @@ public class ModificarBorrarMesasController implements Initializable {
     public void setTxtMesero(TextField txtMesero) {
         this.txtMesero = txtMesero;
     }
-    public void cerrarVentana(Event event) {
- 
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
+    
 }
