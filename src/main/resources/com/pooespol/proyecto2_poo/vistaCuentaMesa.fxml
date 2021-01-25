@@ -6,12 +6,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -34,35 +32,46 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <GridPane fx:id="GPcuenta" layoutX="7.0" layoutY="17.0" prefHeight="347.0" prefWidth="288.0">
-                                <columnConstraints>
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="230.66665649414062" minWidth="10.0" prefWidth="230.66665649414062" />
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="137.33334350585938" minWidth="10.0" prefWidth="57.333343505859375" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="78.00000762939453" minHeight="10.0" prefHeight="78.00000762939453" valignment="CENTER" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="70.99999237060547" valignment="CENTER" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.33332824707031" valignment="CENTER" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.33332824707031" valignment="CENTER" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.33332824707031" valignment="CENTER" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.33332824707031" valignment="CENTER" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.33332824707031" valignment="CENTER" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
                               <VBox alignment="TOP_RIGHT" layoutX="-2.0" layoutY="361.0" prefHeight="128.0" prefWidth="296.0">
                                  <children>
-                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="110.0" text="Total: ">
+                                    <Label fx:id="lblTotal" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="138.0" text="Total: ">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="20.0" prefWidth="97.0" text="IVA: ">
+                                    <Label fx:id="lblIVA" prefHeight="20.0" prefWidth="121.0" text="IVA: ">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </VBox>
+                              <TitledPane animated="false" prefHeight="354.0" prefWidth="202.0" text="Producto">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane layoutY="-5.0" prefHeight="334.0" prefWidth="200.0">
+                                             <content>
+                                                <FlowPane fx:id="fpProductos" prefHeight="330.0" prefWidth="193.0" />
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <TitledPane animated="false" layoutX="195.0" prefHeight="354.0" prefWidth="104.0" text="Precio (C/U)">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="328.0" prefWidth="88.0">
+                                       <children>
+                                          <ScrollPane layoutY="-1.0" prefHeight="330.0" prefWidth="97.0">
+                                             <content>
+                                                <FlowPane fx:id="fpPrecios" prefHeight="318.0" prefWidth="95.0" />
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="292.0">

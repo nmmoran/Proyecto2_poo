@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -29,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -38,8 +40,6 @@ import javafx.scene.layout.VBox;
  */
 public class VistaCuentaMesaController implements Initializable {
     Restaurante r;
-    @FXML
-    private GridPane GPcuenta;
     @FXML
     private TextField txtFiltro;
     @FXML
@@ -66,6 +66,17 @@ public class VistaCuentaMesaController implements Initializable {
     private ScrollPane scPane;
     @FXML
     private Button btnBuscar;
+    private double total;
+    private double iva;
+    @FXML
+    private Label lblTotal;
+    @FXML
+    private Label lblIVA;
+    @FXML
+    private FlowPane fpProductos;
+    @FXML
+    private FlowPane fpPrecios;
+    
 
     /**
      * Initializes the controller class.
@@ -99,7 +110,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-               
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -153,16 +168,8 @@ public class VistaCuentaMesaController implements Initializable {
                 vboxproducto.setOnMouseClicked(
                         (MouseEvent ev)->{
                             ev.consume();
-                            Label name = new Label(p.getNombre());
-                            VBox cont = new VBox();
-                            cont.getChildren().add(name);
-                            Label precio = new Label(String.valueOf(p.getPrecio()));
-                            //GPcuenta.add(cont, 0, x);
-                            //GPcuenta.add(precio, 1, y);
-                            
+                            añadirProducto(p);
                         });
-                x+=1;
-                y+=1;
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -198,7 +205,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -234,7 +245,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -270,7 +285,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -306,7 +325,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -342,7 +365,11 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -377,21 +404,18 @@ public class VistaCuentaMesaController implements Initializable {
                 vboxproducto.setPadding(new Insets(2,3,3,4));
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
-    /*public void añadirProducto(Producto p,int x, int y){
-        Label name = new Label(p.getNombre());
-        VBox cont = new VBox();
-        cont.getChildren().add(name);
-        Label precio = new Label(String.valueOf(p.getPrecio()));
-        GPcuenta.add(cont, 0, x);
-        GPcuenta.add(precio, 1, y);
-    }
-*/
+
     @FXML
     private void buscarPorFiltro(MouseEvent event) {
         FPproductos.getChildren().clear();
@@ -422,13 +446,39 @@ public class VistaCuentaMesaController implements Initializable {
                 
                 //agregamos el VBox al FlowPane
                 FPproductos.getChildren().add(vboxproducto);
-                
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev)->{
+                            ev.consume();
+                            añadirProducto(p);
+                        });
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
         
-        
-        
     }
+    
+    
+    
+    
+    public void añadirProducto(Producto p ){
+        //Esto es para generar la informacion del producto y las cantidades de cada cosa 
+       
+        Label name = new Label("\t"+p.getNombre());
+        Label precio = new Label(String.valueOf(p.getPrecio()));
+        HBox hbn = new HBox();
+        hbn.setPrefWidth(184);
+        hbn.getChildren().add(name);
+        HBox hbp = new HBox();
+        hbp.setPrefWidth(102);
+        hbp.setAlignment(Pos.CENTER);
+        hbp.getChildren().add(precio);
+        fpProductos.getChildren().add(hbn);
+        fpPrecios.getChildren().add(hbp);
+        total+=p.getPrecio();
+        lblTotal.setText("Total: "+total);
+        iva+=total*0.12;
+        lblIVA.setText("IVA:  "+iva);
+    }
+
 }
