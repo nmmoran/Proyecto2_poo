@@ -643,6 +643,15 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutY(y);
                    pane.getChildren().add(contenedor);
                    Button boton=controlador.getBtnCrear();
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
+                    m.setUbicacion(ub);
+               
+                    });
                    boton.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
@@ -652,7 +661,8 @@ public class AdministradorController implements Initializable {
                             controlador.cerrarVentana(ev);
                         }
                 );
-                }   
+                } 
+                   
                    else if (capacidad==6){
                    Circle c = new Circle(55,Color.rgb(255, 220, 31));
                    Label l = new Label("M"+String.valueOf(numMesa));
@@ -664,6 +674,15 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutY(y);
                    pane.getChildren().add(contenedor);
                    Button boton=controlador.getBtnCrear();
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
+                    m.setUbicacion(ub);
+               
+                    });
                    boton.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
@@ -684,6 +703,15 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutY(y);
                    pane.getChildren().add(contenedor);
                    Button boton=controlador.getBtnCrear();
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
+                    m.setUbicacion(ub);
+               
+                    });
                    boton.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
@@ -704,6 +732,15 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutY(y);
                    pane.getChildren().add(contenedor);
                    Button boton=controlador.getBtnCrear();
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
+                    m.setUbicacion(ub);
+               
+                    });
                    boton.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
@@ -724,6 +761,15 @@ public class AdministradorController implements Initializable {
                    contenedor.setLayoutY(y);
                    pane.getChildren().add(contenedor);
                    Button boton=controlador.getBtnCrear();
+                   contenedor.setOnMouseDragged(event -> {
+                    double deltaX = event.getSceneX()   ;
+                    double deltaY = event.getSceneY()  ;
+                    contenedor.setLayoutX(deltaX);
+                    contenedor.setLayoutY(deltaY);
+                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
+                    m.setUbicacion(ub);
+               
+                    });
                    boton.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
