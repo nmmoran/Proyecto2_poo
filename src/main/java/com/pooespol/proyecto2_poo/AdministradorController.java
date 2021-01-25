@@ -125,7 +125,7 @@ public class AdministradorController implements Initializable {
              r=new Restaurante();
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (URISyntaxException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
             ArrayList<String> tipos= ProductosData.obtenerTipos();

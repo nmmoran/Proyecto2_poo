@@ -36,7 +36,7 @@ public class UsuarioData {
      *  email,password,tipoUsuario,nombre
      * @return ArrayList<Usuario>
      */
-    public static ArrayList<Usuario>leerUsuarios() throws IOException,URISyntaxException{
+    public static ArrayList<Usuario>leerUsuarios() throws IOException{
         ArrayList<Usuario> usu = new ArrayList<>();
         //Usamos la clase BufferedReader para leer archivos de texto
         try{

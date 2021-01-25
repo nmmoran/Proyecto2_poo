@@ -383,7 +383,7 @@ public class VistaCuentaMesaController implements Initializable {
         }
     }
     
-    public void añadirProducto(Producto p,int x, int y){
+    /*public void añadirProducto(Producto p,int x, int y){
         Label name = new Label(p.getNombre());
         VBox cont = new VBox();
         cont.getChildren().add(name);
@@ -391,7 +391,7 @@ public class VistaCuentaMesaController implements Initializable {
         GPcuenta.add(cont, 0, x);
         GPcuenta.add(precio, 1, y);
     }
-
+*/
     @FXML
     private void buscarPorFiltro(MouseEvent event) {
         FPproductos.getChildren().clear();

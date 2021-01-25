@@ -27,7 +27,7 @@ public class Restaurante {
     private ArrayList<Producto> listproductos;
     private ArrayList<Mesa> listMesas;
     
-    public Restaurante() throws IOException, URISyntaxException{
+    public Restaurante() throws IOException{
         //cargar la informacion de generos
         //llamar a leerGeneros() de la clase GeneroData
         

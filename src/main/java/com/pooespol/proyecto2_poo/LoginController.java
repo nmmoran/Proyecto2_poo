@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
             }
         }catch(NullPointerException ex){
 
-        } catch (URISyntaxException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
