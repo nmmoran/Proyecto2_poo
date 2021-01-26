@@ -56,19 +56,20 @@ public class Restaurante {
            
        
         }
-    public void registrarMesa(int num, int cant , Ubicacion u) {
-
-            Mesa m=new  Mesa(num,cant,u);
-            listMesas.add(m);
-       
-        }
+    
    
-    public void borrarMesa(Mesa m) throws IOException, ArchivosExceptions {
-               
-               listMesas.remove(m);
-
-               
-               MesaData.sobreescribirMesa(listMesas);
+    public void borrarMesa(Mesa m)  {
+        try {
+            MesaData.borrarArchivoMesas();
+            listMesas.remove(m);
+            
+            
+            MesaData.sobreescribirMesa(listMesas);
+        } catch (ArchivosExceptions ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
                
            }
 }

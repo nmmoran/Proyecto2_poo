@@ -38,13 +38,7 @@ public class ModificarBorrarMesasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }   
-    @FXML
-    public void cerrarVentanaModificar(Event event) {
- 
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
+   
 
     public TextField getTxtinfoNum() {
         return txtinfoNum;
@@ -77,5 +71,11 @@ public class ModificarBorrarMesasController implements Initializable {
     public void setTxtMesero(TextField txtMesero) {
         this.txtMesero = txtMesero;
     }
-    
+     @FXML
+    public void cerrarVentanaModificar(Event event) {
+ 
+    Node source = (Node) event.getSource();
+    Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+}
 }

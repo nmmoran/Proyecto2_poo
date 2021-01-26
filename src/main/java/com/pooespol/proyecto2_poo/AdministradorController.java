@@ -92,7 +92,7 @@ public class AdministradorController implements Initializable {
     private Button btnAceptar;
     private Button txtFiltoNombre;
     private TextField txtNewNa;
-    Restaurante r;
+    static Restaurante r;
     @FXML
     private TextField txtFiltroNombre;
     @FXML
@@ -107,75 +107,71 @@ public class AdministradorController implements Initializable {
     private Tab pestañaMonitoreo;
     @FXML
     private Pane pnMonitoreo;
-   
 
     private int x;
     private int y;
+
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
         inicializarMesasMonitor(pnMonitoreo);
         inicializarDiseñoPlano(pnMesas);
         try {
-             r=new Restaurante();
+            r = new Restaurante();
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-            ArrayList<String> tipos= ProductosData.obtenerTipos();
-            cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
-            txtPrecio.clear();
-            txtName.setDisable(true);
-            txtPrecio.setDisable(true);
-            txtRuta.setDisable(true);
-            btnAceptar.setDisable(true);
-            try {
-             Restaurante r=new Restaurante();
+        ArrayList<String> tipos = ProductosData.obtenerTipos();
+        cbOpTipo1.setItems(FXCollections.observableArrayList(tipos));
+        txtPrecio.clear();
+        txtName.setDisable(true);
+        txtPrecio.setDisable(true);
+        txtRuta.setDisable(true);
+        btnAceptar.setDisable(true);
+        try {
+            Restaurante r = new Restaurante();
             //obtengo la lista de productos d
-            List<Producto> listp = r.getListproductos() ;
-            for(Producto p: listp){
+            List<Producto> listp = r.getListproductos();
+            for (Producto p : listp) {
                 VBox vboxproducto = new VBox();
                 //crear la imagen
-                try{
-                InputStream inputImg= App.class.getResource(p.getImagen()).openStream();
-                ImageView imgv = new ImageView(new Image(inputImg));
-                vboxproducto.getChildren().add(imgv);
-                }catch (Exception ex){
-                    
+                try {
+                    InputStream inputImg = App.class.getResource(p.getImagen()).openStream();
+                    ImageView imgv = new ImageView(new Image(inputImg));
+                    vboxproducto.getChildren().add(imgv);
+                } catch (Exception ex) {
+
                     ex.printStackTrace();
                 }
-                
+
                 //crea el label del nombre y lo agrego al VBox
                 Label lnombre = new Label(p.getNombre());
                 vboxproducto.getChildren().add(lnombre);
                 //el anio de la pelicula
                 Label lprecio = new Label(String.valueOf(p.getPrecio()));
                 vboxproducto.getChildren().add(lprecio);
-                
-                vboxproducto.setPadding(new Insets(2,3,3,4));
-                
+
+                vboxproducto.setPadding(new Insets(2, 3, 3, 4));
+
                 //agregamos el VBox al FlowPane
                 fpMuestraMenu.getChildren().add(vboxproducto);
-                
+
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-           
-            
-        
-    }   
-    
 
+    }
 
     @FXML
     private void buscarFechas(MouseEvent event) {
@@ -183,22 +179,22 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
-        try{
-            
-            String tipo =cbOpTipo1.getValue();
+        try {
+
+            String tipo = cbOpTipo1.getValue();
             String nombre = txtName.getText();
-            double precio  = Double.valueOf(txtPrecio.getText());
-            String imagen  = txtRuta.getText();
-            if(tipo==null&& imagen==null && nombre==null){
+            double precio = Double.valueOf(txtPrecio.getText());
+            String imagen = txtRuta.getText();
+            if (tipo == null && imagen == null && nombre == null) {
                 throw new NullPointerException("No puede haber campos vacios");
             }
 
-            Producto p = new Producto(nombre,precio,imagen,tipo);
-            
+            Producto p = new Producto(nombre, precio, imagen, tipo);
+
             //registrar producto
-            r.registrarProducto(nombre,precio,imagen,tipo);
+            r.registrarProducto(nombre, precio, imagen, tipo);
             ProductosData.escribirProducto(p);
-            
+
             txtName.clear();
             txtPrecio.clear();
             txtRuta.clear();
@@ -206,44 +202,41 @@ public class AdministradorController implements Initializable {
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
-            
-            
-        }catch(NullPointerException ex){
+
+        } catch (NullPointerException ex) {
             lbMessage.setText("No puede haber campos vacios");
-        }catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             lmessage2.setText("valor no valido precio");
         }
         //maneja las excepciones de tipo IOException y URISyntaxException
         //de la misma manera
-        
-        
-        
-    
+
     }
 //nico
+
     @FXML
     private void limpiarFields(MouseEvent event) {
-        
-            txtName.clear();
-            txtPrecio.clear();
-            txtRuta.clear();
-            txtName.setDisable(true);
-            txtPrecio.setDisable(true);
-            txtRuta.setDisable(true);
-            btnAceptar.setDisable(true);
-            lbMessage.setText("");
+
+        txtName.clear();
+        txtPrecio.clear();
+        txtRuta.clear();
+        txtName.setDisable(true);
+        txtPrecio.setDisable(true);
+        txtRuta.setDisable(true);
+        btnAceptar.setDisable(true);
+        lbMessage.setText("");
     }
-    
+
     @FXML
     private void modificarProducto(MouseEvent event) throws IOException, ArchivosExceptions {
         String nom = txtFiltroNombre.getText();
         String newNombre = txtNuevoNombre.getText();
         String newPrecio = txtNewPrecio.getText();
-        String newRuta   = txtNewRuta.getText();
-        
+        String newRuta = txtNewRuta.getText();
+
         ArrayList<Producto> productos = r.getListproductos();
-        for (Producto p : productos){
-            if (p.getNombre().equals(nom)){
+        for (Producto p : productos) {
+            if (p.getNombre().equals(nom)) {
                 p.setNombre(newNombre);
                 p.setPrecio(Double.parseDouble(newPrecio));
                 p.setImagen(newRuta);
@@ -251,7 +244,7 @@ public class AdministradorController implements Initializable {
                 ProductosData.sobreescribirProducto(productos);
             }
         }
-        
+
     }
 
     @FXML
@@ -265,629 +258,398 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void filtrarProductos(MouseEvent event) {
-        try{
-        String name=txtFiltroNombre.getText();
-           for(Producto p :r.getListproductos()){
-           
-               if ((p.getNombre().equals(name))==true){
-                   
-                txtNuevoNombre.setText(p.getNombre());
-                txtNewPrecio.setText(String.valueOf(p.getPrecio()));
-                txtNewRuta.setText(p.getImagen());
-               
-               }
-            
-           }
-            
-    }catch(NullPointerException ex){
-        ex.printStackTrace();
-    }catch(Exception ex){
-        ex.getStackTrace();
-    }
-    
+        try {
+            String name = txtFiltroNombre.getText();
+            for (Producto p : r.getListproductos()) {
+
+                if ((p.getNombre().equals(name)) == true) {
+
+                    txtNuevoNombre.setText(p.getNombre());
+                    txtNewPrecio.setText(String.valueOf(p.getPrecio()));
+                    txtNewRuta.setText(p.getImagen());
+
+                }
+
+            }
+
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+
     }
 
     @FXML
     private void salir(Event event) {
         App.setRoot("login");
     }
-    private void  inicializarMesasMonitor(Pane pane){
-    
-            
-      try {
+
+    private void inicializarMesasMonitor(Pane pane) {
+
+        try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
-            
-            for(Mesa mesa: mesas){
-                
-               if (mesa.getCapacidad()==4){
-                   
-                   Circle c = new Circle(40,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            
-                            cargarDatosMesas(mesa);
-                        }
-                );
-                   
-               }
-               else if (mesa.getCapacidad()==6){
-                   Circle c = new Circle(55,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(140);
-                   contenedor.setPrefWidth(140);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            
-                            cargarDatosMesas(mesa);
-                        }
-                );
-                   
-               }
-                else if (mesa.getCapacidad()==8){
-                   Circle c = new Circle(75,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(180);
-                   contenedor.setPrefWidth(180);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            
-                            cargarDatosMesas(mesa);
-                        }
-                );
-               }
-               else if (mesa.getCapacidad()==9){
-                   Circle c = new Circle(85,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(200);
-                   contenedor.setPrefWidth(200);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            
-                            cargarDatosMesas(mesa);
-                        }
-                );
-               }
-               else if (mesa.getCapacidad()==2){
-                   Circle c = new Circle(30,Color.rgb(255, 220, 31));
-                  Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(85);
-                   contenedor.setPrefWidth(85);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            
-                            cargarDatosMesas(mesa);
-                        }
-                );
-               }
-               
+
+            for (Mesa mesa : mesas) {
+
+                if (mesa.getCapacidad() == 4) {
+
+                    Circle c = new Circle(40, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+
+                                cargarDatosMesas(mesa);
+                            }
+                    );
+
+                } else if (mesa.getCapacidad() == 6) {
+                    Circle c = new Circle(60, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(140);
+                    contenedor.setPrefWidth(140);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+
+                                cargarDatosMesas(mesa);
+                            }
+                    );
+
+                } else if (mesa.getCapacidad() == 8) {
+                    Circle c = new Circle(80, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(180);
+                    contenedor.setPrefWidth(180);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+
+                                cargarDatosMesas(mesa);
+                            }
+                    );
+                } else if (mesa.getCapacidad() == 9) {
+                    Circle c = new Circle(90, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(200);
+                    contenedor.setPrefWidth(200);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+
+                                cargarDatosMesas(mesa);
+                            }
+                    );
+                } else if (mesa.getCapacidad() == 2) {
+                    Circle c = new Circle(20, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(85);
+                    contenedor.setPrefWidth(85);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+
+                                cargarDatosMesas(mesa);
+                            }
+                    );
+                }
+
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
-    private void cargarDatosMesas(Mesa mesa){
+
+    private void cargarDatosMesas(Mesa mesa) {
         try {
             //limpiamos el contenido anterior
-           
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoMesa.fxml"));
             Parent root = loader.load();
             InfoMesaController controlador = loader.getController();
-            
-            if((mesa.getCuenta()!=null)){
-                 Mesero mesero = mesa.getCuenta().getMesero();
+
+            if ((mesa.getCuenta() != null)) {
+                Mesero mesero = mesa.getCuenta().getMesero();
                 String txtNm = new String(controlador.getLblMesa().getText());
-                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
+                controlador.getLblMesa().setText(txtNm + mesa.getNumero());
                 String txtCap = new String(controlador.getLblCapacidad().getText());
-                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
+                controlador.getLblCapacidad().setText(txtCap + mesa.getCapacidad());
                 String txtLm = new String(controlador.getLblMesero().getText());
-                controlador.getLblMesero().setText(txtLm+mesero.getNombre());
+                controlador.getLblMesero().setText(txtLm + mesero.getNombre());
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
-                st.showAndWait();
+                st.show();
                 //Se crea un String del texto ya existente en el Label para que asi se añada el texto correspondiente
                 //Luego a los atributos del controlador se les añade el string y wala!
-                
-            }else{
+
+            } else {
                 String txtNm = new String(controlador.getLblMesa().getText());
-                controlador.getLblMesa().setText(txtNm+mesa.getNumero());
+                controlador.getLblMesa().setText(txtNm + mesa.getNumero());
                 String txtCap = new String(controlador.getLblCapacidad().getText());
-                controlador.getLblCapacidad().setText(txtCap+mesa.getCapacidad());
+                controlador.getLblCapacidad().setText(txtCap + mesa.getCapacidad());
                 controlador.getLblMesero().setText("Sin mesero");
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
-                st.showAndWait();
+                st.show();
             }
-           
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    private void  inicializarDiseñoPlano(Pane pane){
-      
-            
-      try {
-            
+
+    private void inicializarDiseñoPlano(Pane pane) {
+
+        try {
+
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             pane.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            double x=ev.getX();
-                            double y=ev.getY();
-                            crearMesas( x, y,pane);
-                        }
-                );
-            for(Mesa mesa: mesas){
-                
-               if (mesa.getCapacidad()==4){
-                   
-                   Circle c = new Circle(40,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion u=new Ubicacion(deltaX,deltaY);
-                    mesa.setUbicacion(u);
-               
+                    (MouseEvent ev) -> {
+                        //para que no se propague
+                        ev.consume();
+                        double x = ev.getX();
+                        double y = ev.getY();
+                        crearMesas(x, y, pane);
+                    }
+            );
+            for (Mesa mesa : mesas) {
+
+                if (mesa.getCapacidad() == 4) {
+
+                    Circle c = new Circle(40, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+
+                    contenedor.setOnMouseDragged(event -> {
+                        double deltaX = event.getSceneX();
+                        double deltaY = event.getSceneY();
+                        contenedor.setLayoutX(deltaX);
+                        contenedor.setLayoutY(deltaY);
+                        Ubicacion u = new Ubicacion(deltaX, deltaY);
+                        mesa.setUbicacion(u);
+
                     });
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            opciones(mesa);
-                        }
-                        );
-                   
-                 
-                    
-                   
-               }
-               else if (mesa.getCapacidad()==6){
-                   Circle c = new Circle(55,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(140);
-                   contenedor.setPrefWidth(140);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion u=new Ubicacion(deltaX,deltaY);
-                    mesa.setUbicacion(u);
-               
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                opciones(mesa);
+                            }
+                    );
+
+                } else if (mesa.getCapacidad() == 6) {
+                    Circle c = new Circle(60, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(140);
+                    contenedor.setPrefWidth(140);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+
+                    contenedor.setOnMouseDragged(event -> {
+                        double deltaX = event.getSceneX();
+                        double deltaY = event.getSceneY();
+                        contenedor.setLayoutX(deltaX);
+                        contenedor.setLayoutY(deltaY);
+                        Ubicacion u = new Ubicacion(deltaX, deltaY);
+                        mesa.setUbicacion(u);
+
                     });
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            opciones(mesa);
-                        }
-                );
-                   
-               }
-                else if (mesa.getCapacidad()==8){
-                   Circle c = new Circle(75,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(180);
-                   contenedor.setPrefWidth(180);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion u=new Ubicacion(deltaX,deltaY);
-                    mesa.setUbicacion(u);
-               
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                opciones(mesa);
+                            }
+                    );
+
+                } else if (mesa.getCapacidad() == 8) {
+                    Circle c = new Circle(80, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(180);
+                    contenedor.setPrefWidth(180);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+
+                    contenedor.setOnMouseDragged(event -> {
+                        double deltaX = event.getSceneX();
+                        double deltaY = event.getSceneY();
+                        contenedor.setLayoutX(deltaX);
+                        contenedor.setLayoutY(deltaY);
+                        Ubicacion u = new Ubicacion(deltaX, deltaY);
+                        mesa.setUbicacion(u);
+
                     });
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            opciones(mesa);
-                        }
-                );
-               }
-               else if (mesa.getCapacidad()==9){
-                   Circle c = new Circle(85,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(200);
-                   contenedor.setPrefWidth(200);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion u=new Ubicacion(deltaX,deltaY);
-                    mesa.setUbicacion(u);
-               
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                opciones(mesa);
+                            }
+                    );
+                } else if (mesa.getCapacidad() == 9) {
+                    Circle c = new Circle(90, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(200);
+                    contenedor.setPrefWidth(200);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+
+                    contenedor.setOnMouseDragged(event -> {
+                        double deltaX = event.getSceneX();
+                        double deltaY = event.getSceneY();
+                        contenedor.setLayoutX(deltaX);
+                        contenedor.setLayoutY(deltaY);
+                        Ubicacion u = new Ubicacion(deltaX, deltaY);
+                        mesa.setUbicacion(u);
+
                     });
-                   contenedor.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            opciones(mesa);
-                        }
-                );
-               }
-               else if (mesa.getCapacidad()==2){
-                   Circle c = new Circle(30,Color.rgb(255, 220, 31));
-                  Label l = new Label("M"+String.valueOf(mesa.getNumero()));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(85);
-                   contenedor.setPrefWidth(85);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                   contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   pane.getChildren().add(contenedor);
-                   
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion u=new Ubicacion(deltaX,deltaY);
-                    mesa.setUbicacion(u);
-               
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                opciones(mesa);
+                            }
+                    );
+                } else if (mesa.getCapacidad() == 2) {
+                    Circle c = new Circle(20, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + String.valueOf(mesa.getNumero()));
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(85);
+                    contenedor.setPrefWidth(85);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    pane.getChildren().add(contenedor);
+
+                    contenedor.setOnMouseDragged(event -> {
+                        double deltaX = event.getSceneX();
+                        double deltaY = event.getSceneY();
+                        contenedor.setLayoutX(deltaX);
+                        contenedor.setLayoutY(deltaY);
+                        Ubicacion u = new Ubicacion(deltaX, deltaY);
+                        mesa.setUbicacion(u);
+
                     });
-                   contenedor.setOnMouseClicked(
-                           
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            opciones(mesa);
-                        }
-                );
-               }
-               
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                opciones(mesa);
+                            }
+                    );
+                }
+
             }
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    private void crearMesas(double x, double y,Pane pane){
-        try{
+
+    
+    private void crearMesas(double x, double y, Pane pane) {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("crearMesas.fxml"));
             Parent root = loader.load();
             Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.showAndWait();
-                CrearMesasController controlador = loader.getController();
-                   System.out.println(x);
-                   int numMesa= Integer.parseInt(controlador.getTxtnum().getText());
-                   int capacidad= Integer.parseInt(controlador.getTxtcapMesas().getText());
-                   Ubicacion u=new Ubicacion(x,y);
-                   Mesa m=new Mesa(numMesa,capacidad,u);
-                   MesaData.escribirMesa(m);
-                   if (capacidad==4){
-                   Circle c = new Circle(40,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(numMesa));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(x);
-                   contenedor.setLayoutY(y);
-                   pane.getChildren().add(contenedor);
-                   Button boton=controlador.getBtnCrear();
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
-                    m.setUbicacion(ub);
-               
-                    });
-                   boton.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().add(m);
-                            
-                            controlador.cerrarVentana(ev);
-                        }
-                );
-                } 
-                   
-                   else if (capacidad==6){
-                   Circle c = new Circle(55,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(numMesa));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(x);
-                   contenedor.setLayoutY(y);
-                   pane.getChildren().add(contenedor);
-                   Button boton=controlador.getBtnCrear();
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
-                    m.setUbicacion(ub);
-               
-                    });
-                   boton.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().add(m);
-                            controlador.cerrarVentana(ev);
-                        }
-                );
-                } 
-                    else if (capacidad==2){
-                   Circle c = new Circle(30,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(numMesa));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(x);
-                   contenedor.setLayoutY(y);
-                   pane.getChildren().add(contenedor);
-                   Button boton=controlador.getBtnCrear();
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
-                    m.setUbicacion(ub);
-               
-                    });
-                   boton.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().add(m);
-                            controlador.cerrarVentana(ev);
-                        }
-                );
-                }
-                    else if (capacidad==8){
-                   Circle c = new Circle(75,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(numMesa));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(x);
-                   contenedor.setLayoutY(y);
-                   pane.getChildren().add(contenedor);
-                   Button boton=controlador.getBtnCrear();
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
-                    m.setUbicacion(ub);
-               
-                    });
-                   boton.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().add(m);
-                            controlador.cerrarVentana(ev);
-                        }
-                );
-                }
-                    else if (capacidad==9){
-                   Circle c = new Circle(85,Color.rgb(255, 220, 31));
-                   Label l = new Label("M"+String.valueOf(numMesa));
-                   StackPane contenedor = new StackPane();
-                   contenedor.setPrefHeight(100);
-                   contenedor.setPrefWidth(100);
-                   contenedor.getChildren().addAll(c,l);
-                   contenedor.setLayoutX(x);
-                   contenedor.setLayoutY(y);
-                   pane.getChildren().add(contenedor);
-                   Button boton=controlador.getBtnCrear();
-                   contenedor.setOnMouseDragged(event -> {
-                    double deltaX = event.getSceneX()   ;
-                    double deltaY = event.getSceneY()  ;
-                    contenedor.setLayoutX(deltaX);
-                    contenedor.setLayoutY(deltaY);
-                    Ubicacion ub=new Ubicacion(deltaX,deltaY);
-                    m.setUbicacion(ub);
-               
-                    });
-                   boton.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                            //para que no se propague
-                            ev.consume();
-                            r.getListMesas().add(m);
-                            controlador.cerrarVentana(ev);
-                        }
-                );
-                }
-                
-                   
-                   
-    }catch(IOException ex){
-        ex.getStackTrace();
-    }catch(ArchivosExceptions ex){
-        ex.getStackTrace();
+            Stage st = new Stage();
+            st.initModality(Modality.APPLICATION_MODAL);
+            st.setScene(sc);
+            st.show();
+            CrearMesasController controlador = loader.getController();
+            controlador.setMesaUbi(new Ubicacion(x,y));
+            controlador.setPane(pane);
+        } catch (IOException e) {
+        }
     }
-    }
-    
-   private void opciones( Mesa mesa ){
+
+    private void opciones(Mesa mesa) {
         try {
             //limpiamos el contenido anterior
-           
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("opciones.fxml"));
             Parent root = loader.load();
-            OpcionesController con = loader.getController();
-            
-            if((mesa.getCuenta()!=null)){
-                 Mesero mesero = mesa.getCuenta().getMesero();
-                
-                
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
-                st.showAndWait();
-                Button btneliminar=con.getBtnEliminarM();
-                btneliminar.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                        ev.consume();
-                     try {
-                         
-                         MesaData.borrarArchivoMesas();
-                         r.borrarMesa(mesa);
-                         con.cerrarVentanaEliminar(ev);
-                     } catch (IOException ex) {
-                         ex.printStackTrace();
-                     } catch (ArchivosExceptions ex) {
-                         ex.printStackTrace();
-                     }catch(Exception ex){
-                         ex.printStackTrace();
-                     }
-                            
-                            
-                        }
-                );
+                st.show();
+                OpcionesController con = loader.getController();
+                con.setMesa(mesa);
                 con.getBtnModificarM().setOnMouseClicked(
-                    (MouseEvent ev)->{
-                        ev.consume();
-                        modificarMesa(mesa);
-                        con.cerrarVentanaEliminar(ev);    
+                        (MouseEvent ev) -> {
+                            ev.consume();
+                            modificarMesa(mesa);
+                            con.cerrarVentanaEliminar(ev);
                         }
                 );
-                
-               
-                
-            }else{
-                Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.showAndWait();
-                System.out.println("fuera");
-                         
-                Button btneliminar=con.getBtnEliminarM();
-                btneliminar.setOnMouseClicked(
-                    (MouseEvent ev)->{
-                        System.out.println("f");
-                        ev.consume();
-                     try {
-                         
-                         MesaData.borrarArchivoMesas();
-                         r.borrarMesa(mesa);
-                         con.cerrarVentanaEliminar(ev);
-                     } catch (IOException ex) {
-                         ex.printStackTrace();
-                     } catch (ArchivosExceptions ex) {
-                         ex.printStackTrace();
-                     }
-                            
-                            
-                        }
-                );
-                con.getBtnModificarM().setOnMouseClicked(
-                    (MouseEvent ev)->{
-                        ev.consume();
-                        modificarMesa(mesa);
-                        con.cerrarVentanaEliminar(ev);    
-                        }
-                );
-                
-            }
-           
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-   private void modificarMesa(Mesa mesa){
-       try {
+
+    private void modificarMesa(Mesa mesa) {
+        try {
             //limpiamos el contenido anterior
-           
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("modificar.fxml"));
             Parent root = loader.load();
             ModificarBorrarMesasController con = loader.getController();
-            
-            if((mesa.getCuenta()!=null)){
-                 Mesero mesero = mesa.getCuenta().getMesero();
-                
+
+            if ((mesa.getCuenta() != null)) {
+                Mesero mesero = mesa.getCuenta().getMesero();
                 con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
                 con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
                 con.getTxtMesero().setText(mesero.getNombre());
@@ -895,34 +657,31 @@ public class AdministradorController implements Initializable {
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
-                st.showAndWait();
-               
-                
+                st.show();
                 con.getBtmModificarMesa().setOnMouseClicked(
-                         (MouseEvent ev)->{
-                                 //para que no se propague
-                                 ev.consume();
-                                 if(r.getListMesas().contains(mesa)){
-                                     try {
-                                         mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
-                                         mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
-                                         mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
-                                         MesaData.borrarArchivoMesas();
-                                         MesaData.sobreescribirMesa(r.getListMesas());
-                                         con.cerrarVentanaModificar(ev);
-                                     } catch (ArchivosExceptions ex) {
-                                         ex.printStackTrace();
-                                     } catch (IOException ex) {
-                                         ex.printStackTrace();
-                                     }
+                        (MouseEvent ev) -> {
+                            //para que no se propague
+                            ev.consume();
+                            if (r.getListMesas().contains(mesa)) {
+                                try {
+                                    mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                    mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                    mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
+                                    System.out.println(r.getListMesas());
+                                    MesaData.borrarArchivoMesas();
+                                    MesaData.sobreescribirMesa(r.getListMesas());
+                                    con.cerrarVentanaModificar(ev);
+                                } catch (ArchivosExceptions ex) {
+                                    ex.printStackTrace();
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
 
-                                 }
-                             }
-                     );
-                
-                
-                
-            }else{
+                            }
+                        }
+                );
+
+            } else {
                 con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
                 con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
                 con.getTxtMesero().setText("Sin Mesero");
@@ -930,35 +689,35 @@ public class AdministradorController implements Initializable {
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
                 st.setScene(sc);
-                st.showAndWait();
-                System.out.println("fuera");
-                
-               con.getBtmModificarMesa().setOnMouseClicked(
-                         (MouseEvent ev)->{
-                                 //para que no se propague
-                                 ev.consume();
-                                 if(r.getListMesas().contains(mesa)){
-                                     try {
-                                         mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
-                                         mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
-                                         mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
-                                         MesaData.borrarArchivoMesas();
-                                         MesaData.sobreescribirMesa(r.getListMesas());
-                                         con.cerrarVentanaModificar(ev);
-                                     } catch (ArchivosExceptions ex) {
-                                         ex.printStackTrace();
-                                     } catch (IOException ex) {
-                                         ex.printStackTrace();
-                                     }
+                st.show();
 
-                                 }
-                             }
-                     );
-                
+                con.getBtmModificarMesa().setOnMouseClicked(
+                        (MouseEvent ev) -> {
+                            //para que no se propague
+                            ev.consume();
+                            if (r.getListMesas().contains(mesa)) {
+                                try {
+                                    mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                    mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
+                                    mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
+                                    System.out.println(r.getListMesas());
+                                    MesaData.borrarArchivoMesas();
+                                    MesaData.sobreescribirMesa(r.getListMesas());
+                                    con.cerrarVentanaModificar(ev);
+                                } catch (ArchivosExceptions ex) {
+                                    ex.printStackTrace();
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+
+                            }
+                        }
+                );
+
             }
-           
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-   }
+    }
 }

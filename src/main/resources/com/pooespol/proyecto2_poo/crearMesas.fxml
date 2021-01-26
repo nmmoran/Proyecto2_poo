@@ -18,7 +18,7 @@
       </Pane>
    </center>
    <bottom>
-      <Button fx:id="btnCrear" mnemonicParsing="false" onMouseClicked="#cerrarVentana" text="Crear" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnCrear" mnemonicParsing="false" text="Crear" BorderPane.alignment="CENTER" />
    </bottom>
    <top>
       <Label prefHeight="18.0" prefWidth="117.0" text="Creacion de Mesas" BorderPane.alignment="CENTER" />
