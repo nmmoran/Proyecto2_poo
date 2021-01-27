@@ -76,6 +76,7 @@ public class VistaCuentaMesaController implements Initializable {
     private FlowPane fpProductos;
     @FXML
     private FlowPane fpPrecios;
+    private List<Producto>productosCuenta;
     
 
     /**
@@ -124,6 +125,54 @@ public class VistaCuentaMesaController implements Initializable {
          
     }    
 
+    public Button getBtnFinalizarOrden() {
+        return btnFinalizarOrden;
+    }
+
+    public void setBtnFinalizarOrden(Button btnFinalizarOrden) {
+        this.btnFinalizarOrden = btnFinalizarOrden;
+    }
+
+    public Button getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(Button btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public FlowPane getFpProductos() {
+        return fpProductos;
+    }
+
+    public void setFpProductos(FlowPane fpProductos) {
+        this.fpProductos = fpProductos;
+    }
+
+    public List<Producto> getProductosCuenta() {
+        return productosCuenta;
+    }
+
+    public void setProductosCuenta(List<Producto> productosCuenta) {
+        this.productosCuenta = productosCuenta;
+    }
+    
     @FXML
     private void finalizarOrden(MouseEvent event) {
     }
@@ -475,10 +524,14 @@ public class VistaCuentaMesaController implements Initializable {
         hbp.getChildren().add(precio);
         fpProductos.getChildren().add(hbn);
         fpPrecios.getChildren().add(hbp);
-        total+=p.getPrecio();
-        lblTotal.setText("Total: "+total);
+        
         iva+=total*0.12;
         lblIVA.setText("IVA:  "+iva);
+        total+=p.getPrecio();
+        lblTotal.setText("Total: "+(total+iva));
+        
+        //añadimos el objeto a la lista de productos en la cuenta:
+        productosCuenta.add(p);
     }
 
 }

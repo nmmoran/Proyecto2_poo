@@ -7,6 +7,7 @@ package com.pooespol.proyecto2_poo.modelo;
 
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
+import java.util.List;
 
 /**
  *
@@ -17,9 +18,9 @@ public class Cuenta {
     private String cliente;
     private Mesa mesa;
     private Mesero mesero;
-    private String[] orden;
+    private List<Producto> orden;
 
-    public Cuenta(String cliente, Mesa mesa,Mesero mesero, String[] orden) {
+    public Cuenta(String cliente, Mesa mesa,Mesero mesero,  List<Producto> orden) {
         this.numCuenta +=1;
         this.cliente = cliente;
         this.mesa = mesa;
@@ -59,11 +60,11 @@ public class Cuenta {
         this.mesa = mesa;
     }
 
-    public String[] getOrden() {
+    public List<Producto> getOrden() {
         return orden;
     }
 
-    public void setOrden(String[] orden) {
+    public void setOrden(List<Producto> orden) {
         this.orden = orden;
     }
     

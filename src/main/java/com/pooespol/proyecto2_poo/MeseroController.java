@@ -189,6 +189,10 @@ public class MeseroController implements Initializable {
                             st.close();
                             ev.consume();
                             App.setRoot("vistaCuentaMesa");
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("vistaCuentaMesa.fxml"));
+                            VistaCuentaMesaController vcm = loader.getController();
+                            System.out.println(vcm.getProductosCuenta());//lista de productos
+                            vcm.getTotal();
                         });
         } catch (IOException ex) {
             ex.printStackTrace();
