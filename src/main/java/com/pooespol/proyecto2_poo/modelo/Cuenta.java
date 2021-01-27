@@ -19,8 +19,8 @@ public class Cuenta {
     private Mesero mesero;
     private String[] orden;
 
-    public Cuenta(int numCuenta, String cliente, Mesa mesa,Mesero mesero, String[] orden) {
-        this.numCuenta = numCuenta;
+    public Cuenta(String cliente, Mesa mesa,Mesero mesero, String[] orden) {
+        this.numCuenta +=1;
         this.cliente = cliente;
         this.mesa = mesa;
         this.mesero= mesero;

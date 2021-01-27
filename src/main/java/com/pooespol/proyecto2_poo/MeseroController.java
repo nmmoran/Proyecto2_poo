@@ -6,6 +6,7 @@
 package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.MesaData;
+import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,6 +16,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +25,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -40,8 +45,16 @@ public class MeseroController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int n=1;
-      try {
+        inicializarMesasMesero(paneMesas);
+        
+    }    
+
+    private void abrirCuenta(MouseEvent event) {
+        App.setRoot("vistaCuentaMesa");
+    }
+    
+    private void inicializarMesasMesero(Pane pane){
+        try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             for(Mesa mesa: mesas){
                 
@@ -55,12 +68,13 @@ public class MeseroController implements Initializable {
                    contenedor.getChildren().addAll(c,l);
                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                   paneMesas.getChildren().add(contenedor);
+                   pane.getChildren().add(contenedor);
                    contenedor.setOnMouseClicked(
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            App.setRoot("vistaCuentaMesa");
+                            cargarNuevaCuenta(mesa);
+                            
                         }
                 );
                    
@@ -79,7 +93,8 @@ public class MeseroController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            App.setRoot("vistaCuentaMesa");
+                            cargarNuevaCuenta(mesa);
+                            
                         }
                 );
                    
@@ -98,7 +113,7 @@ public class MeseroController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            App.setRoot("vistaCuentaMesa");
+                            cargarNuevaCuenta(mesa);
                         }
                 );
                    
@@ -117,7 +132,7 @@ public class MeseroController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            App.setRoot("vistaCuentaMesa");
+                            cargarNuevaCuenta(mesa);
                         }
                 );
                    
@@ -136,8 +151,8 @@ public class MeseroController implements Initializable {
                     (MouseEvent ev)->{
                             //para que no se propague
                             ev.consume();
-                            App.setRoot("vistaCuentaMesa");
-                        }
+                            cargarNuevaCuenta(mesa);
+                        } 
                 );
                }
                
@@ -146,10 +161,41 @@ public class MeseroController implements Initializable {
             ex.printStackTrace();
         }  
         
-    }    
-
-    private void abrirCuenta(MouseEvent event) {
-        App.setRoot("vistaCuentaMesa");
     }
     
-}
+    public void cargarNuevaCuenta(Mesa m){
+        try {
+            //obtenemos el FXML de la NuevaCuentaVista:
+            FXMLLoader ld = new FXMLLoader(getClass().getResource("nuevaCuentaVista.fxml"));
+            Parent root = ld.load();
+            // creamos un objeto de tipo controller pra asi obtener los atributos de la
+            //ventana emergente
+            NuevaCuentaVistaController nc = ld.getController();
+            
+            //Obtenemos los valores de Mesa para label y extraemos el nombre del TextField
+            nc.getLblNroMesa().setText("Mesa nro: "+m.getNumero());
+            String cname = nc.getTxtCliente().getText();
+             
+            //Seteamos el t}root a la escena y la escena al stage de la ventana emergente:
+            Scene sc = new Scene(root);
+            Stage st = new Stage();
+            st.initModality(Modality.APPLICATION_MODAL);
+            st.setScene(sc);
+            st.show();
+            
+            //al boton cuando le damos, nos va a manadra a la ventana de Pedido:
+            nc.getBtnCrearCuenta().setOnMouseClicked((MouseEvent ev)->{
+                            //para que no se propague
+                            st.close();
+                            ev.consume();
+                            App.setRoot("vistaCuentaMesa");
+                        });
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+ }
+    
+    
+    
+
