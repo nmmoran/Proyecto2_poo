@@ -17,10 +17,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -76,7 +79,9 @@ public class VistaCuentaMesaController implements Initializable {
     private FlowPane fpProductos;
     @FXML
     private FlowPane fpPrecios;
-    private List<Producto>productosCuenta;
+    private ArrayList<Producto>productosCuenta ;
+    @FXML
+    private Label lblPestania;
     
 
     /**
@@ -84,6 +89,7 @@ public class VistaCuentaMesaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        productosCuenta = new ArrayList<>();
          try {
              Restaurante r=new Restaurante();
             //obtengo la lista de productos d
@@ -125,6 +131,38 @@ public class VistaCuentaMesaController implements Initializable {
          
     }    
 
+    public Label getLblTotal() {
+        return lblTotal;
+    }
+
+    public void setLblTotal(Label lblTotal) {
+        this.lblTotal = lblTotal;
+    }
+
+    public Label getLblIVA() {
+        return lblIVA;
+    }
+
+    public void setLblIVA(Label lblIVA) {
+        this.lblIVA = lblIVA;
+    }
+
+    public Label getLblPestania() {
+        return lblPestania;
+    }
+
+    public void setLblPestania(Label lblPestania) {
+        this.lblPestania = lblPestania;
+    }
+
+    public FlowPane getFpPrecios() {
+        return fpPrecios;
+    }
+
+    public void setFpPrecios(FlowPane fpPrecios) {
+        this.fpPrecios = fpPrecios;
+    }
+
     public Button getBtnFinalizarOrden() {
         return btnFinalizarOrden;
     }
@@ -165,17 +203,28 @@ public class VistaCuentaMesaController implements Initializable {
         this.fpProductos = fpProductos;
     }
 
-    public List<Producto> getProductosCuenta() {
+    public ArrayList<Producto> getProductosCuenta() {
         return productosCuenta;
     }
 
-    public void setProductosCuenta(List<Producto> productosCuenta) {
+    public void setProductosCuenta(ArrayList<Producto> productosCuenta) {
         this.productosCuenta = productosCuenta;
     }
     
-    @FXML
-    private void finalizarOrden(MouseEvent event) {
-    }
+    /*@FXML
+    private void finalizarCuenta(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("nuevaCuentaVista.fxml"));
+        Parent root = loader.load();
+        NuevaCuentaVistaController controlador = loader.getController();
+        String nroMesa = controlador.getLblNroMesa().getText();
+        String cliente = controlador.getTxtCliente().getText();
+        System.out.println(nroMesa);
+        System.out.println(cliente);
+        fpProductos.getChildren().clear();
+        fpPrecios.getChildren().clear();
+        lblTotal.setText("Total: ");
+        lblIVA.setText("IVA: ");
+    }*/
 
     @FXML
     private void mostrarRestaurante(MouseEvent event) {
