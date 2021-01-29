@@ -218,6 +218,7 @@ public class MeseroController implements Initializable {
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
                 //creamos la cuenta;
                 Cuenta cuenta = new Cuenta(cliente, mesa, mesero, vcm.getProductosCuenta());
+                mesa.setCuenta(cuenta);
                 //creamos la venta:
                 Venta v = new Venta(LocalDate.now(), cuenta, mesero, vcm.getTotal());
                 System.out.println("Imprimiendo Venta");
@@ -227,6 +228,7 @@ public class MeseroController implements Initializable {
                 vcm.getFpPrecios().getChildren().clear();
                 vcm.getLblTotal().setText("Total: ");
                 vcm.getLblIVA().setText("IVA: ");
+                App.setRoot("mesero");
             });
         } catch (IOException ex) {
             ex.printStackTrace();
