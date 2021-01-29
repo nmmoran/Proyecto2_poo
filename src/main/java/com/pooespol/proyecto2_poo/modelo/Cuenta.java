@@ -14,26 +14,28 @@ import java.util.List;
  * @author nicol
  */
 public class Cuenta {
+
     private int numCuenta;
     private String cliente;
     private Mesa mesa;
     private Mesero mesero;
     private List<Producto> orden;
 
-    public Cuenta(String cliente, Mesa mesa,Mesero mesero,  List<Producto> orden) {
-        this.numCuenta +=1;
+    public Cuenta(String cliente, Mesa mesa, Mesero mesero, List<Producto> orden) {
+        this.numCuenta += 1;
         this.cliente = cliente;
         this.mesa = mesa;
-        this.mesero= mesero;
+        this.mesero = mesero;
         this.orden = orden;
-    } 
-    public Cuenta(String cliente, Mesa mesa,  List<Producto> orden) {
-        this.numCuenta +=1;
+    }
+
+    public Cuenta(String cliente, Mesa mesa, List<Producto> orden) {
+        this.numCuenta += 1;
         this.cliente = cliente;
         this.mesa = mesa;
-        this.mesero= mesero;
         this.orden = orden;
-    } 
+    }
+
     public Mesero getMesero() {
         return mesero;
     }
@@ -41,7 +43,7 @@ public class Cuenta {
     public void setMesero(Mesero mesero) {
         this.mesero = mesero;
     }
-    
+
     public int getNumCuenta() {
         return numCuenta;
     }
@@ -73,5 +75,5 @@ public class Cuenta {
     public void setOrden(List<Producto> orden) {
         this.orden = orden;
     }
-    
+
 }

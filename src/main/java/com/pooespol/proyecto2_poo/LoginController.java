@@ -21,13 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+
 /**
  * FXML Controller class
  *
  * @author nicol
  */
 public class LoginController implements Initializable {
-
 
     @FXML
     private TextField txtEmail;
@@ -36,54 +36,49 @@ public class LoginController implements Initializable {
     @FXML
     private Button btLogin;
     Restaurante r;
-    
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
-    
+
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
+
+    }
+
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        
 
-        try{
+        try {
             String email = txtEmail.getText();
-            String contraseña =txtContra.getText();
+            String contraseña = txtContra.getText();
 
-            if(email==null){
+            if (email == null) {
                 throw new NullPointerException("Email no puede er vacio");
             }
-            if(contraseña==null){
+            if (contraseña == null) {
                 throw new NullPointerException("Contraseña no puede er vacio");
             }
 
-            Restaurante r=new Restaurante();
-            Usuario u = new Usuario(email,contraseña);
+            Restaurante r = new Restaurante();
+            Usuario u = new Usuario(email, contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
-            Label lb=new Label();
-            if(c==null){
+            Label lb = new Label();
+            if (c == null) {
                 lb.setText("Credenciales Invalidas");
-            } else{
-                if(c instanceof Mesero){
-                App.setRoot("mesero");
-                
+            } else {
+                if (c instanceof Mesero) {
+                    App.setRoot("mesero");
 
-            }else if(c instanceof Administrador){
-                App.setRoot("administrador");
-            }        
+                } else if (c instanceof Administrador) {
+                    App.setRoot("administrador");
+                }
             }
-        }catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-}
 
-    
+}

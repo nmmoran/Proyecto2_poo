@@ -14,13 +14,14 @@ import java.time.LocalDate;
  * @author nicol
  */
 public class Venta {
+
     private LocalDate fecha;
     private Cuenta datosCuenta;
     private Mesero mesero;
     private double total;
 
     public Venta(LocalDate fecha, Cuenta datosCuenta, Mesero mesero, double total) {
-        
+
         this.fecha = fecha;
         this.datosCuenta = datosCuenta;
         this.mesero = mesero;
@@ -61,7 +62,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Fecha: " + fecha + ",Mesa: " + datosCuenta.getMesa() + ", Mesero=" + mesero + "#Cuenta: "+datosCuenta.getNumCuenta()+ "Cliente: "+datosCuenta.getCliente()+ ", Total=" + total;
+        return "Fecha: " + fecha + ",Mesa: " + datosCuenta.getMesa() + ", Mesero=" + mesero + "#Cuenta: " + datosCuenta.getNumCuenta() + "Cliente: " + datosCuenta.getCliente() + ", Total=" + total;
     }
-    
+
 }

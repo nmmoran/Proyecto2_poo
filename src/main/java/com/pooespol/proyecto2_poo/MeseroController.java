@@ -9,9 +9,11 @@ import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
+import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -197,6 +199,8 @@ public class MeseroController implements Initializable {
     public void finalizarOrden(String cliente, Mesa mesa) {
 
         Parent root1 = null;
+        Cuenta cuenta = null;
+        Venta venta = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("vistaCuentaMesa.fxml"));
             root1 = loader.load();
@@ -204,7 +208,9 @@ public class MeseroController implements Initializable {
 
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
                 //creamos la cuenta;
-                Cuenta cuenta = new Cuenta(cliente, mesa, vcm.getProductosCuenta());
+
+                //creamos la venta:
+                //Venta v = new Venta(LocalDate.now(),cuenta,vcm.getProductosCuenta());
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();
