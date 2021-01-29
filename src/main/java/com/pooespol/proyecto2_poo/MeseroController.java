@@ -6,8 +6,10 @@
 package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.MesaData;
+import com.pooespol.proyecto2_poo.data.UsuarioData;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
+import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.IOException;
@@ -199,18 +201,27 @@ public class MeseroController implements Initializable {
     public void finalizarOrden(String cliente, Mesa mesa) {
 
         Parent root1 = null;
-        Cuenta cuenta = null;
-        Venta venta = null;
+        Parent root2 = null;
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("vistaCuentaMesa.fxml"));
             root1 = loader.load();
             VistaCuentaMesaController vcm = loader.getController();
 
+            //Obtencion del mesero tanto para cuenta como para Venta:
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("login.fxml"));
+            root2 = loader1.load();
+            LoginController lc = loader1.getController();
+
+            //Obtenemos los campos y por ultimo el mesero:
+            Mesero mesero = UsuarioData.devolverEmpleado(lc.getTxtEmail().getText(), lc.getTxtContra().getText());
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
                 //creamos la cuenta;
-
+                Cuenta cuenta = new Cuenta(cliente, mesa, mesero, vcm.getProductosCuenta());
                 //creamos la venta:
-                //Venta v = new Venta(LocalDate.now(),cuenta,vcm.getProductosCuenta());
+                Venta v = new Venta(LocalDate.now(), cuenta, mesero, vcm.getTotal());
+                System.out.println("Imprimiendo Venta");
+                System.out.println(v);
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();

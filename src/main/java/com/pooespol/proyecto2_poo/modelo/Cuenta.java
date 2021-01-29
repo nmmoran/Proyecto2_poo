@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Cuenta {
 
-    private int numCuenta;
+    private static int numCuenta;
     private String cliente;
     private Mesa mesa;
     private Mesero mesero;

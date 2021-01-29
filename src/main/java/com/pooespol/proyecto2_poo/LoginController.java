@@ -46,6 +46,38 @@ public class LoginController implements Initializable {
 
     }
 
+    public TextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public void setTxtEmail(TextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    public TextField getTxtContra() {
+        return txtContra;
+    }
+
+    public void setTxtContra(TextField txtContra) {
+        this.txtContra = txtContra;
+    }
+
+    public Button getBtLogin() {
+        return btLogin;
+    }
+
+    public void setBtLogin(Button btLogin) {
+        this.btLogin = btLogin;
+    }
+
+    public Restaurante getR() {
+        return r;
+    }
+
+    public void setR(Restaurante r) {
+        this.r = r;
+    }
+
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
 
