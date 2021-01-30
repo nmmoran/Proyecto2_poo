@@ -239,10 +239,11 @@ public class MeseroController implements Initializable {
                 vcm.getLblIVA().setText("IVA: ");
 
                 //sobreescribir en el txtVentas:
-                File file = new File(App.class.getResource("Ventas.txt").getFile());
+                File file = new File(App.class.getResource("reporteVentas.txt").getFile());
                 try ( BufferedWriter bw = new BufferedWriter(
                         new FileWriter(file, true))) {
-                    String linea = fechaS + "," + mesa.getNumero() + "," + mesero.getNombre()+ "," ;
+                    String linea = fechaS + ";" + mesa.getNumero() + ";" + mesero.getNombre() + ";"
+                            + String.valueOf(cuenta.getNumCuenta()) + ";" + cuenta.getCliente() + ";" + v.getTotal();
                     bw.write(linea);
                     bw.newLine();
 
@@ -250,7 +251,7 @@ public class MeseroController implements Initializable {
                     try {
                         System.out.println(ex.getMessage());
                         ex.printStackTrace();
-                        throw new ArchivosExceptions("reporteVentas.text", ex.getMessage());
+                        throw new ArchivosExceptions("reporteVentas.txt", ex.getMessage());
                     } catch (ArchivosExceptions ex1) {
                         ex1.printStackTrace();
                     }
