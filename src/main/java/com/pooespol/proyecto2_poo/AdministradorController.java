@@ -796,16 +796,16 @@ public class AdministradorController implements Initializable {
                         ev.consume();
                             
                         try {
-                            int num=Integer.parseInt(con.getTxtinfoNum().getText());
                             int ca=Integer.parseInt(con.getTxtInfoCap().getText());
-                            String nom=con.getTxtMesero().getText();
+                            
                             for(Mesa m:r.getListMesas()){
                                 if(m.getNumero()==(mesa.getNumero())){
-                                    m.setNumero(num);
                                     m.setCapacidad(ca);
+                                    mesa.setCapacidad(ca);
                                     } 
                             } 
-                            System.out.println(r.getListMesas());
+                            /*con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
+                            con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));*/
                             MesaData.borrarArchivoMesas();
                             MesaData.sobreescribirMesa(r.getListMesas());
                             con.cerrarVentanaModificar(ev);
