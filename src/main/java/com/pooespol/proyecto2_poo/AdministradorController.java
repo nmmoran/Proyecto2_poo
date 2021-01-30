@@ -9,6 +9,7 @@ import com.pooespol.proyecto2_poo.data.*;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.VentasData;
+import com.pooespol.proyecto2_poo.modelo.Actualizable;
 import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
@@ -122,7 +123,7 @@ public class AdministradorController implements Initializable {
 
     private int x;
     private int y;
-    
+
     @FXML
     private TableColumn<ReporteVentasData, String> tableFecha;
     @FXML
@@ -137,10 +138,14 @@ public class AdministradorController implements Initializable {
     private TableColumn<ReporteVentasData, Double> tableTotal;
     @FXML
     private TableView<ReporteVentasData> TableView;
-    
+
     private ObservableList<ReporteVentasData> ventasVisibles = FXCollections.observableArrayList();
     @FXML
     private HBox HboxCont;
+    @FXML
+    private Label lblTF;
+    @FXML
+    private Label lblNC;
 
     /**
      * Initializes the controller class.
@@ -153,16 +158,13 @@ public class AdministradorController implements Initializable {
 
         inicializarMesasMonitor(pnMonitoreo);
         inicializarDiseñoPlano(pnMesas);
-        
+
         tableFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         tableMesa.setCellValueFactory(new PropertyValueFactory<>("numeroMesa"));
         tableMesero.setCellValueFactory(new PropertyValueFactory<>("mesero"));
         tableCuenta.setCellValueFactory(new PropertyValueFactory<>("numeroCuenta"));
         tableCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         tableTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        
-
-
 
         try {
             r = new Restaurante();
@@ -207,44 +209,56 @@ public class AdministradorController implements Initializable {
                 fpMuestraMenu.getChildren().add(vboxproducto);
 
             }
+            Actualizable a1 = new Actualizable();
+            Thread t = new Thread(a1);
+            t.start();
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        
-           
-            
-        
-    }   
+    }
 
+    public Label getLblTF() {
+        return lblTF;
+    }
 
-   
+    public void setLblTF(Label lblTF) {
+        this.lblTF = lblTF;
+    }
+
+    public Label getLblNC() {
+        return lblNC;
+    }
+
+    public void setLblNC(Label lblNC) {
+        this.lblNC = lblNC;
+    }
 
     @FXML
-    
+
     private void buscarFechas(MouseEvent event) throws IOException {
-        
+
         ventasVisibles.clear();
         ArrayList<Venta> ventasArreglo = VentasData.leerVentas();
-        String fi,ff;
-        
+        String fi, ff;
+
         DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         fi = txtFechaInicial.getText().replace('-', '/');
         ff = txtFechaFinal.getText().replace('-', '/');
         LocalDate fechai = LocalDate.parse(fi, form);
         LocalDate fechaf = LocalDate.parse(ff, form);
-        
+
         String f1[] = fi.split("-");
         String f2[] = ff.split("-"); //fecha final
-        try{
-            for (Venta v : ventasArreglo){    
+        try {
+            for (Venta v : ventasArreglo) {
                 String fecha = v.getFecha().replace('-', '/'); //dd-mm-aa
                 LocalDate fechatxt = LocalDate.parse(fecha, form);
 
-                if(          (fechatxt.isBefore(fechaf)||(fechatxt.isEqual(fechaf)  ))
-                  && ((      fechatxt.isAfter(fechai)) || (fechatxt.isEqual(fechai) ))  ){
+                if ((fechatxt.isBefore(fechaf) || (fechatxt.isEqual(fechaf)))
+                        && ((fechatxt.isAfter(fechai)) || (fechatxt.isEqual(fechai)))) {
 
                     int numeroMesa = v.getDatosCuenta().getMesa().getNumero();
                     String nombre = v.getMesero().getNombre();
@@ -253,28 +267,25 @@ public class AdministradorController implements Initializable {
                     double total = v.getTotal();
 
                     ReporteVentasData rv = new ReporteVentasData(fecha,
-                        numeroMesa,nombre,numeroCuenta,cliente,total);
+                            numeroMesa, nombre, numeroCuenta, cliente, total);
 
                     ventasVisibles.add(rv);
                 }
 
-                    System.out.println(v.getFecha()+" "+v.getDatosCuenta().getMesa().getNumero()
-                        +" "+v.getMesero().getNombre()+" "+v.getDatosCuenta().getNumCuenta()+" "+v.getDatosCuenta().getCliente()+" "+v.getTotal());
+                System.out.println(v.getFecha() + " " + v.getDatosCuenta().getMesa().getNumero()
+                        + " " + v.getMesero().getNombre() + " " + v.getDatosCuenta().getNumCuenta() + " " + v.getDatosCuenta().getCliente() + " " + v.getTotal());
             }
-        TableView.setItems(ventasVisibles);
-        
-        }catch(DateTimeParseException dx){
+            TableView.setItems(ventasVisibles);
+
+        } catch (DateTimeParseException dx) {
             Label mensaje = new Label("Ingrese la fecha en el formato correspontiende dd/mm/aa");
             HboxCont.getChildren().add(mensaje);
             //dx.getMessage();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             //ex.getMessage();
         }
-        
-        
+
     }
-    
-    
 
     @FXML
     private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
@@ -562,22 +573,22 @@ public class AdministradorController implements Initializable {
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
-                    try {
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                        try {
+                            double deltaX = event.getSceneX();
+                            double deltaY = event.getSceneY();
+                            contenedor.setLayoutX(deltaX);
+                            contenedor.setLayoutY(deltaY);
+                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                            mesa.setUbicacion(ub);
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+                        } catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
 
-                });
+                    });
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -597,22 +608,22 @@ public class AdministradorController implements Initializable {
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
-                    try {
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                        try {
+                            double deltaX = event.getSceneX();
+                            double deltaY = event.getSceneY();
+                            contenedor.setLayoutX(deltaX);
+                            contenedor.setLayoutY(deltaY);
+                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                            mesa.setUbicacion(ub);
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+                        } catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
 
-                });
+                    });
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -632,22 +643,22 @@ public class AdministradorController implements Initializable {
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
-                    try {
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                        try {
+                            double deltaX = event.getSceneX();
+                            double deltaY = event.getSceneY();
+                            contenedor.setLayoutX(deltaX);
+                            contenedor.setLayoutY(deltaY);
+                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                            mesa.setUbicacion(ub);
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+                        } catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
 
-                });
+                    });
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -666,22 +677,22 @@ public class AdministradorController implements Initializable {
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
-                    try {
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                        try {
+                            double deltaX = event.getSceneX();
+                            double deltaY = event.getSceneY();
+                            contenedor.setLayoutX(deltaX);
+                            contenedor.setLayoutY(deltaY);
+                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                            mesa.setUbicacion(ub);
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+                        } catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
 
-                });
+                    });
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -700,22 +711,22 @@ public class AdministradorController implements Initializable {
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
-                    try {
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                        try {
+                            double deltaX = event.getSceneX();
+                            double deltaY = event.getSceneY();
+                            contenedor.setLayoutX(deltaX);
+                            contenedor.setLayoutY(deltaY);
+                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                            mesa.setUbicacion(ub);
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+                        } catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
 
-                });
+                    });
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -732,7 +743,6 @@ public class AdministradorController implements Initializable {
         }
     }
 
-    
     private void crearMesas(double x, double y, Pane pane) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("crearMesas.fxml"));
@@ -743,7 +753,7 @@ public class AdministradorController implements Initializable {
             st.setScene(sc);
             st.show();
             CrearMesasController controlador = loader.getController();
-            controlador.setMesaUbi(new Ubicacion(x,y));
+            controlador.setMesaUbi(new Ubicacion(x, y));
             controlador.setPane(pane);
         } catch (IOException e) {
         }
@@ -755,20 +765,20 @@ public class AdministradorController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("opciones.fxml"));
             Parent root = loader.load();
-                Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.show();
-                OpcionesController con = loader.getController();
-                con.setMesa(mesa);
-                con.getBtnModificarM().setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            ev.consume();
-                            modificarMesa(mesa);
-                            con.cerrarVentanaEliminar(ev);
-                        }
-                );
+            Scene sc = new Scene(root);
+            Stage st = new Stage();
+            st.initModality(Modality.APPLICATION_MODAL);
+            st.setScene(sc);
+            st.show();
+            OpcionesController con = loader.getController();
+            con.setMesa(mesa);
+            con.getBtnModificarM().setOnMouseClicked(
+                    (MouseEvent ev) -> {
+                        ev.consume();
+                        modificarMesa(mesa);
+                        con.cerrarVentanaEliminar(ev);
+                    }
+            );
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -782,44 +792,43 @@ public class AdministradorController implements Initializable {
             Parent root = loader.load();
             ModificarBorrarMesasController con = loader.getController();
 
-                con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
-                con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
-                Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.show();
+            con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
+            con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
+            Scene sc = new Scene(root);
+            Stage st = new Stage();
+            st.initModality(Modality.APPLICATION_MODAL);
+            st.setScene(sc);
+            st.show();
 
-                con.getBtmModificarMesa().setOnMouseClicked(
-                        (MouseEvent ev) -> {
+            con.getBtmModificarMesa().setOnMouseClicked(
+                    (MouseEvent ev) -> {
                         //para que no se propague
                         ev.consume();
-                            
+
                         try {
-                            int ca=Integer.parseInt(con.getTxtInfoCap().getText());
-                            
-                            for(Mesa m:r.getListMesas()){
-                                if(m.getNumero()==(mesa.getNumero())){
+                            int ca = Integer.parseInt(con.getTxtInfoCap().getText());
+
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
                                     m.setCapacidad(ca);
                                     mesa.setCapacidad(ca);
-                                    } 
-                            } 
+                                }
+                            }
                             /*con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
                             con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));*/
                             MesaData.borrarArchivoMesas();
                             MesaData.sobreescribirMesa(r.getListMesas());
                             con.cerrarVentanaModificar(ev);
-                        }catch (ArchivosExceptions ex) {
+                        } catch (ArchivosExceptions ex) {
                             ex.printStackTrace();
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
-                        }
-                );
+                    }
+            );
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 }
- 
