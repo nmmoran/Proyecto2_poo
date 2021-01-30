@@ -82,9 +82,10 @@ public class OpcionesController implements Initializable {
 }
     public void eliminarMesa() throws ArchivosExceptions, IOException{
          //System.out.println(mesa);
-         AdministradorController.r.getListMesas().remove(mesa);
          MesaData.borrarArchivoMesas();
-        // System.out.println(AdministradorController.r.getListMesas());
+         AdministradorController.r.borrarMesa(mesa);
+         
+        
          //MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
     }
 }

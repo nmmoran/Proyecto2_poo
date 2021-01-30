@@ -695,22 +695,31 @@ public class AdministradorController implements Initializable {
                 st.show();
                 con.getBtmModificarMesa().setOnMouseClicked(
                         (MouseEvent ev) -> {
-                            //para que no se propague
-                    ev.consume();
-                    try {
-                        mesa.setNumero(Integer.parseInt(con.getTxtinfoNum().getText()));
-                        mesa.setCapacidad(Integer.parseInt(con.getTxtinfoNum().getText()));
-                        mesa.getCuenta().getMesero().setNombre(con.getTxtMesero().getText());
-                        System.out.println(r.getListMesas());
-                        MesaData.borrarArchivoMesas();
-                        MesaData.sobreescribirMesa(r.getListMesas());
-                        con.cerrarVentanaModificar(ev);
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    }
+                        //para que no se propague
+                        ev.consume();
+                            
+                        try {
+                            int num=Integer.parseInt(con.getTxtinfoNum().getText());
+                            int ca=Integer.parseInt(con.getTxtInfoCap().getText());
+                            String nom=con.getTxtMesero().getText();
+                            for(Mesa m:r.getListMesas()){
+                                if(m.getNumero()==(mesa.getNumero())){
+                                    m.setNumero(num);
+                                    m.setCapacidad(ca);
+                                    m.getCuenta().getMesero().setNombre(nom);
+                                    } 
+                            } 
+                            System.out.println(r.getListMesas());
+                            MesaData.borrarArchivoMesas();
+                            MesaData.sobreescribirMesa(r.getListMesas());
+                            inicializarDiseñoPlano(pnMesas);
+                            con.cerrarVentanaModificar(ev);
+                        }catch (ArchivosExceptions ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        }
                 );
 
             } else {
@@ -732,9 +741,6 @@ public class AdministradorController implements Initializable {
                             int num=Integer.parseInt(con.getTxtinfoNum().getText());
                             int ca=Integer.parseInt(con.getTxtInfoCap().getText());
                             String nom=con.getTxtMesero().getText();
-                            System.out.println(num);
-                            System.out.println(ca);
-                            System.out.println(nom);;
                             for(Mesa m:r.getListMesas()){
                                 if(m.getNumero()==(mesa.getNumero())){
                                     m.setNumero(num);
