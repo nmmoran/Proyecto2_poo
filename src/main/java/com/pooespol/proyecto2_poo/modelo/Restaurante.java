@@ -58,16 +58,17 @@ public class Restaurante {
         }
     
    
-    public void borrarMesa(Mesa m)  {
+    public  void borrarMesa(Mesa m)  {
         try {
-            MesaData.borrarArchivoMesas();
+            
             listMesas.remove(m);
+            System.out.println(m);
+            System.out.println(listMesas);
+            MesaData.sobreescribirMesa(listMesas);
             
             
             MesaData.sobreescribirMesa(listMesas);
         } catch (ArchivosExceptions ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
             ex.printStackTrace();
         }
                
