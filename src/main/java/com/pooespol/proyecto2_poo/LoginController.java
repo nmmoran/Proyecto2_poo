@@ -21,13 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+
 /**
  * FXML Controller class
  *
  * @author nicol
  */
 public class LoginController implements Initializable {
-
 
     @FXML
     private TextField txtEmail;
@@ -36,54 +36,91 @@ public class LoginController implements Initializable {
     @FXML
     private Button btLogin;
     Restaurante r;
-    
-    
+    static Mesero mesero;
+
     /**
      * Initializes the controller class.
      */
     @Override
-    
+
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
-    
+    }
+
+    public TextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public void setTxtEmail(TextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    public TextField getTxtContra() {
+        return txtContra;
+    }
+
+    public void setTxtContra(TextField txtContra) {
+        this.txtContra = txtContra;
+    }
+
+    public Button getBtLogin() {
+        return btLogin;
+    }
+
+    public void setBtLogin(Button btLogin) {
+        this.btLogin = btLogin;
+    }
+
+    public Restaurante getR() {
+        return r;
+    }
+
+    public void setR(Restaurante r) {
+        this.r = r;
+    }
+
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        
 
-        try{
+        try {
             String email = txtEmail.getText();
-            String contraseña =txtContra.getText();
+            String contraseña = txtContra.getText();
 
-            if(email==null){
+            if (email == null) {
                 throw new NullPointerException("Email no puede er vacio");
             }
-            if(contraseña==null){
+            if (contraseña == null) {
                 throw new NullPointerException("Contraseña no puede er vacio");
             }
 
-            Restaurante r=new Restaurante();
-            Usuario u = new Usuario(email,contraseña);
+            Restaurante r = new Restaurante();
+            Usuario u = new Usuario(email, contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
-            Label lb=new Label();
-            if(c==null){
+            Label lb = new Label();
+            if (c == null) {
                 lb.setText("Credenciales Invalidas");
-            } else{
-                if(c instanceof Mesero){
-                App.setRoot("mesero");
-                
-
-            }else if(c instanceof Administrador){
-                App.setRoot("administrador");
-            }        
+            } else {
+                if (c instanceof Mesero) {
+                    App.setRoot("mesero");
+                    mesero=(Mesero)c;
+                    System.out.println(mesero);        
+                } else if (c instanceof Administrador) {
+                    App.setRoot("administrador");
+                }
             }
-        }catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-}
 
-    
+    public Mesero getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
+    }
+
+}

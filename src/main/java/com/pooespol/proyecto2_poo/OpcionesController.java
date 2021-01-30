@@ -5,7 +5,14 @@
  */
 package com.pooespol.proyecto2_poo;
 
+
+import com.pooespol.proyecto2_poo.data.MesaData;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
+import com.pooespol.proyecto2_poo.modelo.Mesa;
+import com.pooespol.proyecto2_poo.modelo.Ubicacion;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -26,12 +33,30 @@ public class OpcionesController implements Initializable {
     private Button btnEliminarM;
     @FXML
     private Button BtnModificarM;
+    private Mesa mesa;
+    public void setMesa(Mesa m) {
+        this.mesa.setNumero(m.getNumero());
+        this.mesa.setCapacidad(m.getCapacidad());
+        this.mesa.setCuenta(m.getCuenta());
+        this.mesa.setUbicacion(m.getUbicacion());
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        mesa = new Mesa(0, 0, new Ubicacion(0, 0));
+        btnEliminarM.setOnMouseClicked((e) -> {
+            try {
+                eliminarMesa();
+                cerrarVentanaEliminar(e);
+            } catch (ArchivosExceptions ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }    
 
     public Button getBtnEliminarM() {
@@ -55,4 +80,12 @@ public class OpcionesController implements Initializable {
     Stage stage = (Stage) source.getScene().getWindow();
     stage.close();
 }
+    public void eliminarMesa() throws ArchivosExceptions, IOException{
+         //System.out.println(mesa);
+         MesaData.borrarArchivoMesas();
+         AdministradorController.r.borrarMesa(mesa);
+         
+        
+         //MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
+    }
 }
