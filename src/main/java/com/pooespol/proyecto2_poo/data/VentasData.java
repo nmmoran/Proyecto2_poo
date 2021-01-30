@@ -8,6 +8,7 @@ package com.pooespol.proyecto2_poo.data;
 import com.pooespol.proyecto2_poo.App;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
+import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,13 +37,15 @@ public class VentasData {
                 String linea;
                 while((linea = bf.readLine())!=null){
                     String partes[] = linea.split(";");
-                    if(partes.length == 6){
-                        //01-01-2021;1;dustin;1;Pamela;210.45
-                        //ventas.add(new Venta(LocalDate.parse(partes[0]),new Cuenta(new Mesa(Integer.parseInt(partes[1])),partes[3],Integer.parseInt(partes[4])),partes[2] ,Double.parseDouble(partes[5]))); 
-                    }
-                    
-                     
-                    
+
+                    //01-01-2021;1;dustin;1;Pamela;210.45
+                    String  fecha = partes[0];
+                    Mesa mesa = new Mesa(Integer.parseInt(partes[1]));
+                    Mesero mesero = new Mesero(null,null,partes[2]);
+                    double total = Double.parseDouble(partes[5]);
+                    Cuenta datosCuenta = new Cuenta(Integer.parseInt(partes[3]),partes[4],mesa,mesero);
+                    ventas.add(new Venta(fecha,datosCuenta,mesero,total));
+    
                 }
             }
         }

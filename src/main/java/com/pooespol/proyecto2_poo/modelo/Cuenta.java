@@ -25,8 +25,16 @@ public class Cuenta {
         this.mesa = mesa;
         this.mesero= mesero;
         this.orden = orden;
-    } 
-
+    }
+    
+    public Cuenta(int numCuenta, String cliente, Mesa mesa,Mesero mesero) {
+        this.numCuenta = numCuenta;
+        this.cliente = cliente;
+        this.mesa = mesa;
+        this.mesero= mesero;
+        
+    }
+    
     public Mesero getMesero() {
         return mesero;
     }

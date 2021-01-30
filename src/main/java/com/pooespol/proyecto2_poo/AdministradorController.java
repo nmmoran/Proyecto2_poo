@@ -5,8 +5,10 @@
  */
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.data.*;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
+import com.pooespol.proyecto2_poo.data.VentasData;
 import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
@@ -14,14 +16,21 @@ import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import com.pooespol.proyecto2_poo.modelo.Ubicacion;
+import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,12 +43,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -75,7 +88,6 @@ public class AdministradorController implements Initializable {
     private Button btnAñadir;
     @FXML
     private Button btnCancel1;
-    private TextField txtNewName;
     @FXML
     private TextField txtNewPrecio;
     @FXML
@@ -107,10 +119,28 @@ public class AdministradorController implements Initializable {
     private Tab pestañaMonitoreo;
     @FXML
     private Pane pnMonitoreo;
-   
 
     private int x;
     private int y;
+    
+    @FXML
+    private TableColumn<ReporteVentasData, String> tableFecha;
+    @FXML
+    private TableColumn<ReporteVentasData, Integer> tableMesa;
+    @FXML
+    private TableColumn<ReporteVentasData, String> tableMesero;
+    @FXML
+    private TableColumn<ReporteVentasData, Integer> tableCuenta;
+    @FXML
+    private TableColumn<ReporteVentasData, String> tableCliente;
+    @FXML
+    private TableColumn<ReporteVentasData, Double> tableTotal;
+    @FXML
+    private TableView<ReporteVentasData> TableView;
+    
+    private ObservableList<ReporteVentasData> ventasVisibles = FXCollections.observableArrayList();
+    @FXML
+    private HBox HboxCont;
     /**
      * Initializes the controller class.
      * @param url
@@ -118,7 +148,14 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        
+        tableFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        tableMesa.setCellValueFactory(new PropertyValueFactory<>("numeroMesa"));
+        tableMesero.setCellValueFactory(new PropertyValueFactory<>("mesero"));
+        tableCuenta.setCellValueFactory(new PropertyValueFactory<>("numeroCuenta"));
+        tableCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        tableTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        
         inicializarMesasMonitor(pnMonitoreo);
         inicializarDiseñoPlano(pnMesas);
         try {
@@ -174,12 +211,61 @@ public class AdministradorController implements Initializable {
             
         
     }   
-    
 
 
     @FXML
-    private void buscarFechas(MouseEvent event) {
+    
+    private void buscarFechas(MouseEvent event) throws IOException {
+        
+        ventasVisibles.clear();
+        ArrayList<Venta> ventasArreglo = VentasData.leerVentas();
+        String fi,ff;
+        
+        DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        fi = txtFechaInicial.getText().replace('-', '/');
+        ff = txtFechaFinal.getText().replace('-', '/');
+        LocalDate fechai = LocalDate.parse(fi, form);
+        LocalDate fechaf = LocalDate.parse(ff, form);
+        
+        String f1[] = fi.split("-");
+        String f2[] = ff.split("-"); //fecha final
+        try{
+            for (Venta v : ventasArreglo){    
+                String fecha = v.getFecha().replace('-', '/'); //dd-mm-aa
+                LocalDate fechatxt = LocalDate.parse(fecha, form);
+
+                if(          (fechatxt.isBefore(fechaf)||(fechatxt.isEqual(fechaf)  ))
+                  && ((      fechatxt.isAfter(fechai)) || (fechatxt.isEqual(fechai) ))  ){
+
+                    int numeroMesa = v.getDatosCuenta().getMesa().getNumero();
+                    String nombre = v.getMesero().getNombre();
+                    int numeroCuenta = v.getDatosCuenta().getNumCuenta();
+                    String cliente = v.getDatosCuenta().getCliente();
+                    double total = v.getTotal();
+
+                    ReporteVentasData rv = new ReporteVentasData(fecha,
+                        numeroMesa,nombre,numeroCuenta,cliente,total);
+
+                    ventasVisibles.add(rv);
+                }
+
+                    System.out.println(v.getFecha()+" "+v.getDatosCuenta().getMesa().getNumero()
+                        +" "+v.getMesero().getNombre()+" "+v.getDatosCuenta().getNumCuenta()+" "+v.getDatosCuenta().getCliente()+" "+v.getTotal());
+            }
+        TableView.setItems(ventasVisibles);
+        
+        }catch(DateTimeParseException dx){
+            Label mensaje = new Label("Ingrese la fecha en el formato correspontiende dd/mm/aa");
+            HboxCont.getChildren().add(mensaje);
+            //dx.getMessage();
+        }catch(Exception ex){
+            //ex.getMessage();
+        }
+        
+        
     }
+    
+    
 
     @FXML
     private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {

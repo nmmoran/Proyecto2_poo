@@ -14,12 +14,12 @@ import java.time.LocalDate;
  * @author nicol
  */
 public class Venta {
-    private LocalDate fecha;
+    private String fecha;
     private Cuenta datosCuenta;
     private Mesero mesero;
     private double total;
 
-    public Venta(LocalDate fecha, Cuenta datosCuenta, Mesero mesero, double total) {
+    public Venta(String fecha, Cuenta datosCuenta, Mesero mesero, double total) {
         
         this.fecha = fecha;
         this.datosCuenta = datosCuenta;
@@ -27,11 +27,11 @@ public class Venta {
         this.total = total;
     }
 
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

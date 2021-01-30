@@ -3,7 +3,7 @@
 10-01-2021;13;melany;3;Eduardo;100.20
 21-01-2021;9;josue;4;Viviana;37.90
 22-01-2021;3;dustin;5;Brenda;110.95
-23-02-2021;2;emily;6;Carlos;41.57
+03-02-2021;2;emily;6;Carlos;41.57
 06-02-2021;14;melany;7;Daniel;58.30
 21-02-2021;12;josue;8;Pablo;78.50
 29-02-2021;4;dustin;9;Amanda;90.50

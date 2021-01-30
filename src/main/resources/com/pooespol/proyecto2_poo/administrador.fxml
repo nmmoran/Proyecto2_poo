@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -193,61 +195,16 @@
                                         </Button>
                                     </children>
                                 </HBox>
-                                <GridPane gridLinesVisible="true" prefHeight="459.0" prefWidth="1000.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Label text="Fecha">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Mesa" GridPane.columnIndex="1">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Mesero" GridPane.columnIndex="2">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="#Cuenta" GridPane.columnIndex="3">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Cliente" GridPane.columnIndex="4">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Total" GridPane.columnIndex="5">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </GridPane>
+                        <TableView fx:id="TableView" prefHeight="474.0" prefWidth="1000.0">
+                          <columns>
+                            <TableColumn fx:id="tableFecha" prefWidth="169.59997254610062" text="Fecha" />
+                            <TableColumn fx:id="tableMesa" prefWidth="192.00001525878906" text="Mesa" />
+                              <TableColumn fx:id="tableMesero" prefWidth="170.39996337890625" text="Mesero" />
+                              <TableColumn fx:id="tableCuenta" prefWidth="157.5999755859375" text="#Cuenta" />
+                              <TableColumn fx:id="tableCliente" prefWidth="159.20001220703125" text="Cliente" />
+                              <TableColumn fx:id="tableTotal" minWidth="0.0" prefWidth="148.79998779296875" text="Total" />
+                          </columns>
+                        </TableView>
                             </children>
                         </VBox>
                     </content>
@@ -273,7 +230,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+                        <HBox fx:id="HboxCont" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
                             <children>
                                 <Label prefHeight="20.0" prefWidth="174.0" text="    Numero de Comensales" textFill="WHITE">
                                     <font>
