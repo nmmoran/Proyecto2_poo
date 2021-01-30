@@ -7,11 +7,15 @@ package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.UsuarioData;
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Venta;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -216,20 +220,41 @@ public class MeseroController implements Initializable {
             //Obtenemos los campos y por ultimo el mesero:
             Mesero mesero = lc.getMesero();
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
+
                 //creamos la cuenta;
                 Cuenta cuenta = new Cuenta(cliente, mesa, mesero, vcm.getProductosCuenta());
                 mesa.setCuenta(cuenta);
                 LocalDate fechaLD = LocalDate.now();
                 String fechaS = String.valueOf(fechaLD);
+
                 //creamos la venta:
                 Venta v = new Venta(fechaS, cuenta, mesero, vcm.getTotal());
                 System.out.println("Imprimiendo Venta");
                 System.out.println(v);
+
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();
                 vcm.getLblTotal().setText("Total: ");
                 vcm.getLblIVA().setText("IVA: ");
+
+                //sobreescribir en el txtVentas:
+                File file = new File(App.class.getResource("Ventas.txt").getFile());
+                try ( BufferedWriter bw = new BufferedWriter(
+                        new FileWriter(file, true))) {
+                    String linea = fechaS + "," + mesa.getNumero() + "," + mesero.getNombre()+ "," ;
+                    bw.write(linea);
+                    bw.newLine();
+
+                } catch (IOException ex) {
+                    try {
+                        System.out.println(ex.getMessage());
+                        ex.printStackTrace();
+                        throw new ArchivosExceptions("reporteVentas.text", ex.getMessage());
+                    } catch (ArchivosExceptions ex1) {
+                        ex1.printStackTrace();
+                    }
+                }
                 App.setRoot("mesero");
             });
         } catch (IOException ex) {
