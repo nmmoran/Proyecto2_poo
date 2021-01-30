@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -224,11 +225,11 @@ public class MeseroController implements Initializable {
                 //creamos la cuenta;
                 Cuenta cuenta = new Cuenta(cliente, mesa, mesero, vcm.getProductosCuenta());
                 mesa.setCuenta(cuenta);
-                LocalDate fechaLD = LocalDate.now();
-                String fechaS = String.valueOf(fechaLD);
-
+                DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate fecha = LocalDate.now();
+                String fechaStr = fecha.format(form).replace("/", "-");
                 //creamos la venta:
-                Venta v = new Venta(fechaS, cuenta, mesero, vcm.getTotal());
+                Venta v = new Venta(fechaStr, cuenta, mesero, vcm.getTotal());
                 System.out.println("Imprimiendo Venta");
                 System.out.println(v);
 
@@ -242,7 +243,7 @@ public class MeseroController implements Initializable {
                 File file = new File(App.class.getResource("reporteVentas.txt").getFile());
                 try ( BufferedWriter bw = new BufferedWriter(
                         new FileWriter(file, true))) {
-                    String linea = fechaS + ";" + mesa.getNumero() + ";" + mesero.getNombre() + ";"
+                    String linea = fechaStr + ";" + mesa.getNumero() + ";" + mesero.getNombre() + ";"
                             + String.valueOf(cuenta.getNumCuenta()) + ";" + cuenta.getCliente() + ";" + v.getTotal();
                     bw.write(linea);
                     bw.newLine();
