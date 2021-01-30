@@ -12,11 +12,9 @@
          <children>
             <Label layoutX="21.0" layoutY="52.0" text="Numero:" />
             <Label layoutX="15.0" layoutY="84.0" text="Capacidad:" />
-            <TextField fx:id="txtinfoNum" layoutX="102.0" layoutY="48.0" />
             <TextField fx:id="txtInfoCap" layoutX="102.0" layoutY="80.0" />
             <Button fx:id="btmModificarMesa" layoutX="297.0" layoutY="61.0" mnemonicParsing="false" text="Modificar" />
-            <Label layoutX="23.0" layoutY="117.0" text="Mesero:" />
-            <TextField fx:id="txtMesero" layoutX="102.0" layoutY="113.0" />
+            <Label fx:id="lbNumMesa" layoutX="102.0" layoutY="52.0" prefHeight="17.0" prefWidth="100.0" />
          </children>
       </Pane>
    </center>

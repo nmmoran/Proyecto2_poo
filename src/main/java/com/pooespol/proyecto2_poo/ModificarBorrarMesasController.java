@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -22,14 +23,14 @@ import javafx.stage.Stage;
  */
 public class ModificarBorrarMesasController implements Initializable {
 
-    @FXML
     private TextField txtinfoNum;
     @FXML
     private TextField txtInfoCap;
     @FXML
     private Button btmModificarMesa;
-    @FXML
     private TextField txtMesero;
+    @FXML
+    private Label lbNumMesa;
 
     /**
      * Initializes the controller class.
@@ -71,7 +72,15 @@ public class ModificarBorrarMesasController implements Initializable {
     public void setTxtMesero(TextField txtMesero) {
         this.txtMesero = txtMesero;
     }
-     @FXML
+
+    public Label getLbNumMesa() {
+        return lbNumMesa;
+    }
+
+    public void setLbNumMesa(Label lbNumMesa) {
+        this.lbNumMesa = lbNumMesa;
+    }
+    
     public void cerrarVentanaModificar(Event event) {
  
     Node source = (Node) event.getSource();

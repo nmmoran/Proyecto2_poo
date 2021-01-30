@@ -782,49 +782,8 @@ public class AdministradorController implements Initializable {
             Parent root = loader.load();
             ModificarBorrarMesasController con = loader.getController();
 
-            if ((mesa.getCuenta() != null)) {
-                Mesero mesero = mesa.getCuenta().getMesero();
-                con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
+                con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
                 con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
-                con.getTxtMesero().setText(mesero.getNombre());
-                Scene sc = new Scene(root);
-                Stage st = new Stage();
-                st.initModality(Modality.APPLICATION_MODAL);
-                st.setScene(sc);
-                st.show();
-                con.getBtmModificarMesa().setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                        //para que no se propague
-                        ev.consume();
-                            
-                        try {
-                            int num=Integer.parseInt(con.getTxtinfoNum().getText());
-                            int ca=Integer.parseInt(con.getTxtInfoCap().getText());
-                            String nom=con.getTxtMesero().getText();
-                            for(Mesa m:r.getListMesas()){
-                                if(m.getNumero()==(mesa.getNumero())){
-                                    m.setNumero(num);
-                                    m.setCapacidad(ca);
-                                    m.getCuenta().getMesero().setNombre(nom);
-                                    } 
-                            } 
-                            System.out.println(r.getListMesas());
-                            MesaData.borrarArchivoMesas();
-                            MesaData.sobreescribirMesa(r.getListMesas());
-                            inicializarDiseñoPlano(pnMesas);
-                            con.cerrarVentanaModificar(ev);
-                        }catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        }
-                );
-
-            } else {
-                con.getTxtinfoNum().setText(String.valueOf(mesa.getNumero()));
-                con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));
-                con.getTxtMesero().setText("Sin Mesero");
                 Scene sc = new Scene(root);
                 Stage st = new Stage();
                 st.initModality(Modality.APPLICATION_MODAL);
@@ -857,8 +816,6 @@ public class AdministradorController implements Initializable {
                         }
                         }
                 );
-
-            }
 
         } catch (IOException ex) {
             ex.printStackTrace();
