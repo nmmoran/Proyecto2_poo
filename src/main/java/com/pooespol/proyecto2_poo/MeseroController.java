@@ -56,112 +56,107 @@ public class MeseroController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inicializarMesasMesero(paneMesas);
-
-    }
-
-    private void abrirCuenta(MouseEvent event) {
-        App.setRoot("vistaCuentaMesa");
-    }
-
-    private void inicializarMesasMesero(Pane pane) {
-        ArrayList<Mesa> mesas = AdministradorController.mesaGeneral;
-        for (Mesa mesa : mesas) {
-            
-            if (mesa.getCapacidad() == 4) {
+        try {
+            ArrayList<Mesa> mesas = MesaData.leerMesas();
+            for (Mesa mesa : mesas) {
                 
-                Circle c = new Circle(40, Color.rgb(255, 220, 31));
-                Label l = new Label("M" + mesa.getNumero());
-                StackPane contenedor = new StackPane();
-                contenedor.setPrefHeight(100);
-                contenedor.setPrefWidth(100);
-                contenedor.getChildren().addAll(c, l);
-                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                pane.getChildren().add(contenedor);
-                contenedor.setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            //para que no se propague
-                            ev.consume();
-                            cargarNuevaCuenta(mesa);
-                            
-                        }
-                );
+                if (mesa.getCapacidad() == 4) {
+                    
+                    Circle c = new Circle(40, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + mesa.getNumero());
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    paneMesas.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                cargarNuevaCuenta(mesa);
+                                
+                            }
+                    );
+                    
+                } else if (mesa.getCapacidad() == 6) {
+                    Circle c = new Circle(55, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + mesa.getNumero());
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(140);
+                    contenedor.setPrefWidth(140);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    paneMesas.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                cargarNuevaCuenta(mesa);
+                                
+                            }
+                    );
+                    
+                } else if (mesa.getCapacidad() == 8) {
+                    Circle c = new Circle(75, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + mesa.getNumero());
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(180);
+                    contenedor.setPrefWidth(180);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    paneMesas.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                cargarNuevaCuenta(mesa);
+                            }
+                    );
+                    
+                } else if (mesa.getCapacidad() == 9) {
+                    Circle c = new Circle(85, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + mesa.getNumero());
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(200);
+                    contenedor.setPrefWidth(200);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    paneMesas.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                cargarNuevaCuenta(mesa);
+                            }
+                    );
+                    
+                } else if (mesa.getCapacidad() == 2) {
+                    Circle c = new Circle(30, Color.rgb(255, 220, 31));
+                    Label l = new Label("M" + mesa.getNumero());
+                    StackPane contenedor = new StackPane();
+                    contenedor.setPrefHeight(85);
+                    contenedor.setPrefWidth(85);
+                    contenedor.getChildren().addAll(c, l);
+                    contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                    contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                    paneMesas.getChildren().add(contenedor);
+                    contenedor.setOnMouseClicked(
+                            (MouseEvent ev) -> {
+                                //para que no se propague
+                                ev.consume();
+                                cargarNuevaCuenta(mesa);
+                            }
+                    );
+                }
                 
-            } else if (mesa.getCapacidad() == 6) {
-                Circle c = new Circle(55, Color.rgb(255, 220, 31));
-                Label l = new Label("M" + mesa.getNumero());
-                StackPane contenedor = new StackPane();
-                contenedor.setPrefHeight(140);
-                contenedor.setPrefWidth(140);
-                contenedor.getChildren().addAll(c, l);
-                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                paneMesas.getChildren().add(contenedor);
-                contenedor.setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            //para que no se propague
-                            ev.consume();
-                            cargarNuevaCuenta(mesa);
-                            
-                        }
-                );
-                
-            } else if (mesa.getCapacidad() == 8) {
-                Circle c = new Circle(75, Color.rgb(255, 220, 31));
-                Label l = new Label("M" + mesa.getNumero());
-                StackPane contenedor = new StackPane();
-                contenedor.setPrefHeight(180);
-                contenedor.setPrefWidth(180);
-                contenedor.getChildren().addAll(c, l);
-                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                paneMesas.getChildren().add(contenedor);
-                contenedor.setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            //para que no se propague
-                            ev.consume();
-                            cargarNuevaCuenta(mesa);
-                        }
-                );
-                
-            } else if (mesa.getCapacidad() == 9) {
-                Circle c = new Circle(85, Color.rgb(255, 220, 31));
-                Label l = new Label("M" + mesa.getNumero());
-                StackPane contenedor = new StackPane();
-                contenedor.setPrefHeight(200);
-                contenedor.setPrefWidth(200);
-                contenedor.getChildren().addAll(c, l);
-                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                paneMesas.getChildren().add(contenedor);
-                contenedor.setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            //para que no se propague
-                            ev.consume();
-                            cargarNuevaCuenta(mesa);
-                        }
-                );
-                
-            } else if (mesa.getCapacidad() == 2) {
-                Circle c = new Circle(30, Color.rgb(255, 220, 31));
-                Label l = new Label("M" + mesa.getNumero());
-                StackPane contenedor = new StackPane();
-                contenedor.setPrefHeight(85);
-                contenedor.setPrefWidth(85);
-                contenedor.getChildren().addAll(c, l);
-                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                paneMesas.getChildren().add(contenedor);
-                contenedor.setOnMouseClicked(
-                        (MouseEvent ev) -> {
-                            //para que no se propague
-                            ev.consume();
-                            cargarNuevaCuenta(mesa);
-                        }
-                );
             }
-
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }
@@ -197,7 +192,14 @@ public class MeseroController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
     }
+
+    private void abrirCuenta(MouseEvent event) {
+        App.setRoot("vistaCuentaMesa");
+    }
+
+   
 
     public void finalizarOrden(String cliente, Mesa mesa) {
 

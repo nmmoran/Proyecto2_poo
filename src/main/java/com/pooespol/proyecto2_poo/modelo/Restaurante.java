@@ -5,7 +5,6 @@
  */
 package com.pooespol.proyecto2_poo.modelo;
 
-import com.pooespol.proyecto2_poo.AdministradorController;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.UsuarioData;
@@ -34,7 +33,7 @@ public class Restaurante {
         
         listUsuarios = UsuarioData.leerUsuarios();
         listproductos= ProductosData.leerProducto();
-        listMesas= AdministradorController.mesaGeneral;
+        listMesas= MesaData.leerMesas();
     }
 
     public List<Usuario> getListUsuarios() {
