@@ -147,7 +147,8 @@ public class AdministradorController implements Initializable {
     @FXML
     private Label lblNC;
     static boolean finPanel;
-   
+    private int tiempo;
+    VistaCuentaMesaController vC;
     
 
     /**
@@ -158,6 +159,8 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        tiempo=2;
         inicializarMesasMonitor(pnMonitoreo);
         inicializarDiseñoPlano(pnMesas);
         tableFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -181,9 +184,8 @@ public class AdministradorController implements Initializable {
         txtRuta.setDisable(true);
         btnAceptar.setDisable(true);
         try {
-            Restaurante r = new Restaurante();
             //obtengo la lista de productos d
-            List<Producto> listp = r.getListproductos();
+            List<Producto> listp = ProductosData.leerProducto();
             for (Producto p : listp) {
                 VBox vboxproducto = new VBox();
                 //crear la imagen
@@ -339,6 +341,7 @@ public class AdministradorController implements Initializable {
 
     @FXML
     private void modificarProducto(MouseEvent event) throws IOException, ArchivosExceptions {
+        finProductos = false;
         String nom = txtFiltroNombre.getText();
         String newNombre = txtNuevoNombre.getText();
         String newPrecio = txtNewPrecio.getText();
@@ -355,6 +358,9 @@ public class AdministradorController implements Initializable {
                 Thread t1 = new Thread(new ProductosActualizar());
         //PASO 3: mandar a ejecutar el hilo
                  t1.start();
+                Thread t2 = new Thread(new TiempoRunnable());
+        //PASO 3: mandar a ejecutar el hilo
+                 t2.start();
             }
         }
 
@@ -986,6 +992,7 @@ public class AdministradorController implements Initializable {
     class ProductosActualizar implements Runnable {
     
     public void run() {
+        
         try {
              while(!finProductos){
                  Platform.runLater(() -> {
@@ -1016,7 +1023,7 @@ public class AdministradorController implements Initializable {
                  
                 //System.out.println("holi");
        
-                Thread.sleep(15000);
+                Thread.sleep(2000);
                }
          } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -1024,5 +1031,22 @@ public class AdministradorController implements Initializable {
     
 }
  }
-}
+    class TiempoRunnable implements Runnable{
+        public void run(){
+            try {
+                while(tiempo>0 && !finProductos){
+                    
+                    Thread.sleep(1000);
+                    //disminuyo el valor en l variable tiempoJuego
+                    tiempo-=1;
+                   
+                }
+                finProductos = true;
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+           } 
+        }
+ }
+
     
