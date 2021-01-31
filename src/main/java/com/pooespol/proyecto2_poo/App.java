@@ -63,6 +63,7 @@ public class App extends Application {
     }
     public void stop(){
         AdministradorController.finPanel=true;
+        AdministradorController.finProductos=true;
     }
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
