@@ -1,5 +1,7 @@
 package com.pooespol.proyecto2_poo;
 
+import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
+import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,14 +19,15 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+    static Restaurante r;
     private static Scene scene;
 //
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, ArchivosExceptions {
+        r=new Restaurante();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("vistaCuentaMesa.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
             
             Parent root = fxmlLoader.load();
             //cree el scene y fije como nodo raiz el objeto que cargo con el fxml

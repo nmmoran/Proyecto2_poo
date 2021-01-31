@@ -40,14 +40,15 @@ public class ProductosData {
      *  tipo;producto;precio;imagen
      * @return ArrayList<Producto>
      */
-    public static ArrayList<Producto>leerProducto() throws IOException {
+    public static  ArrayList<Producto>leerProducto() 
+            throws ArchivosExceptions{
         ArrayList<Producto> products = new ArrayList<>();
-        try{
-            URL u = App.class.getResource(ruta);
-            File file = new File(u.toURI());
-            try(BufferedReader bf = new BufferedReader(new FileReader(file))){
-                String linea;
-                while((linea = bf.readLine())!=null){
+        
+        try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
+            String linea;
+             while((linea = bf.readLine())!=null){
                     String partes[] = linea.split(";");
                     if(partes.length == 4){
                         products.add(new Producto(partes[1],Double.parseDouble(partes[2]),partes[3],partes[0])); 
@@ -56,22 +57,14 @@ public class ProductosData {
                     //tipo 0 ; nombre_producto1 , precio 2 ,imagen 3
                      
                     
-                }
-            }
-        }
-        
-        catch(FileNotFoundException ex){
+                }         
+        }  catch (IOException ex) {
             System.out.println(ex.getMessage());
-            throw ex;
-        
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
-            throw ex;
-        } catch (Exception ex) {
             ex.printStackTrace();
-            }
+            throw new ArchivosExceptions(ruta,ex.getMessage());
+        }
         return products;
-    } 
+    }
     
     public static ArrayList<Producto> parsearProductos(String tipo) {
         ArrayList<Producto> listaResultado = new ArrayList<>();
@@ -81,26 +74,25 @@ public class ProductosData {
                    listaResultado.add(p);
                }
            } 
-        }catch(IOException ex){
-            System.out.println("Ocurrio un error al parsear los productos por tipo");
+        } catch (ArchivosExceptions ex) { 
             ex.printStackTrace();
-        } 
+        }
         return listaResultado;
     }
     
     public static ArrayList<Producto> parsearProductosNombre(String nombre) {
-        ArrayList<Producto> listaResultado = new ArrayList<>();
-        try{ 
-           for(Producto p :leerProducto()){
-               if(p.getNombre().equals(nombre)){
-                   listaResultado.add(p);
-               }
-           } 
-        }catch(IOException ex){
-            System.out.println("Ocurrio un error al parsear los productos por tipo");
+        try {
+            ArrayList<Producto> listaResultado = new ArrayList<>();
+            for(Producto p :leerProducto()){
+                if(p.getNombre().equals(nombre)){
+                    listaResultado.add(p);
+                }
+            }
+            return listaResultado;
+        } catch (ArchivosExceptions ex) {
             ex.printStackTrace();
         }
-        return listaResultado;
+        return null;
     }
     
       public static ArrayList<String> obtenerTipos() {
@@ -111,9 +103,6 @@ public class ProductosData {
                    listaResultado.add(p.getTipo());
                }
            } 
-        }catch(IOException ex){
-            System.out.println("Ocurrio un error al parsear los tipos de producto");
-            ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -27,7 +27,7 @@ public class Restaurante {
     private ArrayList<Producto> listproductos;
     private ArrayList<Mesa> listMesas;
     
-    public Restaurante() throws IOException{
+    public Restaurante() throws IOException, ArchivosExceptions{
         //cargar la informacion de generos
         //llamar a leerGeneros() de la clase GeneroData
         

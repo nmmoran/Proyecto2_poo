@@ -124,8 +124,6 @@ public class VistaCuentaMesaController implements Initializable {
                             añadirProducto(p);
                         });
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

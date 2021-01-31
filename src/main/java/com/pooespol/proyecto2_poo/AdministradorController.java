@@ -159,7 +159,6 @@ public class AdministradorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         tiempo=2;
         inicializarMesasMonitor(pnMonitoreo);
         inicializarDiseñoPlano(pnMesas);
@@ -170,9 +169,7 @@ public class AdministradorController implements Initializable {
         tableCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         tableTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         try {
-            r = new Restaurante();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            r = App.r;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -212,8 +209,6 @@ public class AdministradorController implements Initializable {
 
             }
             
-        } catch (IOException ex) {
-            ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -660,7 +655,7 @@ public class AdministradorController implements Initializable {
         try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
 
-            pane.setOnMouseClicked(
+            pane.setOnMousePressed(
                     (MouseEvent ev) -> {
                         //para que no se propague
                         ev.consume();
@@ -684,11 +679,10 @@ public class AdministradorController implements Initializable {
                     pane.getChildren().add(contenedor);
                     contenedor.setOnMouseDragged(event -> {
                         try {
-                            double deltaX = event.getSceneX();
-                            double deltaY = event.getSceneY();
-                            contenedor.setLayoutX(deltaX);
-                            contenedor.setLayoutY(deltaY);
-                            Ubicacion ub = new Ubicacion(deltaX, deltaY);
+                           
+                            contenedor.setLayoutX(event.getSceneX());
+                            contenedor.setLayoutY(event.getSceneY());
+                            Ubicacion ub = new Ubicacion(event.getSceneX(), event.getSceneY());
 
                             for (Mesa m : r.getListMesas()) {
                                 if (m.getNumero() == (mesa.getNumero())) {
@@ -999,7 +993,7 @@ public class AdministradorController implements Initializable {
                 fpMuestraMenu.getChildren().clear();
                  });
                  
-                 List<Producto> listpro = r.getListproductos();
+                 List<Producto> listpro =r.getListproductos();
                  System.out.println(listpro);
                  for (Producto p : listpro) {
                    

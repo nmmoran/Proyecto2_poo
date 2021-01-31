@@ -116,6 +116,7 @@ public class CrearMesasController implements Initializable {
         MesaData.escribirMesa(mesa);
         contenedor.setOnMouseDragged(event -> {
                     try {
+                        event.consume ();   
                         double deltaX = event.getSceneX();
                         double deltaY = event.getSceneY();
                         contenedor.setLayoutX(deltaX);
