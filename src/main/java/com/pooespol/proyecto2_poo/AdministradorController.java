@@ -988,10 +988,14 @@ public class AdministradorController implements Initializable {
     public void run() {
         try {
              while(!finProductos){
-             
-                 List<Producto>listpro = ProductosData.leerProducto();
+                 Platform.runLater(() -> {
+                fpMuestraMenu.getChildren().clear();
+                 });
+                 
+                 List<Producto> listpro = r.getListproductos();
+                 System.out.println(listpro);
                  for (Producto p : listpro) {
-                 Platform.runLater(() -> {    
+                   
                  VBox vboxproducto = new VBox();
                          //crear la imagen
                  Image img = new Image(App.class.getResourceAsStream(p.getImagen()));        
@@ -1005,18 +1009,16 @@ public class AdministradorController implements Initializable {
                  vboxproducto.getChildren().add(lprecio);
 
                  vboxproducto.setPadding(new Insets(2, 3, 3, 4));
-                
+                Platform.runLater(() -> {  
                 fpMuestraMenu.getChildren().add(vboxproducto);
                  });
                 } 
                  
                 //System.out.println("holi");
        
-                Thread.sleep(1000);
+                Thread.sleep(15000);
                }
-         } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (InterruptedException ex) {
+         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
     

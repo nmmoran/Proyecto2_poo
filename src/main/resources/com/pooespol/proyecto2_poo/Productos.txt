@@ -13,7 +13,7 @@ milkshakes;Milkshakes Oreo;4.81;moreo.jpeg
 milkshakes;Milkshakes Vanilla;3.81;mvanila.jpeg
 milkshakes;Milkshakes Fresas;2.81;mfresa.jpeg
 beers;Corona;3.00;corona.jpeg
-beers;Pilsener;2.50;pilsener.jpeg
+beers;Pilsener;2.50;club.jpeg
 beers;Club;2.50;club.jpeg
 wine;Jacob's creek;11.50;Jcreek.jpeg
 Cocktails;Pina colada;5.84;Pcolada.jpeg
