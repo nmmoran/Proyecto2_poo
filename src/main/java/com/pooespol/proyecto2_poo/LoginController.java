@@ -6,7 +6,6 @@
 package com.pooespol.proyecto2_poo;
 
 import com.pooespol.proyecto2_poo.modelo.Administrador;
-import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import com.pooespol.proyecto2_poo.modelo.Usuario;
@@ -42,6 +41,7 @@ public class LoginController implements Initializable {
     private Button btLogin;
     Restaurante r;
     static Mesero mesero;
+    
 
     /**
      * Initializes the controller class.
@@ -86,55 +86,54 @@ public class LoginController implements Initializable {
     private static Scene scene;
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-        try{
             String email = txtEmail.getText();
             String contraseña = txtContra.getText();
             email=email.replaceAll(" ", "");
             contraseña=contraseña.replaceAll(" ","");
-            try{
+        try{
+            
+            if ((contraseña.length()) == 0 &&(email.length() == 0)) {
+                throw new NullPointerException("no puede dejar campos vacios");
                 
-                if ((contraseña.length()) == 0 &&(email.length() == 0)) {
-                    throw new NullPointerException("no puede dejar campos vacios");
-                    
-                }else{
-                    if (contraseña.length() == 0) {
-                        throw new NullPointerException("Contraseña no puede er vacio");
-                    }
-                    else{
-                        if (email.length() == 0) {
-                            throw new NullPointerException("Email no puede er vacio");
-                        }
-                    }}}catch(NullPointerException e){
-                        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
-                        
-                        Parent root = fxmlLoader.load();
-                        //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
-                        scene = new Scene(root);
-                        VBox v = new VBox(new Label(e.getMessage()));
-                        e.getStackTrace();
-                        scene = new Scene(v);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        
-                        //muestre la aplicacion
-                        stage.show();
-                    }
-            Restaurante r = new Restaurante();
+            }else{
+                if (contraseña.length() == 0) {
+                    throw new NullPointerException("Contraseña no puede er vacio");
+                }
+                else{
+                if (email.length() == 0) {
+                    throw new NullPointerException("Email no puede er vacio");
+                }
+            }}}catch(NullPointerException e){
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            
+                Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+                scene = new Scene(root);
+                VBox v = new VBox(new Label(e.getMessage()));
+                e.getStackTrace();
+                scene = new Scene(v);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+
+                 //muestre la aplicacion
+                stage.show();
+            }
+            
             Usuario u = new Usuario(email, contraseña);
-            Usuario c = u.usuarioExiste(u, r.getListUsuarios());
+            Usuario c = u.usuarioExiste(u, App.r.getListUsuarios());
             Label lb = new Label();
             if (c == null) {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
             
                 Parent root = fxmlLoader.load();
-                //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
                 scene = new Scene(root);
                 VBox v = new VBox(new Label("Credenciales incorrectas"));
                 scene = new Scene(v);
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                
-                //muestre la aplicacion
+
+                 //muestre la aplicacion
                 stage.show();
             } else {
                 if (c instanceof Mesero) {
@@ -144,10 +143,6 @@ public class LoginController implements Initializable {
                 } else if (c instanceof Administrador) {
                     App.setRoot("administrador");
                 }
-            }
-            
-        }catch(ArchivosExceptions ex){
-                ex.printStackTrace();
             }
 
     }

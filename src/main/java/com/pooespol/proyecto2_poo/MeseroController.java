@@ -57,12 +57,40 @@ public class MeseroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             for (Mesa mesa : mesas) {
                 
                 if (mesa.getCapacidad() == 4) {
-                    
-                    Circle c = new Circle(40, Color.rgb(255, 220, 31));
+                    if(mesa.getCuenta()!= null ){
+                        if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
+                            Circle c = new Circle(4*10, Color.GREEN);
+                            Label l = new Label("M" + mesa.getNumero());
+                            StackPane contenedor = new StackPane();
+                            contenedor.setPrefHeight(100);
+                            contenedor.setPrefWidth(100);
+                            contenedor.getChildren().addAll(c, l);
+                            contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                            contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                            paneMesas.getChildren().add(contenedor);
+                            
+                        }else{
+                            if((mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre()))==false){
+                                 Circle c = new Circle(4*10, Color.RED);
+                                Label l = new Label("M" + mesa.getNumero());
+                                StackPane contenedor = new StackPane();
+                                contenedor.setPrefHeight(100);
+                                contenedor.setPrefWidth(100);
+                                contenedor.getChildren().addAll(c, l);
+                                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                                paneMesas.getChildren().add(contenedor);
+                            }
+                            
+                        }
+                        
+                    }else{
+                    Circle c = new Circle(4*10, Color.rgb(255, 220, 31));
                     Label l = new Label("M" + mesa.getNumero());
                     StackPane contenedor = new StackPane();
                     contenedor.setPrefHeight(100);
@@ -79,13 +107,43 @@ public class MeseroController implements Initializable {
                                 
                             }
                     );
+                    }
+                    
                     
                 } else if (mesa.getCapacidad() == 6) {
-                    Circle c = new Circle(55, Color.rgb(255, 220, 31));
+                    if(mesa.getCuenta()!= null ){
+                        if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
+                            Circle c = new Circle(6*10, Color.GREEN);
+                            Label l = new Label("M" + mesa.getNumero());
+                            StackPane contenedor = new StackPane();
+                            contenedor.setPrefHeight(100);
+                            contenedor.setPrefWidth(100);
+                            contenedor.getChildren().addAll(c, l);
+                            contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                            contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                            paneMesas.getChildren().add(contenedor);
+                            
+                        }else{
+                            if((mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre()))==false){
+                                 Circle c = new Circle(6*10, Color.RED);
+                                Label l = new Label("M" + mesa.getNumero());
+                                StackPane contenedor = new StackPane();
+                                contenedor.setPrefHeight(100);
+                                contenedor.setPrefWidth(100);
+                                contenedor.getChildren().addAll(c, l);
+                                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                                paneMesas.getChildren().add(contenedor);
+                            }
+                            
+                        }
+                        
+                    }else{
+                    Circle c = new Circle(6*10, Color.rgb(255, 220, 31));
                     Label l = new Label("M" + mesa.getNumero());
                     StackPane contenedor = new StackPane();
-                    contenedor.setPrefHeight(140);
-                    contenedor.setPrefWidth(140);
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
                     contenedor.getChildren().addAll(c, l);
                     contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
@@ -98,13 +156,42 @@ public class MeseroController implements Initializable {
                                 
                             }
                     );
+                    }
                     
                 } else if (mesa.getCapacidad() == 8) {
-                    Circle c = new Circle(75, Color.rgb(255, 220, 31));
+                    if(mesa.getCuenta()!= null ){
+                        if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
+                            Circle c = new Circle(8*10, Color.GREEN);
+                            Label l = new Label("M" + mesa.getNumero());
+                            StackPane contenedor = new StackPane();
+                            contenedor.setPrefHeight(100);
+                            contenedor.setPrefWidth(100);
+                            contenedor.getChildren().addAll(c, l);
+                            contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                            contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                            paneMesas.getChildren().add(contenedor);
+                            
+                        }else{
+                            if((mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre()))==false){
+                                 Circle c = new Circle(8*10, Color.RED);
+                                Label l = new Label("M" + mesa.getNumero());
+                                StackPane contenedor = new StackPane();
+                                contenedor.setPrefHeight(100);
+                                contenedor.setPrefWidth(100);
+                                contenedor.getChildren().addAll(c, l);
+                                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                                paneMesas.getChildren().add(contenedor);
+                            }
+                            
+                        }
+                        
+                    }else{
+                    Circle c = new Circle(8*10, Color.rgb(255, 220, 31));
                     Label l = new Label("M" + mesa.getNumero());
                     StackPane contenedor = new StackPane();
-                    contenedor.setPrefHeight(180);
-                    contenedor.setPrefWidth(180);
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
                     contenedor.getChildren().addAll(c, l);
                     contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
@@ -114,15 +201,45 @@ public class MeseroController implements Initializable {
                                 //para que no se propague
                                 ev.consume();
                                 cargarNuevaCuenta(mesa);
+                                
                             }
                     );
+                    }
                     
                 } else if (mesa.getCapacidad() == 9) {
-                    Circle c = new Circle(85, Color.rgb(255, 220, 31));
+                    if(mesa.getCuenta()!= null ){
+                        if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
+                            Circle c = new Circle(9*10, Color.GREEN);
+                            Label l = new Label("M" + mesa.getNumero());
+                            StackPane contenedor = new StackPane();
+                            contenedor.setPrefHeight(100);
+                            contenedor.setPrefWidth(100);
+                            contenedor.getChildren().addAll(c, l);
+                            contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                            contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                            paneMesas.getChildren().add(contenedor);
+                            
+                        }else{
+                            if((mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre()))==false){
+                                 Circle c = new Circle(9*10, Color.RED);
+                                Label l = new Label("M" + mesa.getNumero());
+                                StackPane contenedor = new StackPane();
+                                contenedor.setPrefHeight(100);
+                                contenedor.setPrefWidth(100);
+                                contenedor.getChildren().addAll(c, l);
+                                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                                paneMesas.getChildren().add(contenedor);
+                            }
+                            
+                        }
+                        
+                    }else{
+                    Circle c = new Circle(9*10, Color.rgb(255, 220, 31));
                     Label l = new Label("M" + mesa.getNumero());
                     StackPane contenedor = new StackPane();
-                    contenedor.setPrefHeight(200);
-                    contenedor.setPrefWidth(200);
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
                     contenedor.getChildren().addAll(c, l);
                     contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
@@ -132,15 +249,45 @@ public class MeseroController implements Initializable {
                                 //para que no se propague
                                 ev.consume();
                                 cargarNuevaCuenta(mesa);
+                                
                             }
                     );
+                    }
                     
                 } else if (mesa.getCapacidad() == 2) {
-                    Circle c = new Circle(30, Color.rgb(255, 220, 31));
+                    if(mesa.getCuenta()!= null ){
+                        if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
+                            Circle c = new Circle(2*10, Color.GREEN);
+                            Label l = new Label("M" + mesa.getNumero());
+                            StackPane contenedor = new StackPane();
+                            contenedor.setPrefHeight(100);
+                            contenedor.setPrefWidth(100);
+                            contenedor.getChildren().addAll(c, l);
+                            contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                            contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                            paneMesas.getChildren().add(contenedor);
+                            
+                        }else{
+                            if((mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre()))==false){
+                                 Circle c = new Circle(2*10, Color.RED);
+                                Label l = new Label("M" + mesa.getNumero());
+                                StackPane contenedor = new StackPane();
+                                contenedor.setPrefHeight(100);
+                                contenedor.setPrefWidth(100);
+                                contenedor.getChildren().addAll(c, l);
+                                contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
+                                contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
+                                paneMesas.getChildren().add(contenedor);
+                            }
+                            
+                        }
+                        
+                    }else{
+                    Circle c = new Circle(2*10, Color.rgb(255, 220, 31));
                     Label l = new Label("M" + mesa.getNumero());
                     StackPane contenedor = new StackPane();
-                    contenedor.setPrefHeight(85);
-                    contenedor.setPrefWidth(85);
+                    contenedor.setPrefHeight(100);
+                    contenedor.setPrefWidth(100);
                     contenedor.getChildren().addAll(c, l);
                     contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
@@ -150,8 +297,10 @@ public class MeseroController implements Initializable {
                                 //para que no se propague
                                 ev.consume();
                                 cargarNuevaCuenta(mesa);
+                                
                             }
                     );
+                    }
                 }
                 
             }
@@ -262,4 +411,5 @@ public class MeseroController implements Initializable {
         }
         App.setRoot(root1);
     }
+    
 }
