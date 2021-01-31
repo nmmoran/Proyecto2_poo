@@ -37,7 +37,7 @@ public class VentasData {
                 String linea;
                 while((linea = bf.readLine())!=null){
                     String partes[] = linea.split(";");
-
+                    if (partes.length == 6) {
                     //01-01-2021;1;dustin;1;Pamela;210.45
                     String  fecha = partes[0];
                     Mesa mesa = new Mesa(Integer.parseInt(partes[1]));
@@ -45,7 +45,7 @@ public class VentasData {
                     double total = Double.parseDouble(partes[5]);
                     Cuenta datosCuenta = new Cuenta(Integer.parseInt(partes[3]),partes[4],mesa,mesero);
                     ventas.add(new Venta(fecha,datosCuenta,mesero,total));
-    
+                   }
                 }
             }
         }

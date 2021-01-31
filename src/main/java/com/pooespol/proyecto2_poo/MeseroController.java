@@ -12,6 +12,7 @@ import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Mesero;
 import com.pooespol.proyecto2_poo.modelo.Producto;
+import com.pooespol.proyecto2_poo.modelo.Restaurante;
 import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,11 +58,13 @@ public class MeseroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            
+            //Restaurante r = App.r;
+            //Cuenta cu = new Cuenta(10,"Daniel",r.getListMesas().get(3),(Mesero )r.getListUsuarios().get(2));
             ArrayList<Mesa> mesas = MesaData.leerMesas();
             for (Mesa mesa : mesas) {
                 
                 if (mesa.getCapacidad() == 4) {
+                    //mesa.setCuenta(cu);
                     if(mesa.getCuenta()!= null ){
                         if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
                             Circle c = new Circle(4*10, Color.GREEN);

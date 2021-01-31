@@ -79,24 +79,23 @@ public class ProductosData {
     }
     
     public static ArrayList<Producto> parsearProductosNombre(String nombre) {
-        try {
-            ArrayList<Producto> listaResultado = new ArrayList<>();
-            for(Producto p :leerProducto()){
-                if(p.getNombre().equals(nombre)){
-                    listaResultado.add(p);
-                }
+        ArrayList<Producto> listaResultado = new ArrayList<>();
+        ArrayList<Producto> x = App.r.getListproductos();
+        for(Producto p : x){
+            if(p.getNombre().equals(nombre)){
+                listaResultado.add(p);
             }
-            return listaResultado;
-        } catch (ArchivosExceptions ex) {
-            ex.printStackTrace();
         }
-        return null;
+        return listaResultado;
+        
     }
     
       public static ArrayList<String> obtenerTipos() {
         ArrayList<String> listaResultado = new ArrayList<>();
+        
+        ArrayList<Producto> x = App.r.getListproductos();
         try{ 
-           for(Producto p :leerProducto()){
+           for(Producto p :x){
                if(listaResultado.contains(p.getTipo())==false){
                    listaResultado.add(p.getTipo());
                }

@@ -45,10 +45,11 @@ public class MesaData {
                 String linea;
                 while ((linea=bf.readLine())!=null){
                     String[] partes= linea.split(",");
+                    if (partes.length == 4) {
                     Ubicacion ubi =new Ubicacion(Double.parseDouble(partes[2]),Double.parseDouble(partes[3]));
                     Mesa m = new Mesa(Integer.parseInt(partes[0]),Integer.parseInt(partes[1]),ubi);
                     mesas.add(m);
-                }
+                }}
             }
         
         } catch (IOException ex){
