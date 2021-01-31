@@ -210,7 +210,7 @@ public class AdministradorController implements Initializable {
                     fpMuestraMenu.getChildren().add(vboxproducto);
                     
                 }
-                Actualizable a1 = new Actualizable();
+                Actualizable a1 = new Actualizable(lblTF,lblNC);
                 Thread t = new Thread(a1);
                 t.start();
             } catch (IOException ex) {
