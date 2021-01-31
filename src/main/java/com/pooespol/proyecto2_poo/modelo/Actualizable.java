@@ -32,9 +32,7 @@ public class Actualizable implements Runnable {
     public void run() {
 
         try {
-            FXMLLoader ld = new FXMLLoader(getClass().getResource("administrador.fxml"));
-            Parent root = ld.load();
-            AdministradorController cont = ld.getController();
+            
             for (Venta v : leerVentas()) {
                  totalRestaurante+= v.getTotal();
                 totalOcupantes+= v.getDatosCuenta().getMesa().getCapacidad();
