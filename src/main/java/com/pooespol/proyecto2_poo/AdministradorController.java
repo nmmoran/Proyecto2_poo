@@ -287,7 +287,7 @@ public class AdministradorController implements Initializable {
     @FXML
     private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
         try {
-
+            finProductos = false;
             String tipo = cbOpTipo1.getValue();
             String nombre = txtName.getText();
             double precio = Double.valueOf(txtPrecio.getText());
