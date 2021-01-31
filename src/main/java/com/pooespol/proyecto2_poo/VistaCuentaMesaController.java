@@ -84,6 +84,8 @@ public class VistaCuentaMesaController implements Initializable {
     private ArrayList<Producto> productosCuenta;
     @FXML
     private Label lblPestania;
+    
+    static boolean finPCuenta;
     /**
      * Initializes the controller class.
      */
@@ -126,7 +128,9 @@ public class VistaCuentaMesaController implements Initializable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+     Thread t3 = new Thread(new ProductosCuenta());
+        //PASO 3: mandar a ejecutar el hilo
+        t3.start();
     }
 
     public Label getLblTotal() {
@@ -221,6 +225,7 @@ public class VistaCuentaMesaController implements Initializable {
         try {
             //obtengo la lista de productos d
             List<Producto> lpt = ProductosData.parsearProductos("softdrinks");
+            System.out.println(lpt);
             int x = 0;
             int y = 0;
             for (Producto p : lpt) {
@@ -562,5 +567,51 @@ public class VistaCuentaMesaController implements Initializable {
         productosCuenta.add(p);
     }
    
+     class ProductosCuenta implements Runnable {
+    
+    public void run() {
+        
+        try {
+             while(!finPCuenta){
+                 Platform.runLater(() -> {
+                FPproductos.getChildren().clear();
+                 });
+                 
+                 List<Producto> listpro = App.r.getListproductos();
+                 System.out.println(listpro);
+                 for (Producto p : listpro) {
+                   
+                 VBox vboxproducto = new VBox();
+                         //crear la imagen
+                 Image img = new Image(App.class.getResourceAsStream(p.getImagen()));        
+                 ImageView    imgv = new ImageView(img);
+                 vboxproducto.getChildren().add(imgv); 
+                 //crea el label del nombre y lo agrego al VBox
+                 Label lnombre = new Label(p.getNombre());
+                 vboxproducto.getChildren().add(lnombre);
+                 //el anio de la pelicula
+                 Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                 vboxproducto.getChildren().add(lprecio);
 
+                 vboxproducto.setPadding(new Insets(2, 3, 3, 4));
+                Platform.runLater(() -> {  
+                FPproductos.getChildren().add(vboxproducto);
+                vboxproducto.setOnMouseClicked(
+                        (MouseEvent ev) -> {
+                            ev.consume();
+                            añadirProducto(p);
+                        });
+                 });
+                } 
+                 
+                //System.out.println("holi");
+       
+                Thread.sleep(5000);
+               }
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    
+}
+ }
 }

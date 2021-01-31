@@ -32,6 +32,7 @@ import java.util.Scanner;
 public class ProductosData {
     static String ruta = "Productos.txt";
     
+    
     /**
      * Esta funcion lee el archivo productos.txt que se encuentra en 
      * el paquete recursos y retorna un ArrayList con los generos descritos 
@@ -68,14 +69,11 @@ public class ProductosData {
     
     public static ArrayList<Producto> parsearProductos(String tipo) {
         ArrayList<Producto> listaResultado = new ArrayList<>();
-        try{ 
-           for(Producto p :leerProducto()){
-               if(p.getTipo().equals(tipo)){
-                   listaResultado.add(p);
-               }
-           } 
-        } catch (ArchivosExceptions ex) { 
-            ex.printStackTrace();
+        ArrayList<Producto> x = App.r.getListproductos();
+        for(Producto p : x){
+            if(p.getTipo().equals(tipo)){
+                listaResultado.add(p);
+            }
         }
         return listaResultado;
     }

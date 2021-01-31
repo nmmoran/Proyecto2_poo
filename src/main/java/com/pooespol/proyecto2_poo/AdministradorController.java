@@ -309,7 +309,13 @@ public class AdministradorController implements Initializable {
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
-
+             Thread t4 = new Thread(new ProductosActualizar());
+            //PASO 3: mandar a ejecutar el hilo
+             t4.start();
+             Thread t5 = new Thread(new TiempoRunnable());
+        //PASO 3: mandar a ejecutar el hilo
+                 t5.start();
+            
         } catch (NullPointerException ex) {
             lbMessage.setText("No puede haber campos vacios");
         } catch (NumberFormatException ex) {

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    static Restaurante r;
+    public static Restaurante r;
     private static Scene scene;
 //
 
@@ -67,7 +67,7 @@ public class App extends Application {
     public void stop(){
         AdministradorController.finPanel=true;
         AdministradorController.finProductos=true;
-      
+        VistaCuentaMesaController.finPCuenta=true;
     }
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
