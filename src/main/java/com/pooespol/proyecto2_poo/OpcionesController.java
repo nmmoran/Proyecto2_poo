@@ -81,8 +81,7 @@ public class OpcionesController implements Initializable {
     stage.close();
 }
     public void eliminarMesa() throws ArchivosExceptions, IOException{
-         //System.out.println(mesa);
-         MesaData.borrarArchivoMesas();
+         
          AdministradorController.r.borrarMesa(mesa);
          
         

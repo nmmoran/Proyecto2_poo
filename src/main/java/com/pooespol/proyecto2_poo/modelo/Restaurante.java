@@ -56,6 +56,10 @@ public class Restaurante {
            
        
         }
+
+    public void setListMesas(ArrayList<Mesa> listMesas) {
+        this.listMesas = listMesas;
+    }
     
    
     public  void borrarMesa(Mesa m)  {

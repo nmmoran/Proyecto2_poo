@@ -122,11 +122,8 @@ public class CrearMesasController implements Initializable {
                         contenedor.setLayoutY(deltaY);
                         Ubicacion ub = new Ubicacion(deltaX, deltaY);
                         mesa.setUbicacion(ub);
-                        MesaData.borrarArchivoMesas();
                         MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                     } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
                         ex.printStackTrace();
                     }
 

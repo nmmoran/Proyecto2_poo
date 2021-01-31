@@ -347,7 +347,7 @@ public class AdministradorController implements Initializable {
                 p.setNombre(newNombre);
                 p.setPrecio(Double.parseDouble(newPrecio));
                 p.setImagen(newRuta);
-                ProductosData.borrarArchivo();
+                
                 ProductosData.sobreescribirProducto(productos);
             }
         }
@@ -545,6 +545,7 @@ public class AdministradorController implements Initializable {
 
         try {
             ArrayList<Mesa> mesas = MesaData.leerMesas();
+            
             pane.setOnMouseClicked(
                     (MouseEvent ev) -> {
                         //para que no se propague
@@ -574,12 +575,17 @@ public class AdministradorController implements Initializable {
                             contenedor.setLayoutX(deltaX);
                             contenedor.setLayoutY(deltaY);
                             Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                            mesa.setUbicacion(ub);
-                            MesaData.borrarArchivoMesas();
+                            
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
+                                    m.setUbicacion(ub);
+                                    
+                                }
+                                
+                            }
+                             
                             MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         
@@ -609,12 +615,14 @@ public class AdministradorController implements Initializable {
                             contenedor.setLayoutX(deltaX);
                             contenedor.setLayoutY(deltaY);
                             Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                            mesa.setUbicacion(ub);
-                            MesaData.borrarArchivoMesas();
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
+                                    m.setUbicacion(ub);
+                                }
+                            }
+
                             MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         
@@ -644,12 +652,13 @@ public class AdministradorController implements Initializable {
                             contenedor.setLayoutX(deltaX);
                             contenedor.setLayoutY(deltaY);
                             Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                            mesa.setUbicacion(ub);
-                            MesaData.borrarArchivoMesas();
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
+                                    m.setUbicacion(ub);
+                                }
+                            }
                             MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         
@@ -678,12 +687,14 @@ public class AdministradorController implements Initializable {
                             contenedor.setLayoutX(deltaX);
                             contenedor.setLayoutY(deltaY);
                             Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                            mesa.setUbicacion(ub);
-                            MesaData.borrarArchivoMesas();
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
+                                    m.setUbicacion(ub);
+                                }
+                            }
+                           
                             MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
 
@@ -712,12 +723,13 @@ public class AdministradorController implements Initializable {
                             contenedor.setLayoutX(deltaX);
                             contenedor.setLayoutY(deltaY);
                             Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                            mesa.setUbicacion(ub);
-                            MesaData.borrarArchivoMesas();
+                            for (Mesa m : r.getListMesas()) {
+                                if (m.getNumero() == (mesa.getNumero())) {
+                                    m.setUbicacion(ub);
+                                }
+                            }
                             MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         
@@ -810,12 +822,10 @@ public class AdministradorController implements Initializable {
                             }
                             /*con.getLbNumMesa().setText(String.valueOf(mesa.getNumero()));
                             con.getTxtInfoCap().setText(String.valueOf(mesa.getCapacidad()));*/
-                            MesaData.borrarArchivoMesas();
+                            //MesaData.borrarArchivoMesas();
                             MesaData.sobreescribirMesa(r.getListMesas());
                             con.cerrarVentanaModificar(ev);
                         } catch (ArchivosExceptions ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                     }

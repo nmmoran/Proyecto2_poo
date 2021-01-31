@@ -148,7 +148,7 @@ public class ProductosData {
             throws ArchivosExceptions{
         File file = new File(App.class.getResource(ruta).getFile());
         try(BufferedWriter bw = new BufferedWriter(
-                                    new FileWriter(file,true))){ 
+                                    new FileWriter(file))){ 
             for(Producto p: productos){
                 String linea = p.getTipo()+","+p.getNombre()+","+String.valueOf(p.getPrecio())+","+
                     p.getImagen()
@@ -167,32 +167,5 @@ public class ProductosData {
 
 
 }
-     public static ArrayList<Producto> borrarArchivo() 
-            throws ArchivosExceptions, IOException{
-        
-        try(InputStream input = App.class.getResource(ruta).openStream();
-                BufferedReader bf = new BufferedReader(
-                                    new InputStreamReader(input,"UTF-8"))){
-            String linea;
-            while((linea = bf.readLine())!=null){
-                File file = new File(App.class.getResource(ruta).getFile());
-                try(BufferedWriter bw = new BufferedWriter(
-                                            new FileWriter(file))){
-                    bw.newLine();
-                    linea ="";
-                            
-                    bw.write(linea);
-                    bw.close();
-                    
-            }catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            throw new ArchivosExceptions(ruta,ex.getMessage());        
-        }}}  catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            throw new ArchivosExceptions(ruta,ex.getMessage());
-        }
-        return null;
-    }
+     
 }
