@@ -182,7 +182,7 @@ public class AdministradorController implements Initializable {
         btnAceptar.setDisable(true);
         try {
             //obtengo la lista de productos d
-            List<Producto> listp = ProductosData.leerProducto();
+            List<Producto> listp = App.r.getListproductos();
             for (Producto p : listp) {
                 VBox vboxproducto = new VBox();
                 //crear la imagen
@@ -993,7 +993,7 @@ public class AdministradorController implements Initializable {
                 fpMuestraMenu.getChildren().clear();
                  });
                  
-                 List<Producto> listpro =r.getListproductos();
+                 List<Producto> listpro =App.r.getListproductos();
                  System.out.println(listpro);
                  for (Producto p : listpro) {
                    

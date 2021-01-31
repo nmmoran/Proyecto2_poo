@@ -27,7 +27,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException, ArchivosExceptions {
         r=new Restaurante();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
             
             Parent root = fxmlLoader.load();
             //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
@@ -67,7 +67,7 @@ public class App extends Application {
     public void stop(){
         AdministradorController.finPanel=true;
         AdministradorController.finProductos=true;
-       // VistaCuentaMesaController.finPCuenta=true;
+      
     }
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
