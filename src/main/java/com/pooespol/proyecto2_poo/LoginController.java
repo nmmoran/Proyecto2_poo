@@ -14,13 +14,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -78,27 +82,58 @@ public class LoginController implements Initializable {
     public void setR(Restaurante r) {
         this.r = r;
     }
-
+    private static Scene scene;
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
-
-        try {
             String email = txtEmail.getText();
             String contraseña = txtContra.getText();
+            email=email.replaceAll(" ", "");
+            contraseña=contraseña.replaceAll(" ","");
+        try{
+            
+            if ((contraseña.length()) == 0 &&(email.length() == 0)) {
+                throw new NullPointerException("no puede dejar campos vacios");
+                
+            }else{
+                if (contraseña.length() == 0) {
+                    throw new NullPointerException("Contraseña no puede er vacio");
+                }
+                else{
+                if (email.length() == 0) {
+                    throw new NullPointerException("Email no puede er vacio");
+                }
+            }}}catch(NullPointerException e){
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            
+                Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+                scene = new Scene(root);
+                VBox v = new VBox(new Label(e.getMessage()));
+                e.getStackTrace();
+                scene = new Scene(v);
+                Stage stage = new Stage();
+                stage.setScene(scene);
 
-            if (email == null) {
-                throw new NullPointerException("Email no puede er vacio");
+                 //muestre la aplicacion
+                stage.show();
             }
-            if (contraseña == null) {
-                throw new NullPointerException("Contraseña no puede er vacio");
-            }
-
             Restaurante r = new Restaurante();
             Usuario u = new Usuario(email, contraseña);
             Usuario c = u.usuarioExiste(u, r.getListUsuarios());
             Label lb = new Label();
             if (c == null) {
-                lb.setText("Credenciales Invalidas");
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            
+                Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+                scene = new Scene(root);
+                VBox v = new VBox(new Label("Credenciales incorrectas"));
+                scene = new Scene(v);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+
+                 //muestre la aplicacion
+                stage.show();
             } else {
                 if (c instanceof Mesero) {
                     App.setRoot("mesero");
@@ -108,11 +143,7 @@ public class LoginController implements Initializable {
                     App.setRoot("administrador");
                 }
             }
-        } catch (NullPointerException ex) {
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     public Mesero getMesero() {
