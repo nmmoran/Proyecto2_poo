@@ -24,7 +24,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
             
             Parent root = fxmlLoader.load();
             //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
@@ -61,7 +61,9 @@ public class App extends Application {
     static void setRoot(Parent root) {
         scene.setRoot(root);
     }
-
+    public void stop(){
+        AdministradorController.finPanel=true;
+    }
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

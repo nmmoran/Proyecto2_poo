@@ -218,7 +218,7 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
                             <children>
-                                <Label text="     Total Facturados" textAlignment="CENTER" textFill="WHITE">
+                                <Label fx:id="lbTFacturado" text="     Total Facturado:s" textAlignment="CENTER" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
@@ -232,7 +232,7 @@
                         </HBox>
                         <HBox fx:id="HboxCont" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
                             <children>
-                                <Label prefHeight="20.0" prefWidth="174.0" text="    Numero de Comensales" textFill="WHITE">
+                                <Label fx:id="lbNumCom" prefHeight="20.0" prefWidth="174.0" text="    Numero de Comensales:" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

@@ -9,7 +9,6 @@ import com.pooespol.proyecto2_poo.data.*;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.VentasData;
-import com.pooespol.proyecto2_poo.modelo.Actualizable;
 import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Cuenta;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
@@ -146,6 +145,9 @@ public class AdministradorController implements Initializable {
     private Label lblTF;
     @FXML
     private Label lblNC;
+    static boolean finPanel;
+   
+    
 
     /**
      * Initializes the controller class.
@@ -206,9 +208,10 @@ public class AdministradorController implements Initializable {
                 fpMuestraMenu.getChildren().add(vboxproducto);
                 
             }
-            Actualizable a1 = new Actualizable(lblTF,lblNC);
-            Thread t = new Thread(a1);
-            t.start();
+          Thread t = new Thread(new Actualizable());
+        //PASO 3: mandar a ejecutar el hilo
+        t.start();
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
@@ -835,4 +838,83 @@ public class AdministradorController implements Initializable {
             ex.printStackTrace();
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    class Actualizable implements Runnable {
+
+    private double totalRestaurante;
+    private int totalOcupantes;
+
+    
+
+    public void run() {
+
+        try {
+            while(!finPanel){
+            for (Venta v : VentasData.leerVentas()) {
+                
+                totalRestaurante+= v.getTotal();
+                totalOcupantes+= v.getDatosCuenta().getMesa().getCapacidad();
+            }
+
+            Platform.runLater(() -> {
+                lblTF.setText(String.valueOf(totalRestaurante));
+                lblNC.setText(String.valueOf(totalOcupantes));
+                totalRestaurante=0;
+                totalOcupantes=0;
+            });
+            
+            System.out.println("Ultima actualizacion de facturado: " + totalRestaurante);
+            System.out.println("Ultima actualizacion de comensales: " + totalOcupantes);
+            Thread.sleep(15000);
+            }
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
 }
