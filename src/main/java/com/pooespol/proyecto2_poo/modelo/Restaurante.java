@@ -8,10 +8,12 @@ package com.pooespol.proyecto2_poo.modelo;
 import com.pooespol.proyecto2_poo.data.MesaData;
 import com.pooespol.proyecto2_poo.data.ProductosData;
 import com.pooespol.proyecto2_poo.data.UsuarioData;
+import com.pooespol.proyecto2_poo.data.VentasData;
 import com.pooespol.proyecto2_poo.modelo.ArchivosExceptions;
 import com.pooespol.proyecto2_poo.modelo.Mesa;
 import com.pooespol.proyecto2_poo.modelo.Producto;
 import com.pooespol.proyecto2_poo.modelo.Usuario;
+import com.pooespol.proyecto2_poo.modelo.Venta;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class Restaurante {
     private List<Usuario> listUsuarios;
     private ArrayList<Producto> listproductos;
     private ArrayList<Mesa> listMesas;
+    private ArrayList<Venta> listVentas;
     
     public Restaurante() throws IOException, ArchivosExceptions{
         //cargar la informacion de generos
@@ -34,6 +37,7 @@ public class Restaurante {
         listUsuarios = UsuarioData.leerUsuarios();
         listproductos= ProductosData.leerProducto();
         listMesas= MesaData.leerMesas();
+        listVentas=VentasData.leerVentas();
     }
 
     public List<Usuario> getListUsuarios() {
@@ -59,6 +63,14 @@ public class Restaurante {
 
     public void setListMesas(ArrayList<Mesa> listMesas) {
         this.listMesas = listMesas;
+    }
+
+    public ArrayList<Venta> getListVentas() {
+        return listVentas;
+    }
+
+    public void setListVentas(ArrayList<Venta> listVentas) {
+        this.listVentas = listVentas;
     }
     
    

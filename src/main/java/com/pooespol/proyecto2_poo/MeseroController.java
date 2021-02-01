@@ -382,6 +382,8 @@ public class MeseroController implements Initializable {
                 Venta v = new Venta(fechaStr, cuenta, mesero, vcm.getTotal());
                 System.out.println("Imprimiendo Venta");
                 System.out.println(v);
+                App.r.getListVentas().add(v);
+                //hilo
 
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
@@ -415,4 +417,62 @@ public class MeseroController implements Initializable {
         App.setRoot(root1);
     }
     
+   /* class ActualizarVentas implements Runnable {
+    
+    public void run() {
+        
+        try {
+             while(!finVentas){
+                 Platform.runLater(() -> {
+                fpMuestraMenu.getChildren().clear();
+                 });
+                 
+                 List<Producto> listpro =App.r.getListproductos();
+                 System.out.println(listpro);
+                 for (Producto p : listpro) {
+                   
+                 VBox vboxproducto = new VBox();
+                         //crear la imagen
+                 Image img = new Image(App.class.getResourceAsStream(p.getImagen()));        
+                 ImageView    imgv = new ImageView(img);
+                 vboxproducto.getChildren().add(imgv); 
+                 //crea el label del nombre y lo agrego al VBox
+                 Label lnombre = new Label(p.getNombre());
+                 vboxproducto.getChildren().add(lnombre);
+                 //el anio de la pelicula
+                 Label lprecio = new Label(String.valueOf(p.getPrecio()));
+                 vboxproducto.getChildren().add(lprecio);
+
+                 vboxproducto.setPadding(new Insets(2, 3, 3, 4));
+                Platform.runLater(() -> {  
+                fpMuestraMenu.getChildren().add(vboxproducto);
+                 });
+                } 
+                 
+                //System.out.println("holi");
+       
+                Thread.sleep(2000);
+               }
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    
+}
+ }
+    class TiempoRunnable2 implements Runnable{
+        public void run(){
+            try {
+                while(tiempo>0 && !finVentas){
+                    
+                    Thread.sleep(1000);
+                    //disminuyo el valor en l variable tiempoJuego
+                    tiempo-=1;
+                   
+                }
+                finVentas = true;
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+           } 
+        }*/
 }
