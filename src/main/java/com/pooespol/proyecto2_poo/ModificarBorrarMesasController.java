@@ -40,7 +40,9 @@ public class ModificarBorrarMesasController implements Initializable {
         // TODO
     }   
    
-
+    
+    
+    //Getters & Setters
     public TextField getTxtinfoNum() {
         return txtinfoNum;
     }

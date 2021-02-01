@@ -7,7 +7,7 @@ package com.pooespol.proyecto2_poo.modelo;
 
 /**
  *
- * @author nicol
+ * @author Aldo Mendoza 
  */
 public class Producto {
     private String nombre;
@@ -15,6 +15,13 @@ public class Producto {
     private String imagen;
     private String tipo;
 
+    /**
+     * CONSTRUCTOR
+     * @param nombre
+     * @param precio
+     * @param imagen
+     * @param tipo 
+     */
     public Producto(String nombre, double precio, String imagen,String tipo) {
         this.nombre = nombre;
         this.precio = precio;
@@ -22,6 +29,7 @@ public class Producto {
         this.tipo = tipo;
     }
 
+    //Getteres & Setters
     public String getNombre() {
         return nombre;
     }

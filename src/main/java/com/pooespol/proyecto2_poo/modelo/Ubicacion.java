@@ -13,11 +13,17 @@ public class Ubicacion {
   private double coordenadaX;
   private double coordenadaY;
   
-  public Ubicacion (double x, double y){
-      this.coordenadaX= x;
-      this.coordenadaY=y;
-  }
+  /**
+   * CONSTRUCTOR
+   * @param x
+   * @param y 
+   */
+    public Ubicacion (double x, double y){
+        this.coordenadaX= x;
+        this.coordenadaY=y;
+    }
 
+    //Getters & Setters
     public double getCoordenadaX() {
         return coordenadaX;
     }

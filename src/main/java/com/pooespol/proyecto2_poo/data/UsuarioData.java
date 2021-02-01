@@ -30,11 +30,14 @@ public class UsuarioData {
     static String ruta = "usuarios.txt";
 
     /**
-     * Esta funcion lee el archivo usuarios.txt que se encuentra en el paquete
-     * recursos y retorna un ArrayList con los generos descritos en el archivo
-     * FORMATO ARCHIVO email,password,tipoUsuario,nombre
+     * 
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Usuario, apartir de la lectura 
+     * de un archivo .txt que se encuentra en el paquete 
+     * de recursos 
      *
      * @return ArrayList<Usuario>
+     * @throws IOException 
      */
     public static ArrayList<Usuario> leerUsuarios() throws IOException {
         ArrayList<Usuario> usu = new ArrayList<>();
@@ -74,6 +77,15 @@ public class UsuarioData {
         return usu;
     }
     
+    /**
+     * Metodo que permite obtener un objeto de tipo mesero 
+     * segun el usuario y la contraseña, datos enviados como parametros
+     * los cuales se buscaran en la lisata de meseros del restuarante 
+     * 
+     * @param usuario
+     * @param contraseña
+     * @return Mesero
+     */
     public static Mesero devolverEmpleado(String usuario, String contraseña){
         
         try {

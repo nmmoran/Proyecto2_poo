@@ -22,13 +22,22 @@ import java.util.ArrayList;
 
 /**
  *
- * @author nicol
+ * @author Aldo
  */
 public class VentasData {
     
     static String ruta="reporteVentas.txt";
     
-    public static ArrayList<Venta>leerVentas() throws IOException {
+    /**
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Venta, apartir de la lectura 
+     * de un archivo .txt que se encuentra en el paquete 
+     * de recursos 
+     * 
+     * @return ArrayList<Venta>
+     * @throws IOException 
+     */
+    public static ArrayList<Venta> leerVentas() throws IOException {
         ArrayList<Venta> ventas = new ArrayList<>();
         try{
             URL u = App.class.getResource(ruta);

@@ -84,6 +84,15 @@ public class LoginController implements Initializable {
         this.r = r;
     }
     private static Scene scene;
+    
+    /**
+     * Metodod que permite validad segun el tipo de usuraio 
+     * que se ingrese en los TextFields correspondinetes 
+     * segun el tipo de usaruario se abre una ventana u otra
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void mostrarLogin(MouseEvent event) throws IOException {
             String email = txtEmail.getText();
@@ -147,10 +156,17 @@ public class LoginController implements Initializable {
 
     }
 
+   /**
+    * Permite obtener el objeto de tipo mesero
+    * @return 
+    */
     public Mesero getMesero() {
         return mesero;
     }
-
+    /**
+     * Permite setear un objeto de tipo mesero
+     * @param mesero 
+     */
     public void setMesero(Mesero mesero) {
         this.mesero = mesero;
     }

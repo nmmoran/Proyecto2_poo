@@ -88,8 +88,12 @@ public class VistaCuentaMesaController implements Initializable {
     static boolean finPCuenta;
     /**
      * Initializes the controller class.
+     * Metodo que permite cargar toda la información
+     * de los productos en pantalla  
+     * 
      */
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
         productosCuenta = new ArrayList<>();
         try {
@@ -133,6 +137,7 @@ public class VistaCuentaMesaController implements Initializable {
         t3.start();
     }
 
+    // Getters & Setters
     public Label getLblTotal() {
         return lblTotal;
     }

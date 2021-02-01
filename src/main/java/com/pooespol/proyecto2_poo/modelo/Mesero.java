@@ -13,11 +13,18 @@ public class Mesero extends Usuario{
 
     private String nombre;
 
+    /**
+     * CONSTRUCTOR
+     * @param email
+     * @param password
+     * @param nombre 
+     */
     public Mesero(String email,String password,String nombre) {
         super(email,password);
         this.nombre = nombre;
     }
-              
+          
+    //Getteres & Setters
     public String getNombre() {
         return nombre;
     }

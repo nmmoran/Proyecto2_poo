@@ -32,8 +32,9 @@ public class ReporteVentasData {
         this.numeroCuenta = numeroCuenta;
         this.cliente = cliente;
         this.total = total;
-    }
-
+}
+    //Getters 
+    
     public String getFecha() {
         return fecha;
     }
@@ -57,6 +58,8 @@ public class ReporteVentasData {
     public double getTotal() {
         return total;
     }
+    
+    //Setters
 
     public void setFecha(String fecha) {
         this.fecha = fecha;

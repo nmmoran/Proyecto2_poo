@@ -30,6 +30,13 @@ public class Restaurante {
     private ArrayList<Mesa> listMesas;
     private ArrayList<Venta> listVentas;
     
+    /**
+     * Inicializa las varaibles utilizando metodos de otras clases
+     * cuyos metodos devuelven en cada variable un ArrayList<>
+     * 
+     * @throws IOException
+     * @throws ArchivosExceptions 
+     */
     public Restaurante() throws IOException, ArchivosExceptions{
         //cargar la informacion de generos
         //llamar a leerGeneros() de la clase GeneroData
@@ -39,7 +46,16 @@ public class Restaurante {
         listMesas= MesaData.leerMesas();
         listVentas=VentasData.leerVentas();
     }
+   
+    
+    // Metodo que permite el registro de un nuevo producto a la lsit de productos
+    public void registrarProducto(String nombre, double precio, String ruta ,String tipo) {
 
+            Producto pro = new Producto(nombre,precio,ruta,tipo);
+            listproductos.add(pro);
+    }
+
+    //Getters & Setters
     public List<Usuario> getListUsuarios() {
         return listUsuarios;
     }
@@ -51,16 +67,6 @@ public class Restaurante {
     public ArrayList<Mesa> getListMesas() {
         return listMesas;
     }
-    
-    
-     public void registrarProducto(String nombre, double precio, String ruta ,String tipo) {
-
-            Producto pro = new Producto(nombre,precio,ruta,tipo);
-            listproductos.add(pro);
-           
-       
-        }
-
     public void setListMesas(ArrayList<Mesa> listMesas) {
         this.listMesas = listMesas;
     }
@@ -73,7 +79,8 @@ public class Restaurante {
         this.listVentas = listVentas;
     }
     
-   
+    // Metodo que permite la eliminacion de un objeto tipo mesa
+    // de la lista de mesas del restaurante
     public  void borrarMesa(Mesa m)  {
         try {
             

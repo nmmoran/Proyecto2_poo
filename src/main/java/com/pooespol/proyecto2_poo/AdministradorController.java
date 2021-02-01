@@ -439,6 +439,8 @@ public class AdministradorController implements Initializable {
 
     }
     /**
+     * Metodo que permite volver a la pantalla de login de los 
+     * diferentes usuario administrador o empleado
      * 
      * @param event 
      */
@@ -650,6 +652,14 @@ public class AdministradorController implements Initializable {
 
         }
     }
+    
+    /**
+     * Metodo que permite cargar los datos de mesero,
+     * capacidad y numero de las diferentes mesas 
+     * en la pantalla del administrador
+     * 
+     * @param mesa 
+     */
 
     private void cargarDatosMesas(Mesa mesa) {
         try {
@@ -693,6 +703,15 @@ public class AdministradorController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que permite establecar que tipo de mesa
+     * se visualizara en la pantalla del administrador 
+     * en funcion de la capacidad de ocupantes
+     * 
+     * @param pane
+     * @param lista 
+     */    
+    
     private void inicializarDiseñoPlano(Pane pane,ArrayList<Mesa> lista) {
 
         pane.setOnMouseClicked(
@@ -893,6 +912,16 @@ public class AdministradorController implements Initializable {
 
         }
     }
+    
+    /**
+     * Metodo que permite cargar la vista de crearMesas 
+     * para poder setear informacion como la capacidad
+     * y el numero de la mesa.
+     * 
+     * @param x
+     * @param y
+     * @param pane 
+     */
 
     private void crearMesas(double x, double y, Pane pane) {
         try {
@@ -909,7 +938,14 @@ public class AdministradorController implements Initializable {
         } catch (IOException e) {
         }
     }
-
+    
+    /**
+     * Metodo que permite cargar una ventana donde
+     * se desplegaran las opciones de Eliminar o Modificar 
+     * la mesa que fue seleccionada.
+     * 
+     * @param mesa 
+     */
     private void opciones(Mesa mesa) {
         try {
             //limpiamos el contenido anterior
@@ -934,7 +970,12 @@ public class AdministradorController implements Initializable {
             ex.printStackTrace();
         }
     }
-
+    
+    /**
+     * Metodo que permite visualizar la ventana de modificarBorrarMesas
+     * cuya ventana permite modificar la capacidad de la mesa 
+     * @param mesa 
+     */
     private void modificarMesa(Mesa mesa) {
         try {
             //limpiamos el contenido anterior
@@ -989,7 +1030,9 @@ public class AdministradorController implements Initializable {
     private int totalOcupantes;
 
     
-
+    /**
+     * 
+     */
     public void run() {
 
         try {

@@ -13,13 +13,20 @@ import com.pooespol.proyecto2_poo.modelo.Ubicacion;
  *
  * @author nicol
  */
+
+
 public class Mesa {
     private int numero;
     private int capacidad;
     private Cuenta cuenta;
     private Ubicacion ubicacion;
   
-
+    /**
+     * CONSTRUCTOR
+     * @param numero
+     * @param capacidad
+     * @param ubicacion 
+     */
     public Mesa(int numero, int capacidad,Ubicacion ubicacion) {
         this.numero = numero;
         this.capacidad = capacidad;
@@ -41,7 +48,7 @@ public class Mesa {
         
     }
  
-
+    //Getters & Setters
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
