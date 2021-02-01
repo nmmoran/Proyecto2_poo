@@ -31,6 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -54,6 +55,8 @@ public class MeseroController implements Initializable {
     private Pane paneMesas;
     static boolean finMesasM;
     private int tiempo2;
+    @FXML
+    private Button btnSalirMesero;
     /**
      * Initializes the controller class.
      * Cargando de manera visual las mesas 
@@ -166,10 +169,10 @@ public class MeseroController implements Initializable {
                 if(me.getNumero()==m.getNumero()){
                     me.setCuenta(c);
                     st.close();
-                    
+                  finalizarOrden(nc.getTxtCliente().getText(), me);  
                 }
                 }
-            finalizarOrden(nc.getTxtCliente().getText(), m);
+            
               Thread t10= new Thread(new ActualizarMesaMesero());
                 t10.start();   
               Thread t11= new Thread(new TiempoRunnable2());
@@ -181,15 +184,6 @@ public class MeseroController implements Initializable {
      
     }
 
-    /**
-     * Metodo que permite cargar la ventana vistaCuentaMesa
-     * donde se encuentran las opciones para realizar pedidos 
-     * regresar a la ventan de mesas y finalizar el consumo
-     * @param event 
-     */
-    private void abrirCuenta(MouseEvent event) {
-        App.setRoot("vistaCuentaMesa");
-    }
 
    
 
@@ -212,28 +206,26 @@ public class MeseroController implements Initializable {
             root1 = loader.load();
             VistaCuentaMesaController vcm = loader.getController();
 
-            //Obtencion del mesero tanto para cuenta como para Venta:
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("login.fxml"));
-            root2 = loader1.load();
-            LoginController lc = loader1.getController();
 
             //Obtenemos los campos y por ultimo el mesero:
-            Mesero mesero = lc.getMesero();
+            Mesero mesero = LoginController.mesero;
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
 
-                //creamos la cuenta;
-                Cuenta cuenta = new Cuenta(cliente, mesa, mesero, vcm.getProductosCuenta());
-                mesa.setCuenta(cuenta);
+                
+                mesa.getCuenta().setOrden(vcm.getProductosCuenta());
                 DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate fecha = LocalDate.now();
                 String fechaStr = fecha.format(form).replace("/", "-");
                 //creamos la venta:
-                Venta v = new Venta(fechaStr, cuenta, mesero, vcm.getTotal());
+                Venta v = new Venta(fechaStr, mesa.getCuenta(), mesero, vcm.getTotal());
                 System.out.println("Imprimiendo Venta");
                 System.out.println(v);
                 App.r.getListVentas().add(v);
-                //hilo
-
+                mesa.setCuenta(null);
+                Thread t12= new Thread(new ActualizarMesaMesero());
+                t12.start();   
+                Thread t13= new Thread(new TiempoRunnable2());
+                t13.start(); 
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();
@@ -245,7 +237,7 @@ public class MeseroController implements Initializable {
                 try ( BufferedWriter bw = new BufferedWriter(
                         new FileWriter(file, true))) {
                     String linea = fechaStr + ";" + mesa.getNumero() + ";" + mesero.getNombre() + ";"
-                            + String.valueOf(cuenta.getNumCuenta()) + ";" + cuenta.getCliente() + ";" + v.getTotal();
+                            + String.valueOf(mesa.getCuenta().getNumCuenta()) + ";" + mesa.getCuenta().getCliente() + ";" + v.getTotal();
                     bw.write(linea);
                     bw.newLine();
 
@@ -264,6 +256,11 @@ public class MeseroController implements Initializable {
             ex.printStackTrace();
         }
         App.setRoot(root1);
+    }
+
+    @FXML
+    private void salirMesero(ActionEvent event) {
+        App.setRoot("login");
     }
     
    class ActualizarMesaMesero implements Runnable {

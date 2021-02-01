@@ -718,10 +718,10 @@ public class AdministradorController implements Initializable {
 
         try {
             while(!finPanel){
-            for (Venta v : VentasData.leerVentas()) {
+            for (Venta v : App.r.getListVentas()) {
                 
                 totalRestaurante+= v.getTotal();
-                totalOcupantes+= v.getDatosCuenta().getMesa().getCapacidad();
+                totalOcupantes+= v.getDatosCuenta().getMesa().getCapacidad();//corre
             }
 
             Platform.runLater(() -> {
@@ -736,8 +736,6 @@ public class AdministradorController implements Initializable {
             Thread.sleep(15000);
             }
             
-        } catch (IOException ex) {
-            ex.printStackTrace();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

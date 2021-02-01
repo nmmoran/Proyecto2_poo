@@ -91,9 +91,6 @@ public class Cuenta {
         this.orden = orden;
     }
 
-    @Override
-    public String toString() {
-        return "Cuenta{" + "cliente=" + cliente + ", mesa=" + mesa + ", mesero=" + mesero + '}';
-    }
+   
 
 }

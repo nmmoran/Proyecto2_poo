@@ -81,11 +81,5 @@ public class Mesa {
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
-
-
-    @Override
-    public String toString() {
-        return "Mesa numero=" + numero + ", capacidad=" + capacidad + ", cuenta=" + cuenta+ ", ubicacion=" + ubicacion ;
-    }
     
 }
