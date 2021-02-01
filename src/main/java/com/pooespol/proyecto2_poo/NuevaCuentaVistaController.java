@@ -37,6 +37,7 @@ public class NuevaCuentaVistaController implements Initializable {
 
     
     //Getters & Setters
+    
     public Label getLblNroMesa() {
         return lblNroMesa;
     }

@@ -74,8 +74,11 @@ public class Usuario {
         }
         return false;
     }
-
     
+    /**
+     * Sobrescritura del metodo toString
+     * @return String
+     */
     @Override
     public String toString() {
         return "Usuario{" + "email=" + email + ", password=" + password + '}';

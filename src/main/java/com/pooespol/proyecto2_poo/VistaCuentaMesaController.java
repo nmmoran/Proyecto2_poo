@@ -572,14 +572,17 @@ public class VistaCuentaMesaController implements Initializable {
         //añadimos el objeto a la lista de productos en la cuenta:
         productosCuenta.add(p);
     }
-
+    /**
+     * Metodo que permite volver a la ventan inicial del usuario de tipo Mesero
+     * @param event 
+     */
     @FXML
     private void atras(ActionEvent event) {
         App.setRoot("mesero");
     }
    
      class ProductosCuenta implements Runnable {
-    
+    //Actualizacion de informacion mediante hilos 
     public void run() {
         
         try {

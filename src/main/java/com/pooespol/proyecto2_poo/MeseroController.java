@@ -72,6 +72,12 @@ public class MeseroController implements Initializable {
         t15.start(); 
                  
     }
+    /**
+     * Metodo que permite cargar informacion necesaria para 
+     * la primera visualizacion en la ventan del Mesero
+     * @param pane
+     * @param mesas 
+     */
     public void inicializarMesero(Pane pane, ArrayList<Mesa> mesas){
         for (Mesa mesa : mesas) {
             if(mesa.getCuenta()!= null){
@@ -316,10 +322,17 @@ public void finalizarOrden2( Mesa mesa) {
         }
         App.setRoot(root1);
     }
+    /**
+     * Metodo que permite volver a la ventana del login de usuarios 
+     * 
+     * @param event 
+     */
     @FXML
     private void salirMesero(ActionEvent event) {
         App.setRoot("login");
     }
+    
+    //Actualizacion de informacion mediante hilos 
     
    class ActualizarMesaMesero implements Runnable {
     

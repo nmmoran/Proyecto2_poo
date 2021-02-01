@@ -24,7 +24,17 @@ public class ReporteVentasData {
     private int numeroCuenta;
     private String cliente;
     private double total;
-
+    
+    
+    /**
+     * CONSTRUCTOR
+     * @param fecha
+     * @param numeroMesa
+     * @param mesero
+     * @param numeroCuenta
+     * @param cliente
+     * @param total 
+     */
     public ReporteVentasData(String fecha, int numeroMesa, String mesero, int numeroCuenta, String cliente, double total) {
         this.fecha = fecha;
         this.numeroMesa = numeroMesa;

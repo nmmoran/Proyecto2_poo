@@ -66,7 +66,11 @@ public class Venta {
     public void setTotal(double total) {
         this.total = total;
     }
-
+    
+    /**
+     * Sobrescritura del metodo toString
+     * @return String
+     */
     @Override
     public String toString() {
         return "Fecha: " + fecha + ",Mesa: " + datosCuenta.getMesa() + ", Mesero=" + mesero + "#Cuenta: " + datosCuenta.getNumCuenta() + "Cliente: " + datosCuenta.getCliente() + ", Total=" + total;

@@ -62,6 +62,10 @@ public class Producto {
         this.tipo = tipo;
     }
 
+    /**
+     * Sobrescritura del metodo toString
+     * @return String
+     */
     @Override
     public String toString() {
         return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + ", tipo=" + tipo + '}';

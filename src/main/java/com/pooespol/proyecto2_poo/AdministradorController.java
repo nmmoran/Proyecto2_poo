@@ -225,7 +225,8 @@ public class AdministradorController implements Initializable {
             ex.printStackTrace();
         }
     }
-
+    //Getters & Setters 
+    
     public Label getLblTF() {
         return lblTF;
     }
@@ -415,6 +416,11 @@ public class AdministradorController implements Initializable {
         lbMessage.setText("");
     }
     
+    /**
+     * Metodo que permite filtrar la lista de productos 
+     * en funcion del nombre apartir de la informacion sacada de un TextField 
+     * @param event 
+     */
     @FXML
     private void filtrarProductos(MouseEvent event) {
         try {
@@ -612,7 +618,15 @@ public class AdministradorController implements Initializable {
 
         }
     
-
+    /**
+     * Metodo que permite la creacion de una nueva mesa 
+     * pasando como parametros la ubucacion donde se encontara
+     * en la pantalla del administrador
+     * 
+     * @param x
+     * @param y
+     * @param pane 
+     */
     private void crearMesas(double x, double y, Pane pane) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("crearMesas.fxml"));
@@ -759,6 +773,8 @@ public class AdministradorController implements Initializable {
 
     class ProductosActualizar implements Runnable {
     
+        //Actualizacion de informacion mediante hilos 
+        
     public void run() {
         
         try {

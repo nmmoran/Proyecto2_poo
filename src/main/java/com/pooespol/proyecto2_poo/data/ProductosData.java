@@ -67,7 +67,12 @@ public class ProductosData {
         }
         return products;
     }
-    
+    /**
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Producto. por medio de busqueda por tipo de Producto
+     * @param tipo
+     * @return  ArrayList<Producto>
+     */
     public static ArrayList<Producto> parsearProductos(String tipo) {
         ArrayList<Producto> listaResultado = new ArrayList<>();
         ArrayList<Producto> x = App.r.getListproductos();
@@ -78,7 +83,12 @@ public class ProductosData {
         }
         return listaResultado;
     }
-    
+    /**
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Producto. por medio de busqueda por nombre del Producto
+     * @param nombre
+     * @return ArrayList<Producto>
+     */
     public static ArrayList<Producto> parsearProductosNombre(String nombre) {
         ArrayList<Producto> listaResultado = new ArrayList<>();
         ArrayList<Producto> x = App.r.getListproductos();
@@ -90,10 +100,15 @@ public class ProductosData {
         return listaResultado;
         
     }
-    
+      /**
+       * Metodo que permite la obtencion de un ArrayList 
+       * de obtjetos de tipo String, los cuales seran los tipo de de los diferentes
+       * productros en la lista
+       * @return ArrayList<String>
+       */
       public static ArrayList<String> obtenerTipos() {
         ArrayList<String> listaResultado = new ArrayList<>();
-        
+
         ArrayList<Producto> x = App.r.getListproductos();
         try{ 
            for(Producto p :x){
@@ -107,7 +122,14 @@ public class ProductosData {
         return listaResultado;
     }
       
-      
+    /**
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Producto y la escritura de el archivo
+     * de los nuevos productos que se pasen por parametro
+     * @param producto
+     * @return ArrayList<Producto>
+     * @throws ArchivosExceptions 
+     */  
       
      public static ArrayList<Producto> escribirProducto(Producto producto) 
             throws ArchivosExceptions{
@@ -131,6 +153,11 @@ public class ProductosData {
         return productos;
         
 }
+     /**
+      * Metodo que permite la actualizacion de un producto en la lista
+      * @param productos
+      * @throws ArchivosExceptions 
+      */
      public static void sobreescribirProducto(ArrayList<Producto> productos) 
             throws ArchivosExceptions{
         File file = new File(App.class.getResource(ruta).getFile());
