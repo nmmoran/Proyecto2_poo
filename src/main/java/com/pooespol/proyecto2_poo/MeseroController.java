@@ -37,6 +37,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
@@ -52,11 +53,12 @@ public class MeseroController implements Initializable {
     @FXML
     private Label labelMesero;
     @FXML
-    private Pane paneMesas;
+    private Pane paneMesasM;
     static boolean finMesasM;
     private int tiempo2;
     @FXML
     private Button btnSalirMesero;
+    private static Scene scene;
     /**
      * Initializes the controller class.
      * Cargando de manera visual las mesas 
@@ -65,14 +67,13 @@ public class MeseroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         finMesasM=false;
-        inicializarMesero(paneMesas, App.r.getListMesas());
-        Thread t15= new Thread(new ActualizarMesaMesero());
-        t15.start();   
+        inicializarMesero(paneMesasM, App.r.getListMesas());
+       Thread t15= new Thread(new ActualizarMesaMesero());
+        t15.start(); 
                  
     }
     public void inicializarMesero(Pane pane, ArrayList<Mesa> mesas){
         for (Mesa mesa : mesas) {
-            //mesa.setCuenta(cu);
             if(mesa.getCuenta()!= null){
                 if(mesa.getCuenta().getMesero().getNombre().equals(LoginController.mesero.getNombre())){
                     Circle c = new Circle(mesa.getCapacidad()*10, Color.GREEN);
@@ -83,7 +84,7 @@ public class MeseroController implements Initializable {
                     contenedor.getChildren().addAll(c, l);
                     contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                     contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                    paneMesas.getChildren().add(contenedor);
+                    pane.getChildren().add(contenedor);
                     contenedor.setOnMouseClicked(
                             (MouseEvent ev) -> {
                                 //para que no se propague
@@ -103,7 +104,7 @@ public class MeseroController implements Initializable {
                         contenedor.getChildren().addAll(c, l);
                         contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                         contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                        paneMesas.getChildren().add(contenedor);
+                        pane.getChildren().add(contenedor);
                     }
                     
                 }        
@@ -117,7 +118,7 @@ public class MeseroController implements Initializable {
                 contenedor.getChildren().addAll(c, l);
                 contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
                 contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-                paneMesas.getChildren().add(contenedor);
+                pane.getChildren().add(contenedor);
                 
                 contenedor.setOnMouseClicked(
                         (MouseEvent ev) -> {
@@ -170,16 +171,16 @@ public class MeseroController implements Initializable {
             
             for(Mesa me: App.r.getListMesas()){
                 if(me.getNumero()==m.getNumero()){
-                    me.setCuenta(c);
-                    st.close();
-                  finalizarOrden(nc.getTxtCliente().getText(), me);  
+                    try {
+                        me.setCuenta(c);
+                        st.close();  
+                        finalizarOrden(nc.getTxtCliente().getText(), me);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 }
             
-              Thread t10= new Thread(new ActualizarMesaMesero());
-                t10.start();   
-              Thread t11= new Thread(new TiempoRunnable2());
-                t11.start();   
             });
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -199,7 +200,7 @@ public class MeseroController implements Initializable {
      * @param cliente
      * @param mesa 
      */
-    public void finalizarOrden(String cliente, Mesa mesa) {
+    public void finalizarOrden(String cliente, Mesa mesa) throws IOException {
 
         Parent root1 = null;
         Parent root2 = null;
@@ -225,10 +226,7 @@ public class MeseroController implements Initializable {
                 System.out.println(v);
                 App.r.getListVentas().add(v);
                 mesa.setCuenta(null);
-                Thread t12= new Thread(new ActualizarMesaMesero());
-                t12.start();   
-                Thread t13= new Thread(new TiempoRunnable2());
-                t13.start(); 
+                
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();
@@ -253,27 +251,24 @@ public class MeseroController implements Initializable {
                         ex1.printStackTrace();
                     }
                 }
-                App.setRoot("mesero");
             });
+            
+            vcm.getBtnBack().getOnAction();
         } catch (IOException ex) {
             ex.printStackTrace();
+       
         }
         App.setRoot(root1);
     }
 public void finalizarOrden2( Mesa mesa) {
-
+        App.setRoot("vistaCuentaMesa");
         Parent root1 = null;
         Parent root2 = null;
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("vistaCuentaMesa.fxml"));
             root1 = loader.load();
-            Scene ss=new Scene(root1);
-            Stage st = new Stage();
-            st.initModality(Modality.APPLICATION_MODAL);
             VistaCuentaMesaController vcm = loader.getController();
-            st.setScene(ss);
-            st.show();
+            
             //Obtenemos los campos y por ultimo el mesero:
             Mesero mesero = LoginController.mesero;
             vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
@@ -289,16 +284,13 @@ public void finalizarOrden2( Mesa mesa) {
                 System.out.println(v);
                 App.r.getListVentas().add(v);
                 mesa.setCuenta(null);
-                Thread t12= new Thread(new ActualizarMesaMesero());
-                t12.start();   
-                Thread t13= new Thread(new TiempoRunnable2());
-                t13.start(); 
+                
                 //limpiamos los contenedores de la cuenta anterior
                 vcm.getFpProductos().getChildren().clear();
                 vcm.getFpPrecios().getChildren().clear();
                 vcm.getLblTotal().setText("Total: ");
                 vcm.getLblIVA().setText("IVA: ");
-
+                App.setRoot("mesero");
                 //sobreescribir en el txtVentas:
                 File file = new File(App.class.getResource("reporteVentas.txt").getFile());
                 try ( BufferedWriter bw = new BufferedWriter(
@@ -316,9 +308,9 @@ public void finalizarOrden2( Mesa mesa) {
                     } catch (ArchivosExceptions ex1) {
                         ex1.printStackTrace();
                     }
-                }
-                App.setRoot("mesero");
+                 } 
             });
+            vcm.getBtnBack().getOnAction();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -335,13 +327,11 @@ public void finalizarOrden2( Mesa mesa) {
         
         try {
              while(!finMesasM){
-                 Platform.runLater(() -> {
-                paneMesas.getChildren().clear();
-                 });
+                 
                 Platform.runLater(() -> {  
-                inicializarMesero(paneMesas,App.r.getListMesas());
+                inicializarMesero(paneMesasM,App.r.getListMesas());
                  });
-                 Thread.sleep(2000);
+                 Thread.sleep(5000);
                  
                 } 
                 

@@ -83,7 +83,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnBack" mnemonicParsing="false" onMouseClicked="#mostrarRestaurante" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
+                                    <Button fx:id="btnBack" mnemonicParsing="false" onAction="#atras" onMouseClicked="#mostrarRestaurante" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #029bdb; -fx-border-color: black;" text="Regresar" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>

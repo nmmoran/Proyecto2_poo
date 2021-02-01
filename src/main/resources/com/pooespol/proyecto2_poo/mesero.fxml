@@ -16,7 +16,7 @@
       </Label>
       <Label fx:id="labelMesero" />
       <Label />
-      <Pane fx:id="paneMesas" prefHeight="709.0" prefWidth="1000.0" style="-fx-background-color: grey;">
+      <Pane fx:id="paneMesasM" prefHeight="709.0" prefWidth="1000.0" style="-fx-background-color: grey;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="433.0" layoutX="889.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
             <Label layoutX="930.0" layoutY="292.0" style="-fx-rotate: 270;" text="Cocina" textFill="WHITE">
@@ -24,7 +24,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirMesero" layoutX="809.0" layoutY="573.0" mnemonicParsing="false" onAction="#salirMesero" text="Salir" />
+            <Button fx:id="btnSalirMesero" layoutX="791.0" layoutY="23.0" mnemonicParsing="false" onAction="#salirMesero" prefHeight="35.0" prefWidth="98.0" text="Salir" />
          </children>
       </Pane>
    </children>
