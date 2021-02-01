@@ -520,6 +520,7 @@ public class VistaCuentaMesaController implements Initializable {
                     InputStream inputImg = App.class.getResource(p.getImagen()).openStream();
                     ImageView imgv = new ImageView(new Image(inputImg));
                     vboxproducto.getChildren().add(imgv);
+                    txtFiltro.clear();
                 } catch (Exception ex) {
 
                     ex.printStackTrace();
