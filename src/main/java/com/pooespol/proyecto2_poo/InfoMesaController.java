@@ -40,7 +40,7 @@ public class InfoMesaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    // getters & setters 
     public Label getLblMesero() {
         return lblMesero;
     }

@@ -56,6 +56,8 @@ public class MeseroController implements Initializable {
     private int tiempo2;
     /**
      * Initializes the controller class.
+     * Cargando de manera visual las mesas 
+     * para la pantalla del mesero.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -124,7 +126,14 @@ public class MeseroController implements Initializable {
         }
 
     }
-
+    
+    /**
+     * Metodo que permite cargar una ventana enemrgente 
+     * en la cual se establece el nombre del cliente,
+     * esto permitira acceder a la ventan de pedidos de productos
+     * 
+     * @param m 
+     */
     public void cargarNuevaCuenta(Mesa m) {
         try {
             finMesasM=false;
@@ -141,7 +150,7 @@ public class MeseroController implements Initializable {
             nc.getLblNroMesa().setText("Mesa nro: " + m.getNumero());
             //String cname = nc.getTxtCliente().getText();
 
-            //Seteamos el t}root a la escena y la escena al stage de la ventana emergente:
+            //Seteamos el root a la escena y la escena al stage de la ventana emergente:
             Scene sc = new Scene(root);
             Stage st = new Stage();
             st.initModality(Modality.APPLICATION_MODAL);
@@ -172,12 +181,27 @@ public class MeseroController implements Initializable {
      
     }
 
+    /**
+     * Metodo que permite cargar la ventana vistaCuentaMesa
+     * donde se encuentran las opciones para realizar pedidos 
+     * regresar a la ventan de mesas y finalizar el consumo
+     * @param event 
+     */
     private void abrirCuenta(MouseEvent event) {
         App.setRoot("vistaCuentaMesa");
     }
 
    
 
+    /**
+     * Metodo que permite concluir las operacionesde de la cuenta
+     * de un cliente, obteniendo la suma total de lo consumido 
+     * finalizando la generacion de un archivo .txt con la informacion
+     * del orden
+     * 
+     * @param cliente
+     * @param mesa 
+     */
     public void finalizarOrden(String cliente, Mesa mesa) {
 
         Parent root1 = null;

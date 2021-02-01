@@ -36,6 +36,15 @@ import javafx.scene.layout.VBox;
 public class MesaData {
     static String ruta = "mesas.txt";
     
+    /**
+     * 
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo mesas, apartir de la lectura 
+     * de un archivo .txt que se encuentra en el paquete 
+     * de recursos 
+     * @return ArrayList<Mesa>
+     * @throws IOException 
+     */
     public static ArrayList<Mesa> leerMesas() throws IOException{
         ArrayList<Mesa> mesas = new ArrayList<>();
         try{
@@ -60,7 +69,14 @@ public class MesaData {
         return mesas;
         
     }
-
+    
+    /**
+     * Metodo que permite la escritura en un archivo .txt
+     * de un objeto de tipo Mesa pasado como parametro 
+     * 
+     * @param m
+     * @throws ArchivosExceptions 
+     */
     public static void escribirMesa(Mesa m) 
             throws ArchivosExceptions{
         
@@ -79,6 +95,13 @@ public class MesaData {
             throw new ArchivosExceptions(ruta,ex.getMessage());
         }
         }
+    /**
+     * 
+     * Metodo que permite la sobrescritura en un archivo .txt
+     * de un objeto de tipo Mesa pasado como parametro 
+     * @param mesas
+     * @throws ArchivosExceptions 
+     */
     public static void sobreescribirMesa(ArrayList<Mesa> mesas) 
             throws ArchivosExceptions{
         File file = new File(App.class.getResource(ruta).getFile());

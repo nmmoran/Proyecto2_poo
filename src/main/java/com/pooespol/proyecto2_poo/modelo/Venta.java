@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author nicol
+ * @author Aldo Mendoza
  */
 public class Venta {
     private String fecha;
@@ -20,7 +20,13 @@ public class Venta {
     private Mesero mesero;
     private double total;
 
-
+    /**
+     * CONSTRUCTOR
+     * @param fecha
+     * @param datosCuenta
+     * @param mesero
+     * @param total 
+     */
     public Venta(String fecha, Cuenta datosCuenta, Mesero mesero, double total) {
         this.fecha = fecha;
         this.datosCuenta = datosCuenta;
@@ -28,6 +34,7 @@ public class Venta {
         this.total = total;
     }
 
+    // Getters & Setters
     public String getFecha() {
         return fecha;
     }

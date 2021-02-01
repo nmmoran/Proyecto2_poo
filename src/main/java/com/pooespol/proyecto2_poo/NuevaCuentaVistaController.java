@@ -36,7 +36,7 @@ public class NuevaCuentaVistaController implements Initializable {
     private Label lblNroMesa;
 
     
-    
+    //Getters & Setters
     public Label getLblNroMesa() {
         return lblNroMesa;
     }
@@ -61,7 +61,7 @@ public class NuevaCuentaVistaController implements Initializable {
         this.btnCrearCuenta = btnCrearCuenta;
     }
   
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO

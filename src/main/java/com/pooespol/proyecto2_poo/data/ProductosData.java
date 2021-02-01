@@ -34,14 +34,15 @@ public class ProductosData {
     
     
     /**
-     * Esta funcion lee el archivo productos.txt que se encuentra en 
-     * el paquete recursos y retorna un ArrayList con los generos descritos 
-     * en el archivo
-     * FORMATO ARCHIVO
-     *  tipo;producto;precio;imagen
+     * Metodo que permite la obtencion de un ArrayList 
+     * de obtjetos de tipo Producto, apartir de la lectura 
+     * de un archivo .txt que se encuentra en el paquete 
+     * de recursos 
+     * 
      * @return ArrayList<Producto>
+     * @throws ArchivosExceptions 
      */
-    public static  ArrayList<Producto>leerProducto() 
+    public static  ArrayList<Producto> leerProducto() 
             throws ArchivosExceptions{
         ArrayList<Producto> products = new ArrayList<>();
         

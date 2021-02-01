@@ -20,7 +20,14 @@ public class Cuenta {
     private Mesa mesa;
     private Mesero mesero;
     private List<Producto> orden;
-
+    
+    /**
+     * CONSTRUCTOR 
+     * @param cliente
+     * @param mesa
+     * @param mesero
+     * @param orden 
+     */
     public Cuenta(String cliente, Mesa mesa, Mesero mesero, List<Producto> orden) {
         this.numCuenta += 1;
         this.cliente = cliente;
@@ -43,6 +50,7 @@ public class Cuenta {
         
     }
     
+    //Getters & Setters
     public Mesero getMesero() {
         return mesero;
     }

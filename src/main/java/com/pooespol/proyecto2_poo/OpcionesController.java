@@ -34,12 +34,7 @@ public class OpcionesController implements Initializable {
     @FXML
     private Button BtnModificarM;
     private Mesa mesa;
-    public void setMesa(Mesa m) {
-        this.mesa.setNumero(m.getNumero());
-        this.mesa.setCapacidad(m.getCapacidad());
-        this.mesa.setCuenta(m.getCuenta());
-        this.mesa.setUbicacion(m.getUbicacion());
-    }
+    
 
     /**
      * Initializes the controller class.
@@ -58,7 +53,15 @@ public class OpcionesController implements Initializable {
             }
         });
     }    
-
+    //Getters & Setteres
+    
+    public void setMesa(Mesa m) {
+        this.mesa.setNumero(m.getNumero());
+        this.mesa.setCapacidad(m.getCapacidad());
+        this.mesa.setCuenta(m.getCuenta());
+        this.mesa.setUbicacion(m.getUbicacion());
+    }
+    
     public Button getBtnEliminarM() {
         return btnEliminarM;
     }
@@ -79,7 +82,13 @@ public class OpcionesController implements Initializable {
     Node source = (Node) event.getSource();
     Stage stage = (Stage) source.getScene().getWindow();
     stage.close();
-}
+    }
+    
+    /**
+     * Metodo que permite eliminar objjeto de tipo Mesa
+     * @throws ArchivosExceptions
+     * @throws IOException 
+     */
     public void eliminarMesa() throws ArchivosExceptions, IOException{
          
          AdministradorController.r.borrarMesa(mesa);

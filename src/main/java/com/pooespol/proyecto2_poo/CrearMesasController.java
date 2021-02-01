@@ -66,7 +66,7 @@ public class CrearMesasController implements Initializable {
             }
         });
     }
-
+    // getters & setters
     public Button getBtnCrear() {
         return btnCrear;
     }
@@ -96,7 +96,14 @@ public class CrearMesasController implements Initializable {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-
+    
+    /**
+     * Metodo que permite agregar una mesa setando 
+     * numero y capacidad de la mesa, agregando la nueva mesa
+     * a la lista de mesas del restaurante 
+     * 
+     * @throws ArchivosExceptions 
+     */
     public void agregarMesa() throws ArchivosExceptions {
         int numMesa = Integer.parseInt(getTxtnum().getText());
         int capacidad = Integer.parseInt(getTxtcapMesas().getText());

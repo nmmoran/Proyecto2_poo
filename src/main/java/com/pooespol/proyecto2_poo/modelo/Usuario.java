@@ -16,11 +16,17 @@ public class Usuario {
     private String email;
     private String password;
 
+    /**
+     * CONSTRUCTOR
+     * @param email
+     * @param password 
+     */
     public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
+    //Getters & Setters
     public String getEmail() {
         return email;
     }
@@ -37,6 +43,13 @@ public class Usuario {
         this.password = password;
     }
     
+    /**
+     * Metodo que permite conocer si el usuario que se esta registrando
+     * es un usuario existente en la lista de usuarios del restaurante
+     * @param u
+     * @param lusu 
+     * @return Usuario
+     */
     public Usuario usuarioExiste(Usuario u,List<Usuario> lusu) {
         for (Usuario c : lusu) {
             if (c.equals(u)) {
@@ -62,6 +75,7 @@ public class Usuario {
         return false;
     }
 
+    
     @Override
     public String toString() {
         return "Usuario{" + "email=" + email + ", password=" + password + '}';
