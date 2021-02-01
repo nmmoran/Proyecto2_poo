@@ -101,7 +101,7 @@ public class LoginController implements Initializable {
                 }
                 else{
                 if (email.length() == 0) {
-                    throw new NullPointerException("Email no puede er vacio");
+                    throw new NullPointerException("Email no puede ir vacio");
                 }
             }}}catch(NullPointerException e){
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
