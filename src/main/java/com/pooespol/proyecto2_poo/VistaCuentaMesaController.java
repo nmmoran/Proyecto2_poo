@@ -572,6 +572,11 @@ public class VistaCuentaMesaController implements Initializable {
         //añadimos el objeto a la lista de productos en la cuenta:
         productosCuenta.add(p);
     }
+
+    @FXML
+    private void atras(ActionEvent event) {
+        App.setRoot("mesero");
+    }
    
      class ProductosCuenta implements Runnable {
     
@@ -584,7 +589,7 @@ public class VistaCuentaMesaController implements Initializable {
                  });
                  
                  List<Producto> listpro = App.r.getListproductos();
-                 System.out.println(listpro);
+                 
                  for (Producto p : listpro) {
                    
                  VBox vboxproducto = new VBox();

@@ -147,8 +147,7 @@ public class LoginController implements Initializable {
             } else {
                 if (c instanceof Mesero) {
                     App.setRoot("mesero");
-                    mesero=(Mesero)c;
-                    System.out.println(mesero);        
+                    mesero=(Mesero)c;      
                 } else if (c instanceof Administrador) {
                     App.setRoot("administrador");
                 }
