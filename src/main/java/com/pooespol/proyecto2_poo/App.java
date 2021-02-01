@@ -69,6 +69,7 @@ public class App extends Application {
         AdministradorController.finProductos=true;
         VistaCuentaMesaController.finPCuenta=true;
         AdministradorController.finMesas=true;
+        MeseroController.finMesasM=true;
     }
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

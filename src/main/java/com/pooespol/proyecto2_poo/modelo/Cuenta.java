@@ -35,7 +35,13 @@ public class Cuenta {
         this.mesero = mesero;
         this.orden = orden;
     }
-    
+    public Cuenta(String cliente, Mesa mesa, Mesero mesero) {
+        this.numCuenta += 1;
+        this.cliente = cliente;
+        this.mesa = mesa;
+        this.mesero = mesero;
+        
+    }
     public Cuenta(int numCuenta, String cliente, Mesa mesa,Mesero mesero) {
         this.numCuenta = numCuenta;
         this.cliente = cliente;
@@ -83,6 +89,11 @@ public class Cuenta {
 
     public void setOrden(List<Producto> orden) {
         this.orden = orden;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuenta{" + "cliente=" + cliente + ", mesa=" + mesa + ", mesero=" + mesero + '}';
     }
 
 }
