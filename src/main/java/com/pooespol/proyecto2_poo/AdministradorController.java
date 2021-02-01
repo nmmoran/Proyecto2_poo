@@ -243,7 +243,13 @@ public class AdministradorController implements Initializable {
     }
 
     @FXML
-
+    /**
+     * Metodo que permite vizualiar objeto de tipo Tableview
+     * con datos filtrados apartir de un archivo .txt 
+     * y un rango de fechas especifico
+     * 
+     * @param event
+     */
     private void buscarFechas(MouseEvent event) throws IOException {
 
         ventasVisibles.clear();
@@ -294,6 +300,12 @@ public class AdministradorController implements Initializable {
 
     }
 
+    /**
+     * Metodo que permite añadir objeto de tipo Producto
+     * y reescribir la lista de Productors con el obejto añadido
+     * 
+     * @param event
+     */
     @FXML
     private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
         try {
@@ -336,7 +348,13 @@ public class AdministradorController implements Initializable {
 
     }
 //nico
-
+    /**
+     * Metodo que permite Limpliar la informacion
+     * puesta en cada uno de los los TextFields dela ventana
+     * de administrador
+     * 
+     * @param event
+     */ 
     @FXML
     private void limpiarFields(MouseEvent event) {
 
@@ -349,7 +367,12 @@ public class AdministradorController implements Initializable {
         btnAceptar.setDisable(true);
         lbMessage.setText("");
     }
-
+    /**
+     * Metodo que permite editar la lista de productors
+     * apartir de informacion recopiada de los TextFields
+     *  
+     * @param event
+     */
     @FXML
     private void modificarProducto(MouseEvent event) throws IOException, ArchivosExceptions {
         finProductos = false;
@@ -376,7 +399,13 @@ public class AdministradorController implements Initializable {
         }
 
     }
-
+    
+    /**
+     * Metodo que permite habilitar el campo de texto 
+     * de los TextFields para su correspondiente llenado
+     * de informacion
+     * @param event 
+     */
     @FXML
     private void habilitarText(MouseEvent event) {
         txtName.setDisable(false);
@@ -385,7 +414,7 @@ public class AdministradorController implements Initializable {
         btnAceptar.setDisable(false);
         lbMessage.setText("");
     }
-
+    
     @FXML
     private void filtrarProductos(MouseEvent event) {
         try {
@@ -409,7 +438,10 @@ public class AdministradorController implements Initializable {
         }
 
     }
-
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void salir(Event event) {
         App.setRoot("login");
