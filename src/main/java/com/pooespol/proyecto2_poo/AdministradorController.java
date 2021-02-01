@@ -448,7 +448,16 @@ public class AdministradorController implements Initializable {
     private void salir(Event event) {
         App.setRoot("login");
     }
-
+    
+    /**
+     * Metodo que permite inicializar las mesas con sus caracteristicas
+     * e informacion en el apartado e monitoreo
+     * apartir de una ArrayList<> de objetos tipo Mesa pasados como parameto
+     * 
+     * 
+     * @param pane
+     * @param list 
+     */
     private void inicializarMesasMonitor(Pane pane ,ArrayList<Mesa> list) {
 
         for (Mesa mesa : list) {

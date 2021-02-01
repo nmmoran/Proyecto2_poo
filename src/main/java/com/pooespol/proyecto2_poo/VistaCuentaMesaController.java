@@ -610,7 +610,7 @@ public class VistaCuentaMesaController implements Initializable {
                  });
                 } 
                  
-                //System.out.println("holi");
+                
        
                 Thread.sleep(5000);
                }
