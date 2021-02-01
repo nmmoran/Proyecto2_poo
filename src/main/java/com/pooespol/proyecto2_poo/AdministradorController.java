@@ -308,7 +308,7 @@ public class AdministradorController implements Initializable {
      * @param event
      */
     @FXML
-    private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions {
+    private void añadirNuevoProducto(MouseEvent event) throws ArchivosExceptions, IOException {
         try {
             finProductos = false;
             String tipo = cbOpTipo1.getValue();
@@ -317,6 +317,16 @@ public class AdministradorController implements Initializable {
             String imagen = txtRuta.getText();
             if (tipo == null && imagen == null && nombre == null) {
                 throw new NullPointerException("No puede haber campos vacios");
+            } else {
+                if (nombre.length() == 0) {
+                    throw new NullPointerException("Nombre no puede ser vacio");
+                } else {
+                    if (txtPrecio.equals("")) {
+                        throw new NullPointerException("Precio no puede ser vacio");
+                    } else if (imagen.length() == 0) {
+                        throw new NullPointerException("Imagen no puede ser vacio");
+                    }
+                }
             }
 
             Producto p = new Producto(nombre, precio, imagen, tipo);
@@ -332,17 +342,44 @@ public class AdministradorController implements Initializable {
             txtName.setDisable(true);
             txtPrecio.setDisable(true);
             txtRuta.setDisable(true);
-             Thread t4 = new Thread(new ProductosActualizar());
+            Thread t4 = new Thread(new ProductosActualizar());
             //PASO 3: mandar a ejecutar el hilo
-             t4.start();
-             Thread t5 = new Thread(new TiempoRunnable());
-        //PASO 3: mandar a ejecutar el hilo
-                 t5.start();
-            
+            t4.start();
+            Thread t5 = new Thread(new TiempoRunnable());
+            //PASO 3: mandar a ejecutar el hilo
+            t5.start();
+
         } catch (NullPointerException ex) {
-            lbMessage.setText("No puede haber campos vacios");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+
+            Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+            Scene scene = new Scene(root);
+            VBox v = new VBox(new Label(ex.getMessage()));
+            ex.getStackTrace();
+            scene = new Scene(v);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            //muestre la aplicacion
+            stage.show();
+
         } catch (NumberFormatException ex) {
-            lmessage2.setText("valor no valido precio");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+
+            Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+            Scene scene = new Scene(root);
+            VBox v = new VBox(new Label(ex.getMessage()));
+            ex.getStackTrace();
+            scene = new Scene(v);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            //muestre la aplicacion
+            stage.show();
         }
         //maneja las excepciones de tipo IOException y URISyntaxException
         //de la misma manera
@@ -382,25 +419,72 @@ public class AdministradorController implements Initializable {
         String newPrecio = txtNewPrecio.getText();
         String newRuta = txtNewRuta.getText();
 
-        ArrayList<Producto> productos = r.getListproductos();
-        for (Producto p : productos) {
-            if (p.getNombre().equals(nom)) {
-                p.setNombre(newNombre);
-                p.setPrecio(Double.parseDouble(newPrecio));
-                p.setImagen(newRuta);
+        //Validaciones:
+        try {
+            if (nom == null && newNombre == null && newPrecio == null && newRuta == null) {
+                throw new NullPointerException("No puede estar vacios los campos");
+            } else {
+                if (nom.isEmpty()) {
+                    throw new NullPointerException("No puede estar el campo filtrar");
+                }else if(newNombre.isEmpty()){
+                    throw new NullPointerException("No puede estar vacio el campo Nuevo Nombre");
+                }else if(newPrecio.isEmpty()){
+                    throw new NullPointerException("No puede estar vacio el campo Nuevo precio");
+                }else if(newRuta.isEmpty()){
+                    throw new NullPointerException("No puede estar vacio el campo Nueva Ruta");
+                }
+                
 
-                ProductosData.sobreescribirProducto(productos);
-                Thread t1 = new Thread(new ProductosActualizar());
-        //PASO 3: mandar a ejecutar el hilo
-                 t1.start();
-                Thread t2 = new Thread(new TiempoRunnable());
-        //PASO 3: mandar a ejecutar el hilo
-                 t2.start();
             }
+
+            ArrayList<Producto> productos = r.getListproductos();
+            for (Producto p : productos) {
+                if (p.getNombre().equals(nom)) {
+                    p.setNombre(newNombre);
+                    p.setPrecio(Double.parseDouble(newPrecio));
+                    p.setImagen(newRuta);
+
+                    ProductosData.sobreescribirProducto(productos);
+                    Thread t1 = new Thread(new ProductosActualizar());
+                    //PASO 3: mandar a ejecutar el hilo
+                    t1.start();
+                    Thread t2 = new Thread(new TiempoRunnable());
+                    //PASO 3: mandar a ejecutar el hilo
+                    t2.start();
+                }
+            }
+
+        }catch(NullPointerException e){
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+            Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+            Scene scene = new Scene(root);
+            VBox v = new VBox(new Label(e.getMessage()));
+            e.getStackTrace();
+            scene = new Scene(v);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            //muestre la aplicacion
+            stage.show();
+        }catch (NumberFormatException ex) {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("administrador.fxml"));
+
+            Parent root = fxmlLoader.load();
+            //cree el scene y fije como nodo raiz el objeto que cargo con el fxml
+            Scene scene = new Scene(root);
+            VBox v = new VBox(new Label(ex.getMessage()));
+            ex.getStackTrace();
+            scene = new Scene(v);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            //muestre la aplicacion
+            stage.show();
         }
 
     }
-    
     /**
      * Metodo que permite habilitar el campo de texto 
      * de los TextFields para su correspondiente llenado
