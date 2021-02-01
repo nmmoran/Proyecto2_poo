@@ -721,9 +721,15 @@ public class AdministradorController implements Initializable {
             for (Venta v : App.r.getListVentas()) {
                 
                 totalRestaurante+= v.getTotal();
-                totalOcupantes+= v.getDatosCuenta().getMesa().getCapacidad();//corre
+                //corre
             }
-
+            for (Mesa m : App.r.getListMesas()) {
+                if(m.getCuenta()!=null){
+                    totalOcupantes+= m.getCapacidad();
+                }
+                
+            }
+             
             Platform.runLater(() -> {
                 lblTF.setText(String.valueOf(totalRestaurante));
                 lblNC.setText(String.valueOf(totalOcupantes));

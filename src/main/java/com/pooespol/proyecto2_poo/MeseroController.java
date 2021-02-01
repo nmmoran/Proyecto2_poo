@@ -64,8 +64,11 @@ public class MeseroController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        finMesasM=false;
         inicializarMesero(paneMesas, App.r.getListMesas());
-        
+        Thread t15= new Thread(new ActualizarMesaMesero());
+        t15.start();   
+                 
     }
     public void inicializarMesero(Pane pane, ArrayList<Mesa> mesas){
         for (Mesa mesa : mesas) {
@@ -85,7 +88,7 @@ public class MeseroController implements Initializable {
                             (MouseEvent ev) -> {
                                 //para que no se propague
                                 ev.consume();
-                                App.setRoot("vistaCuentaMesa");
+                                finalizarOrden2(mesa);
                                 
                             }
                     );
@@ -257,7 +260,70 @@ public class MeseroController implements Initializable {
         }
         App.setRoot(root1);
     }
+public void finalizarOrden2( Mesa mesa) {
 
+        Parent root1 = null;
+        Parent root2 = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("vistaCuentaMesa.fxml"));
+            root1 = loader.load();
+            Scene ss=new Scene(root1);
+            Stage st = new Stage();
+            st.initModality(Modality.APPLICATION_MODAL);
+            VistaCuentaMesaController vcm = loader.getController();
+            st.setScene(ss);
+            st.show();
+            //Obtenemos los campos y por ultimo el mesero:
+            Mesero mesero = LoginController.mesero;
+            vcm.getBtnFinalizarOrden().setOnAction((ActionEvent em) -> {
+
+                
+                mesa.getCuenta().setOrden(vcm.getProductosCuenta());
+                DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate fecha = LocalDate.now();
+                String fechaStr = fecha.format(form).replace("/", "-");
+                //creamos la venta:
+                Venta v = new Venta(fechaStr, mesa.getCuenta(), mesero, vcm.getTotal());
+                System.out.println("Imprimiendo Venta");
+                System.out.println(v);
+                App.r.getListVentas().add(v);
+                mesa.setCuenta(null);
+                Thread t12= new Thread(new ActualizarMesaMesero());
+                t12.start();   
+                Thread t13= new Thread(new TiempoRunnable2());
+                t13.start(); 
+                //limpiamos los contenedores de la cuenta anterior
+                vcm.getFpProductos().getChildren().clear();
+                vcm.getFpPrecios().getChildren().clear();
+                vcm.getLblTotal().setText("Total: ");
+                vcm.getLblIVA().setText("IVA: ");
+
+                //sobreescribir en el txtVentas:
+                File file = new File(App.class.getResource("reporteVentas.txt").getFile());
+                try ( BufferedWriter bw = new BufferedWriter(
+                        new FileWriter(file, true))) {
+                    String linea = fechaStr + ";" + mesa.getNumero() + ";" + mesero.getNombre() + ";"
+                            + String.valueOf(mesa.getCuenta().getNumCuenta()) + ";" + mesa.getCuenta().getCliente() + ";" + v.getTotal();
+                    bw.write(linea);
+                    bw.newLine();
+
+                } catch (IOException ex) {
+                    try {
+                        System.out.println(ex.getMessage());
+                        ex.printStackTrace();
+                        throw new ArchivosExceptions("reporteVentas.txt", ex.getMessage());
+                    } catch (ArchivosExceptions ex1) {
+                        ex1.printStackTrace();
+                    }
+                }
+                App.setRoot("mesero");
+            });
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        App.setRoot(root1);
+    }
     @FXML
     private void salirMesero(ActionEvent event) {
         App.setRoot("login");
