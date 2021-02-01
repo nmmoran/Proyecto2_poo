@@ -98,37 +98,12 @@ public class CrearMesasController implements Initializable {
     }
 
     public void agregarMesa() throws ArchivosExceptions {
-        System.out.println("botoncrear");
         int numMesa = Integer.parseInt(getTxtnum().getText());
         int capacidad = Integer.parseInt(getTxtcapMesas().getText());
         Ubicacion u = mesa.getUbicacion();
         mesa = new Mesa(numMesa, capacidad, u);
-        Circle c = new Circle(capacidad *10, Color.rgb(255, 220, 31));
-        Label l = new Label("M" + String.valueOf(numMesa));
-        StackPane contenedor = new StackPane();
-        contenedor.setPrefHeight(100);
-        contenedor.setPrefWidth(100);
-        contenedor.getChildren().addAll(c, l);
-        contenedor.setLayoutX(mesa.getUbicacion().getCoordenadaX());
-        contenedor.setLayoutY(mesa.getUbicacion().getCoordenadaY());
-        pane.getChildren().add(contenedor);
         AdministradorController.r.getListMesas().add(mesa);
         MesaData.escribirMesa(mesa);
-        contenedor.setOnMouseDragged(event -> {
-                    try {
-                        event.consume ();   
-                        double deltaX = event.getSceneX();
-                        double deltaY = event.getSceneY();
-                        contenedor.setLayoutX(deltaX);
-                        contenedor.setLayoutY(deltaY);
-                        Ubicacion ub = new Ubicacion(deltaX, deltaY);
-                        mesa.setUbicacion(ub);
-                        MesaData.sobreescribirMesa(AdministradorController.r.getListMesas());
-                    } catch (ArchivosExceptions ex) {
-                        ex.printStackTrace();
-                    }
-
-                });
     }
 
 }

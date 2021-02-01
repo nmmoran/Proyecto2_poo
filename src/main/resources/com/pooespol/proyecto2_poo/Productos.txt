@@ -1,5 +1,5 @@
 softdrinks;Coca-cola;1.50;coca.jpeg
-softdrinks;Pepsi;1.25;pepsi.jpeg
+softdrinks;Pepsi;1.25;crush.jpeg
 softdrinks;Crush;0.90;crush.jpeg
 hotdrinks;Expresso;3.66;expresso.jpeg
 hotdrinks;Capuccino;3.66;capuccino.jpeg
